@@ -1,6 +1,6 @@
 # News Web Application
 
-You will be required to the following:
+You will be required to do the following:
 
 - Consuming APIs (API keys, Fetch and integration)
 - Displaying data from APIs (Building layout)
