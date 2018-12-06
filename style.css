@@ -1,0 +1,15 @@
+div.container {
+  width: 90vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 3fr 1fr; }
+  div.container div.hero {
+    display: grid; }
+    div.container div.hero div.hero-item {
+      background: #1f1f1f;
+      color: white; }
+    div.container div.hero div.hero-lg {
+      grid-column: span 3;
+      grid-row: span 3; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,25 @@
+@import "variables.scss";
+
+
+div.container {
+    width: 90vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+
+    div.hero {
+        display: grid;
+
+        div.hero-item {
+            background: $accent;
+            color: $sec;
+        }
+
+        div.hero-lg {
+            grid-column: span 3;
+            grid-row: span 3;
+
+        }
+    }
+
+}
