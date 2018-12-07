@@ -1,4 +1,5 @@
 var nav = document.getElementById('nav');
+var mask = document.getElementById("mask");
 var links = document.getElementsByClassName('item');
 var img = document.getElementsByTagName("header");
 let shouldSlide = true;
@@ -48,11 +49,17 @@ else{
 }
 }
 var images = ['url("images/stocks.jpg")', 'url("images/streets.jpg")', 'url("images/tech.jpg")']
-var i=0;
+var i=1;
 function switchImage(){
     checkMedia();
         setInterval(function(){
-                img[0].style.backgroundImage = images[i];
+                img[0].classList.add("flash");
+                setTimeout(function(){
+                    img[0].classList.remove("flash");
+                },600)
+                setTimeout(function(){
+                    img[0].style.backgroundImage = images[i];
+                },550)
                  i++;
                  if(i == images.length){
                     i = 0;
@@ -60,3 +67,25 @@ function switchImage(){
             },5000)
 }
 window.onresize = checkMedia();
+var getNews = function(className, section, number){
+    this.section = section;
+    this.number = number;
+    this.fetchApi = function(){
+        fetch(`https://newsapi.org/v2/everything?q=${this.section}&from=2018-11-07&sortBy=publishedAt&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9`)
+        .then(function(result){
+            return(result.json());
+        })
+        .then(function(print){
+            console.log(print)
+            for(i = this.number; i < number+1; i++){
+                var rand  = Math.floor(Math.random()*print.articles.length);
+                document.getElementById(this.section).innerHTML = 
+                `<div class = "card"><img src="${print.articles[rand].urlToImage}" 
+                class="news-image"><p class = "${this.className}">${print.articles[rand].title}"</p>
+                <p class="story">${print.articles[rand].description}</p></div>`;
+            }
+        })
+    }
+}
+var news = new getNews("req", "bitcoin", "2");
+news.fetchApi();
