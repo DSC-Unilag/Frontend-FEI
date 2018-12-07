@@ -70,7 +70,7 @@ window.onresize = checkMedia();
 var getNews = function(className, section, number){
     this.section = section;
     this.number = number;
-    this.fetchApi = function(){
+    this.fetchApi = () => {
         fetch(`https://newsapi.org/v2/everything?q=${this.section}&from=2018-11-07&sortBy=publishedAt&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9`)
         .then(function(result){
             return(result.json());
