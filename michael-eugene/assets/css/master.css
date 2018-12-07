@@ -1,10 +1,12 @@
 * {
   margin: 0;
   padding: 0;
-  color: #1f1f1f; }
+  color: #1f1f1f;
+  box-sizing: border-box; }
 
 html {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; }
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  overflow-x: hidden; }
 
 a {
   text-decoration: none; }
@@ -22,6 +24,7 @@ a {
 .btn-sec {
   background: none;
   border: 2px solid #7a7a7a;
+  border-radius: 5px;
   color: #7a7a7a;
   transition: all ease-in-out 250ms;
   cursor: pointer; }
@@ -80,8 +83,7 @@ header {
       flex-wrap: nowrap; }
 
 nav.nav-container {
-  position: relative;
-  overflow-y: hidden; }
+  position: relative; }
   nav.nav-container div.nav-menu {
     position: absolute;
     width: 100vw;

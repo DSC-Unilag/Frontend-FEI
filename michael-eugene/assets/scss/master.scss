@@ -5,10 +5,12 @@
     margin: 0;
     padding: 0;
     color: $accent;
+    box-sizing: border-box;
 }
 
 html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
 }
 
 a {
@@ -28,6 +30,7 @@ a {
 .btn-sec {
     background: none;
     border: 2px solid $muted;
+    border-radius: 5px;
     color: $muted;
     transition: all ease-in-out 250ms;
     cursor: pointer;
@@ -107,7 +110,6 @@ header {
 
 nav.nav-container {
     position: relative;
-    overflow-y: hidden;
 
     div.nav-menu {
         position: absolute;

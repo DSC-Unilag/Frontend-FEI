@@ -1,25 +1,52 @@
 @import "variables.scss";
 
-
-div.container {
+.item-img {
+    width: 100%;
+}
+.container {
     width: 90vw;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+    margin: 2em auto;
+}
+.btn-sec {
+    padding: .5em;
+    width: max-content;
+}
 
-    div.hero {
+.top-stories {
+    text-align: center;
+
+
+    .wrapper {
         display: grid;
+        grid-gap: 2em;
+        padding: 2em 0em;
 
-        div.hero-item {
-            background: $accent;
-            color: $sec;
-        }
-
-        div.hero-lg {
-            grid-column: span 3;
-            grid-row: span 3;
-
+        .grid-item {
+            text-align: justify;
+            display: grid;
         }
     }
+}
 
+
+
+@media screen and (min-width:500px) {
+    .wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media screen and (min-width:800px) {
+    .wrapper {
+        grid-template-columns: repeat(9, 1fr);
+
+        .hero {
+            grid-column: span 9;
+        }
+
+        .sm {
+            grid-column: span 3;
+        }
+    }
 }
