@@ -179,6 +179,11 @@ nav h1 {
   padding-top: 20px;
   margin-left: 10px;
   margin-right: 10px;
+  min-width: 300px;
+}
+
+.req :nth-child(even) {
+  left: 100%;
 }
 
 .news-image {
@@ -195,6 +200,22 @@ nav h1 {
   color: #312f2f;
 }
 
+.req {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+}
+
+.req::-webkit-scrollbar {
+  width: 0%;
+}
+
 @media only screen and (min-width: 768px) {
   #top {
     padding-left: 10%;
@@ -205,6 +226,30 @@ nav h1 {
     -ms-grid-columns: 1fr 5fr 1fr;
         grid-template-columns: 1fr 5fr 1fr;
     grid-column-gap: auto;
+  }
+  .card {
+    padding-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
+  }
+  .req {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-transition: -webkit-transform 1s;
+    transition: -webkit-transform 1s;
+    transition: transform 1s;
+    transition: transform 1s, -webkit-transform 1s;
+    max-width: 300px;
+    max-height: 400px;
+    overflow-y: scroll;
+    text-overflow: ellipsis;
+  }
+  .req::-webkit-scrollbar {
+    width: 0%;
   }
   .hamburger {
     visibility: hidden;
