@@ -11,6 +11,12 @@ html {
 a {
   text-decoration: none; }
 
+li a.nav-link {
+  color: white; }
+
+.nav-link:hover {
+  color: #7a7a7a; }
+
 .btn-pry {
   background: #1f1f1f;
   color: white;
@@ -93,6 +99,8 @@ nav.nav-container {
     z-index: 0;
     transition: transform ease-in-out 250ms; }
     nav.nav-container div.nav-menu ul li a {
+      color: white; }
+    nav.nav-container div.nav-menu ul li a:hover {
       color: #7a7a7a; }
 
 .nav-is-visible .nav-container .nav-menu {

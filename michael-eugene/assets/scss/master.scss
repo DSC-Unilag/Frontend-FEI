@@ -16,6 +16,12 @@ html {
 a {
     text-decoration: none;
 }
+li a.nav-link {
+    color: white;
+}
+.nav-link:hover {
+    color: $muted;
+}
 .btn-pry {
     background: $accent;
     color: white;
@@ -125,6 +131,10 @@ nav.nav-container {
             li {
                 
                 a {
+                    color: white
+                }
+
+                a:hover {
                     color: $muted;
                 }
             }

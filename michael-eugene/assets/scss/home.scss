@@ -12,6 +12,9 @@
     padding: .5em;
     width: max-content;
 }
+.grid-txt {
+    padding-bottom: 1em;
+}
 
 .top-stories {
     text-align: center;
@@ -25,6 +28,15 @@
         .grid-item {
             text-align: justify;
             display: grid;
+            grid-gap: 1em;
+
+            .img-wrapper {
+                width: 100%;
+                min-height: 200px;
+                background-image: url(assets/img/img.png);
+                background-size: cover;
+                background-position: center;
+            }
         }
     }
 }
@@ -45,8 +57,22 @@
         .hero {
             grid-column: span 9;
 
-            .img-hero {
-                height: 400px;
+            .img-wrapper {
+                // background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+
+            .img-wrapper {
+                grid-column: span 5;
+            }
+
+            .hero-txt {
+                grid-column: span 4;
             }
         }
 
