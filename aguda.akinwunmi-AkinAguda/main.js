@@ -67,7 +67,7 @@ function switchImage(){
             },5000)
 }
 window.onresize = checkMedia();
-var getNews = function(className, section, number, show){
+var getNews = function(className, section, number, random){
     this.fetchApi = () => {
         fetch(`https://newsapi.org/v2/everything?q=${section}&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9`)
         .then(function(result){
@@ -76,16 +76,18 @@ var getNews = function(className, section, number, show){
         .then(function(print){
             var length = print.articles.length;
             var each = [0];
-            for(i = each.length-1; i > 0; i--){
-                var randomNo = Math.floor(Math.random()*(i+1));
-                lasteach = each[i];
-                each[i] = each[randomNo];
-                each[randomNo] = lasteach;
-            }
-            console.log(each)
             for (i = each.length; i < length; i++){
                 each.push(i);
             }
+            if(random){
+                for(i = each.length-1; i > 0; i--){
+                    var randomNo = Math.floor(Math.random()*(i+1));
+                    lasteach = each[i];
+                    each[i] = each[randomNo];
+                    each[randomNo] = lasteach;
+                }
+            }
+            console.log(each)
             console.log(print)
             for(i = 0; i != number; i++){
                 document.getElementById(className).innerHTML += 
@@ -96,11 +98,10 @@ var getNews = function(className, section, number, show){
         })
     }
 }
-var news = new getNews("req", "bitcoin", "3", true);
+var news = new getNews("req", "bitcoin", 3, true);
 news.fetchApi();
 function move(param){
     param.scrollLeft = 400;
 }
-function slide(){
-
-}
+var flem = new getNews("flem", "bitcoin", 1, false);
+flem.fetchApi()
