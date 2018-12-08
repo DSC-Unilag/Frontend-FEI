@@ -68,24 +68,23 @@ function switchImage(){
 }
 window.onresize = checkMedia();
 var getNews = function(className, section, number){
-    this.section = section;
-    this.number = number;
     this.fetchApi = () => {
-        fetch(`https://newsapi.org/v2/everything?q=${this.section}&from=2018-11-07&sortBy=publishedAt&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9`)
+        fetch(`https://newsapi.org/v2/everything?q=${section}&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9`)
         .then(function(result){
             return(result.json());
         })
         .then(function(print){
             console.log(print)
-            for(i = this.number; i < number+1; i++){
+            for(i = 0; i != number; i++){
                 var rand  = Math.floor(Math.random()*print.articles.length);
-                document.getElementById(this.section).innerHTML = 
+                document.getElementById(className).innerHTML += 
                 `<div class = "card"><img src="${print.articles[rand].urlToImage}" 
-                class="news-image"><p class = "${this.className}">${print.articles[rand].title}"</p>
+                class="news-image"><p class = "caption">${print.articles[rand].title}"</p>
                 <p class="story">${print.articles[rand].description}</p></div>`;
+                var rand  = Math.floor(Math.random()*print.articles.length); 
             }
         })
     }
 }
-var news = new getNews("req", "bitcoin", "2");
+var news = new getNews("req", "bitcoin", "3");
 news.fetchApi();
