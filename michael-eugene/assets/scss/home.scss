@@ -2,6 +2,7 @@
 
 .item-img {
     width: 100%;
+    object-fit: cover;
 }
 .container {
     width: 90vw;
@@ -43,6 +44,10 @@
 
         .hero {
             grid-column: span 9;
+
+            .img-hero {
+                height: 400px;
+            }
         }
 
         .sm {
