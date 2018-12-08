@@ -2,8 +2,10 @@ var nav = document.getElementById('nav');
 var mask = document.getElementById("mask");
 var links = document.getElementsByClassName('item');
 var img = document.getElementsByTagName("header");
-let shouldSlide = true;
+var shouldSlide = true;
+var startSlide = false;
 nav.style.width = '0%';
+//Mobile Sliding Navigation
 function animHam(x) {
     x.classList.toggle("change");
     if(shouldSlide){
@@ -29,6 +31,7 @@ function animHam(x) {
         }
     }
 }
+//Animated Top Menu Bar
 window.onscroll = function(){headerAnim()}
 function headerAnim(){
     if(document.body.scrollTop > 50 || document.documentElement.scrollTop > 50){
@@ -43,11 +46,12 @@ function headerAnim(){
 function checkMedia(){
     if(window.matchMedia("(min-width : 768px)").matches){
         document.getElementById("top").appendChild(nav);
+    }
+    else{
+        document.getElementById("navigation").appendChild(nav);
+    }
 }
-else{
-    document.getElementById("navigation").appendChild(nav);
-}
-}
+//flashing images
 var images = ['url("images/stocks.jpg")', 'url("images/streets.jpg")', 'url("images/tech.jpg")']
 var i=1;
 function switchImage(){
@@ -67,7 +71,8 @@ function switchImage(){
             },5000)
 }
 window.onresize = checkMedia();
-var getNews = function(className, section, number, random){
+//fetching and displaying  news
+var getNews = function(id, section, number, random){
     this.fetchApi = () => {
         fetch(`https://newsapi.org/v2/everything?q=${section}&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9`)
         .then(function(result){
@@ -90,18 +95,34 @@ var getNews = function(className, section, number, random){
             console.log(each)
             console.log(print)
             for(i = 0; i != number; i++){
-                document.getElementById(className).innerHTML += 
+                document.getElementById(id).innerHTML += 
                 `<div class = "card"><img src="${print.articles[each[i]].urlToImage}" 
                 class="news-image"><p class = "caption">${print.articles[each[i]].title}"</p>
                 <p class="story">${print.articles[each[i]].description}</p></div>`; 
             }
+            startSlide = true;
+            move(id, number);
         })
     }
 }
 var news = new getNews("req", "bitcoin", 3, true);
 news.fetchApi();
-function move(param){
-    param.scrollLeft = 400;
+//news carousel
+function move(dId, num){
+    if(startSlide){
+        var scrollVal = document.getElementById(dId); 
+            if(scrollVal.scrollLeft == 0){
+                var startLoop = setInterval(function(){
+                     scrollVal.scrollLeft+=315;
+                     move(dId, num)
+                   },5000)
+            }
+            if(scrollVal.scrollLeft >= 315*(num-2)){
+                clearInterval(startLoop);
+                var stopLoop = setInterval(function(){
+                    scrollVal.scrollLeft-=320;
+                    move(dId, num)
+                  },5000)
+            }      
+    }
 }
-var flem = new getNews("flem", "bitcoin", 1, false);
-flem.fetchApi()

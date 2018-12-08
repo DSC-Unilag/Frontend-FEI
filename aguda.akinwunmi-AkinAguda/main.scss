@@ -13,7 +13,7 @@ header{
     -ms-transition: opacity 0.6s;
     -o-transition: opacity 0.6s;
     transition: opacity 0.6s;
-    z-index: 150;
+    z-index: 130;
 }
 .flash{
     opacity: 0.7;
@@ -200,9 +200,15 @@ nav h1{
     overflow-x: scroll;
     scroll-behavior: smooth;
     transition: transform 1s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .req::-webkit-scrollbar{
     width: 0%
+}
+input[type=search]{
+    height: 10px;
+    border: 1px solid white;
+    visibility: visible;
 }
 @media only screen and (min-width: 768px){
     #top{
@@ -213,11 +219,17 @@ nav h1{
         grid-template-columns: 1fr 5fr 1fr;
         grid-column-gap: auto;
     }
+    .mini{
+        border-bottom: 1px solid black;
+        padding-bottom: 1px;
+        height: 50px;
+    }
     .card{
         padding-top: 20px;
         margin-left: 10px;
         margin-right: 10px;
         width: 100%;
+        overflow-y: hidden;
     }
     .req{
         display: flex;
@@ -225,8 +237,8 @@ nav h1{
         scroll-behavior: smooth;
         transition: transform 1s;
         max-width: 300px;
-        max-height: 400px;
-        overflow-y: scroll;
+        max-height: 500px;
+        overflow-y: hidden;
         text-overflow: ellipsis;
     }
     .req::-webkit-scrollbar{
