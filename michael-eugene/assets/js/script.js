@@ -24,7 +24,7 @@ fetch(url)
         response.articles.slice(-4).forEach(art => {
             document.getElementsByClassName('wrapper')[0].innerHTML += `
         <div class="grid-item sm">
-            <div class="img-wrapper"><img src="${response.articles[0].urlToImage}"></div>
+            <div class="img-wrapper" style="background-image:url(${response.articles[0].urlToImage});"></div>
             <div class="hero-txt">
                 <h2 class="grid-txt">${response.articles[0].title}</h2>
                 <p class="grid-txt">${response.articles[0].description}</p>
@@ -44,7 +44,7 @@ fetch(url)
         response.articles.slice(-4).forEach(art => {
             document.getElementsByClassName('wrapper')[1].innerHTML += `
         <div class="grid-item sm">
-            <div class="img-wrapper"><img src="${response.articles[0].urlToImage}"></div>
+        <div class="img-wrapper" style="background-image:url(${response.articles[0].urlToImage});"></div>
             <div class="hero-txt">
                 <h2 class="grid-txt">${response.articles[0].title}</h2>
                 <p class="grid-txt">${response.articles[0].description}</p>
@@ -64,7 +64,7 @@ fetch(url)
         response.articles.slice(-4).forEach(art => {
             document.getElementsByClassName('wrapper')[2].innerHTML += `
         <div class="grid-item sm">
-            <div class="img-wrapper"><img src="${response.articles[0].urlToImage}"></div>
+        <div class="img-wrapper" style="background-image:url(${response.articles[0].urlToImage});"></div>
             <div class="hero-txt">
                 <h2 class="grid-txt">${response.articles[0].title}</h2>
                 <p class="grid-txt">${response.articles[0].description}</p>
@@ -84,7 +84,7 @@ fetch(url)
         response.articles.slice(-4).forEach(art => {
             document.getElementsByClassName('wrapper')[3].innerHTML += `
         <div class="grid-item sm">
-            <div class="img-wrapper"><img src="${response.articles[0].urlToImage}"></div>
+        <div class="img-wrapper" style="background-image:url(${response.articles[0].urlToImage});"></div>
             <div class="hero-txt">
                 <h2 class="grid-txt">${response.articles[0].title}</h2>
                 <p class="grid-txt">${response.articles[0].description}</p>
