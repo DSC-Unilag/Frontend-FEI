@@ -1,5 +1,8 @@
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>The Moon</title>
         <link rel="stylesheet" href="css\index.css">
     </head>
@@ -7,7 +10,6 @@
         <nav>
             <ul>
                 <li class="nav-brand"><a href="\">The Moon</a></li>
-                <li class="nav-link"><a href="pages/categories.html">Home</a></li>
                 <li class="nav-link"><a href="pages/categories.html">News</a></li>
                 <li class="nav-link"><a href="pages/categories.html">Sports</a></li>
                 <li class="nav-link"><a href="pages/categories.html">Weather</a></li>
@@ -16,130 +18,123 @@
                 <li class="nav-link"><a href="pages/categories.html">Travel</a></li>
                 <li class="nav-link">More</li>
             </ul>
-            <form id="nav-search">
-                <input type="text" >
-                <button type="button"><img src="images/svg/search.svg" alt=""></button>
+            <form id="nav-search" action="pages/search.html">
+                <input type="text" required>
+                <button type="submit"><img src="images/svg/search.svg"></button>
             </form>
         </nav>
-        <div id="carousel">
-            <img src="images\buhari.jpg" alt="">
-        </div>
         <div id="stories-container">
             <div id="top-stories">
-                <h3>Top Stories</h3>
-                <ul>
-                    <li>
-                        <a href="#">
+                <h2>Top Stories</h2>            
+                    <div class="card">
                             <img src="images\buhari.jpg" alt="Buhari">
                             <span class="top-story-summary">
                                 <p href="pages/article.html"><b>Buhari Claims He's not a clone</b></p>
                                 <p class="text-muted">He said he's not a clone when addressed on blablabla</p>
                             </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
+                            <button><a href="#">Read more</a></button>
+                    </div>
+                    <div class="card">
                             <img src="images\buhari.jpg" alt="Buhari">
                             <span class="top-story-summary">
                                 <p href="pages/article.html"><b>Buhari Claims He's not a clone</b></p>
                                 <p class="text-muted">He said he's not a clone when addressed on blablabla</p>
                             </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
+                            <button><a href="#">Read more</a></button>                            
+                    </div>
+                    <div class="card">
                             <img src="images\buhari.jpg" alt="Buhari">
                             <span class="top-story-summary">
                                 <p href="pages/article.html"><b>Buhari Claims He's not a clone</b></p>
                                 <p class="text-muted">He said he's not a clone when addressed on blablabla</p>
                             </span>
-                        </a>
-                    </li>
-                </ul>
+                            <button><a href="#">Read more</a></button>                            
+                    </div>
+                
             </div>
             <div id="latest-stories">
                 <h2>LATEST STORIES</h2>
-                <div>
-                    <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
-                </div>
-                <div>
-                    <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
-                </div>
-                <div>
-                    <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
-                </div>
-                <div>
-                    <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
-                </div>
-                <div>
-                    <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
-                </div>                               
+                <ul>
+                    <li>
+                        <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
+                    </li>
+                    <li>
+                        <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
+                    </li>
+                    <li>
+                        <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
+                    </li>
+                    <li>
+                        <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
+                    </li>
+                    <li>
+                        <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
+                    </li> 
+                    <li>
+                        <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
+                    </li>
+                    <li>
+                        <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
+                    </li>
+                    <li>
+                        <span class="text-muted">6:53</span> <a href="#">Buhari claims he's not a clone</a>
+                    </li>   
+                </ul>                           
             </div>
         </div>
         <div id="stories-preview">
-            <h2>News</h2>
-            <div id="news">
+            <h2>Politics</h2>
+            <div id="politics">
                 <div class="card">
-                    <a href="#">
                         <img src="images\buhari.jpg" alt="">
                         <h4>Buhari is not a clone leave him alone</h4>
                         <p class="text-muted">Buhari in a meeting at the UN addressed the growiing rumor about him being dead</p>
-                    </a>
+                        <button><a href="#">Read more</a></button>                        
                 </div>
                 <div class="card">
-                    <a href="#">
                         <img src="images\buhari.jpg" alt="">
                         <h4>Buhari is not a clone leave him alone</h4>
                         <p class="text-muted">Buhari in a meeting at the UN addressed the growiing rumor about him being dead</p>
-                    </a>
+                        <button><a href="#">Read more</a></button>                        
                 </div>
                 <div class="card">
-                    <a href="#">
                         <img src="images\buhari.jpg" alt="">
                         <h4>Buhari is not a clone leave him alone</h4>
                         <p class="text-muted">Buhari in a meeting at the UN addressed the growiing rumor about him being dead</p>
-                    </a>
+                        <button><a href="#">Read more</a></button>                        
                 </div>
                 <div class="card">
-                    <a href="#">
                         <img src="images\buhari.jpg" alt="">
                         <h4>Buhari is not a clone leave him alone</h4>
                         <p class="text-muted">Buhari in a meeting at the UN addressed the growiing rumor about him being dead</p>
-                    </a>
+                        <button><a href="#">Read more</a></button>                        
                 </div>
             </div>
             <h2>Sports</h2>
             <div id="sports">
                     <div class="card">
-                        <a href="#">
                         <img src="images\buhari.jpg" alt="">
-                        
-                            <h4>Modric wins ballon d'or</h4>
-                            <p class="text-muted">Modric the croatian hair model yesterday won the ballon d'or for no reason except sentiment...</p>
-                        </a>
+                        <h4>Modric wins ballon d'or</h4>
+                        <p class="text-muted">Modric the croatian hair model yesterday won the ballon d'or for no reason except sentiment...</p>
+                        <button><a href="#">Read more</a></button>                           
                     </div>
                     <div class="card">
-                        <a href="#">
                         <img src="images\buhari.jpg" alt="">
-                        
-                            <h4>Modric wins ballon d'or</h4>
-                            <p class="text-muted">Modric the croatian hair model yesterday won the ballon d'or for no reason except sentiment...</p>
-                        </a>
+                        <h4>Modric wins ballon d'or</h4>
+                        <p class="text-muted">Modric the croatian hair model yesterday won the ballon d'or for no reason except sentiment...</p>
+                        <button><a href="#">Read more</a></button>                           
                     </div>
                     <div class="card">
-                        <a href="#">
                         <img src="images\buhari.jpg" alt="">
-                        
-                            <h4>Modric wins ballon d'or</h4>
-                            <p class="text-muted">Modric the croatian hair model yesterday won the ballon d'or for no reason except sentiment...</p>
-                        </a>
+                        <h4>Modric wins ballon d'or</h4>
+                        <p class="text-muted">Modric the croatian hair model yesterday won the ballon d'or for no reason except sentiment...</p>
+                        <button><a href="#">Read more</a></button>                           
                     </div>
                     <div class="card">
-                        <a href="#">
                         <img src="images\buhari.jpg" alt="">
-                            <h4>Modric wins ballon d'or</h4>
-                            <p class="text-muted">Modric the croatian hair model yesterday won the ballon d'or for no reason except sentiment...</p>
-                        </a>
+                        <h4>Modric wins ballon d'or</h4>
+                        <p class="text-muted">Modric the croatian hair model yesterday won the ballon d'or for no reason except sentiment...</p>
+                        <button><a href="#">Read more</a></button>                           
                     </div>
                 </div>
         </div>
