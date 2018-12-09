@@ -1,0 +1,80 @@
+body{
+    margin: 0;
+}
+button,a{
+    cursor: pointer;
+}
+:focus{
+    outline: none;
+}
+.text-muted{
+    color: rgba(0, 0, 0, 0.6);
+}
+nav{
+    box-shadow: 0 0 10px grey;
+    display: flex;
+    color: white;
+    height: 60px;
+    align-items: center;  
+}
+nav ul{
+    margin: 0;
+}
+nav li{
+    display: inline-flex;
+    align-items: center;
+    align-content: center;
+    padding: 0px 15px;
+}
+nav li a{
+    color: black;
+    text-decoration: none;    
+}
+nav li.nav-brand{
+    font-size: 25px;
+}
+nav li.nav-link{
+    font-size: 20px;
+}
+form#nav-search{
+    display: flex;
+    margin: 0 20px 0 auto;
+    height: 27px;
+    border: 1px solid black;
+}
+form#nav-search input{
+    font-size: 16px;   
+    width: 170px;   
+    padding: 0 3px;
+}
+form#nav-search button{
+    background-color: transparent;
+}
+form#nav-search *{
+    border: none;
+}
+form#nav-search button img{
+    height: 16px;
+}
+#search-lg{
+    display: flex;
+    margin-top: 80px;
+    justify-content: center;
+}
+#search-lg input{
+    width: 75%;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px 0 0 10px;
+    border-right: none;
+    border: 1px solid;
+    border-right: 0;
+    padding-left: 5px;
+}
+#search-lg button{
+    border: 1px solid;
+    border-radius: 0 10px 10px 0;
+    border-left: 0;
+    width: 100px;
+    font-size: 18px;
+}
