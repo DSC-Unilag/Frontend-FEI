@@ -20,15 +20,14 @@
     grid-gap: 2em;
     padding: 2em 0em; }
     .top-stories .wrapper .grid-item {
-      text-align: justify;
       display: grid;
       grid-gap: 1em; }
       .top-stories .wrapper .grid-item .img-wrapper {
-        width: 100%;
-        min-height: 200px;
-        background-image: url(assets/img/img.png);
-        background-size: cover;
-        background-position: center; }
+        width: 100%; }
+        .top-stories .wrapper .grid-item .img-wrapper img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover; }
 
 @media screen and (min-width: 500px) {
   .wrapper {
@@ -36,16 +35,16 @@
 @media screen and (min-width: 800px) {
   .wrapper {
     grid-template-columns: repeat(9, 1fr); }
-    .wrapper .hero {
+    .wrapper .grid-item:first-child {
       grid-column: span 9; }
-      .wrapper .hero .img-wrapper {
+      .wrapper .grid-item:first-child .img-wrapper {
         background-size: cover; }
-    .wrapper .hero-grid {
+    .wrapper .grid-item:first-child {
       display: grid;
       grid-template-columns: repeat(9, 1fr); }
-      .wrapper .hero-grid .img-wrapper {
+      .wrapper .grid-item:first-child .img-wrapper {
         grid-column: span 5; }
-      .wrapper .hero-grid .hero-txt {
+      .wrapper .grid-item:first-child .hero-txt {
         grid-column: span 4; }
     .wrapper .sm {
       grid-column: span 3; } }

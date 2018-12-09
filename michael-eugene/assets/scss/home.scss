@@ -26,16 +26,17 @@
         padding: 2em 0em;
 
         .grid-item {
-            text-align: justify;
             display: grid;
             grid-gap: 1em;
 
             .img-wrapper {
                 width: 100%;
-                min-height: 200px;
-                background-image: url(assets/img/img.png);
-                background-size: cover;
-                background-position: center;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
             }
         }
     }
@@ -54,16 +55,15 @@
     .wrapper {
         grid-template-columns: repeat(9, 1fr);
 
-        .hero {
+        .grid-item:first-child {
             grid-column: span 9;
 
             .img-wrapper {
-                // background-repeat: no-repeat;
                 background-size: cover;
             }
         }
 
-        .hero-grid {
+        .grid-item:first-child {
             display: grid;
             grid-template-columns: repeat(9, 1fr);
 
