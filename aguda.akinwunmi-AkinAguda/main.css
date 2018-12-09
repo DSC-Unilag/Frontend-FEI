@@ -188,6 +188,7 @@ nav h1 {
 
 .news-image {
   width: 100%;
+  max-height: 200px;
 }
 
 .caption {
@@ -210,6 +211,8 @@ nav h1 {
   transition: -webkit-transform 1s;
   transition: transform 1s;
   transition: transform 1s, -webkit-transform 1s;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .req::-webkit-scrollbar {
@@ -227,11 +230,17 @@ nav h1 {
         grid-template-columns: 1fr 5fr 1fr;
     grid-column-gap: auto;
   }
+  .mini {
+    border-bottom: 1px solid black;
+    padding-bottom: 1px;
+    display: inline;
+  }
   .card {
     padding-top: 20px;
     margin-left: 10px;
     margin-right: 10px;
     width: 100%;
+    overflow-y: hidden;
   }
   .req {
     display: -webkit-box;
@@ -243,9 +252,9 @@ nav h1 {
     transition: -webkit-transform 1s;
     transition: transform 1s;
     transition: transform 1s, -webkit-transform 1s;
-    max-width: 300px;
-    max-height: 400px;
-    overflow-y: scroll;
+    max-width: 320px;
+    max-height: 500px;
+    overflow-y: hidden;
     text-overflow: ellipsis;
   }
   .req::-webkit-scrollbar {
