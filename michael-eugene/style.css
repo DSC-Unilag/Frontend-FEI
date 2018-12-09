@@ -18,7 +18,7 @@
   .top-stories .wrapper {
     display: grid;
     grid-gap: 2em;
-    padding: 3em; }
+    padding-bottom: 3em; }
     .top-stories .wrapper .grid-item {
       display: grid;
       grid-gap: 1em;
