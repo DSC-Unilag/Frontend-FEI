@@ -23,7 +23,8 @@
       display: grid;
       grid-gap: 1em; }
       .top-stories .wrapper .grid-item .img-wrapper {
-        width: 100%; }
+        width: 100%;
+        height: 100%; }
         .top-stories .wrapper .grid-item .img-wrapper img {
           height: 100%;
           width: 100%;
