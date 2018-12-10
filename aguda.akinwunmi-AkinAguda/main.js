@@ -52,24 +52,24 @@ function checkMedia(){
     }
 }
 //flashing images
-var images = ['url("images/stocks.jpg")', 'url("images/streets.jpg")', 'url("images/tech.jpg")']
-var i=1;
-function switchImage(){
-    checkMedia();
-        setInterval(function(){
-                img[0].classList.add("flash");
-                setTimeout(function(){
-                    img[0].classList.remove("flash");
-                },600)
-                setTimeout(function(){
-                    img[0].style.backgroundImage = images[i];
-                },550)
-                 i++;
-                 if(i == images.length){
-                    i = 0;
-                 }
-            },5000)
-}
+// var images = ['url("images/stocks.jpg")', 'url("images/streets.jpg")', 'url("images/tech.jpg")']
+// var i=1;
+// function switchImage(){
+//     checkMedia();
+//         setInterval(function(){
+//                 img[0].classList.add("flash");
+//                 setTimeout(function(){
+//                     img[0].classList.remove("flash");
+//                 },600)
+//                 setTimeout(function(){
+//                     img[0].style.backgroundImage = images[i];
+//                 },550)
+//                  i++;
+//                  if(i == images.length){
+//                     i = 0;
+//                  }
+//             },5000)
+// }
 window.onresize = checkMedia();
 //fetching and displaying  news
 var getNews = function(id, section, number, random, tileOrBlock, maxWidth){
@@ -135,7 +135,7 @@ var getNews = function(id, section, number, random, tileOrBlock, maxWidth){
     }
 }
 var news = new getNews("req", "bitcoin", 5, true, "block", 400);
-var tiledNews = new getNews("tiles", "bitcoin", 5, false, "tile", 400);
+var tiledNews = new getNews("tiles", "bitcoin", 5, false, "tile", 500);
 tiledNews.fetchApi();
 news.fetchApi();
 //news carousel
