@@ -120,16 +120,16 @@ nav.nav-container {
     div.nav-menu {
         position: absolute;
         width: 100vw;
-        height: 100vh;
+        height: 80vh;
         background: $accent;
         transform: translateY(-100%);
-        z-index: 0;
+        z-index: 1;
         transition: transform ease-in-out 250ms;
 
         ul {
 
             li {
-                
+                padding: 1em 0em;
                 a {
                     color: white
                 }
@@ -139,10 +139,26 @@ nav.nav-container {
                 }
             }
         }
+
+        .nav-section {
+            padding: .5em 0em;
+            margin: 0em auto;
+            text-align: center;
+        }
+
+        form.nav-section {
+            padding: 1.5em 0em;
+
+            input {
+                padding: 1em;
+            }
+        }
     }
 }
 
 .nav-is-visible {
+    position: fixed;
+
     .nav-container .nav-menu {
         transform: translateY(0);
     }

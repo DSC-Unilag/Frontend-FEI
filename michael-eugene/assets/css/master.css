@@ -93,18 +93,30 @@ nav.nav-container {
   nav.nav-container div.nav-menu {
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
     background: #1f1f1f;
     transform: translateY(-100%);
-    z-index: 0;
+    z-index: 1;
     transition: transform ease-in-out 250ms; }
-    nav.nav-container div.nav-menu ul li a {
-      color: white; }
-    nav.nav-container div.nav-menu ul li a:hover {
-      color: #7a7a7a; }
+    nav.nav-container div.nav-menu ul li {
+      padding: 1em 0em; }
+      nav.nav-container div.nav-menu ul li a {
+        color: white; }
+      nav.nav-container div.nav-menu ul li a:hover {
+        color: #7a7a7a; }
+    nav.nav-container div.nav-menu .nav-section {
+      padding: .5em 0em;
+      margin: 0em auto;
+      text-align: center; }
+    nav.nav-container div.nav-menu form.nav-section {
+      padding: 1.5em 0em; }
+      nav.nav-container div.nav-menu form.nav-section input {
+        padding: 1em; }
 
-.nav-is-visible .nav-container .nav-menu {
-  transform: translateY(0); }
+.nav-is-visible {
+  position: fixed; }
+  .nav-is-visible .nav-container .nav-menu {
+    transform: translateY(0); }
 
 footer {
   background: #1f1f1f;
