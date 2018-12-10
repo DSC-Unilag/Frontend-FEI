@@ -1,6 +1,7 @@
 body, html{
     margin: 0px; 
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 header{
     background-image: url("images/stocks.jpg");
@@ -177,9 +178,6 @@ nav h1{
 }
 .card{
     padding-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    min-width: 300px;
 }
 .req :nth-child(even){
     left: 100%;
@@ -187,14 +185,23 @@ nav h1{
 .news-image{
     width: 100%;
     max-height: 200px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .caption{
     font-family: "Ubuntu", sans-serif;
     font-size: 1.4rem;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .story{
     font-family: "Ubuntu", sans-serif;
     color: rgb(49, 47, 47);
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .req{
     display: flex;
@@ -202,9 +209,42 @@ nav h1{
     scroll-behavior: smooth;
     transition: transform 1s;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-content: center;
 }
 .req::-webkit-scrollbar{
     width: 0%
+}
+.date{
+    font-family: "Ubuntu", sans-serif;
+    color: rgb(150, 145, 145);
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.tile{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    padding-top: 5px;
+    box-shadow: 0 4px 4px 0 rgba(36, 35, 35, 0.2)
+}
+.tileNews-image{
+    height: 100px;
+    width: 100px;
+    float: left;
+    padding-top: 10px;
+}
+.tileCaption{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 1.1rem;
+}
+.tileDate{
+    margin-left: 10px;
+    font-family: "Ubuntu", sans-serif;
+    color: rgb(150, 145, 145);
+    margin-top: 0px;
 }
 @media only screen and (min-width: 768px){
     #top{
@@ -221,9 +261,7 @@ nav h1{
         display: inline;
     }
     .card{
-        padding-top: 20px;
-        margin-left: 10px;
-        margin-right: 10px;
+        padding-top: 5px;
         width: 100%;
         overflow-y: hidden;
     }
@@ -232,7 +270,6 @@ nav h1{
         overflow-x: scroll;
         scroll-behavior: smooth;
         transition: transform 1s;
-        max-width: 320px;
         max-height: 500px;
         overflow-y: hidden;
         text-overflow: ellipsis;
@@ -275,5 +312,13 @@ nav h1{
     }
     header{
         height: 95vh;
+    }
+    .content{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .mainSection{
+        display: grid;
+        grid-template-columns: auto auto;
     }
 }

@@ -72,8 +72,18 @@ function switchImage(){
 }
 window.onresize = checkMedia();
 //fetching and displaying  news
-var getNews = function(id, section, number, random, tileOrBlock){
+var getNews = function(id, section, number, random, tileOrBlock, maxWidth){
     this.fetchApi = () => {
+        var unit = `px`;
+        shouldStartSlide = true;
+        if(window.matchMedia(`(min-width : ${maxWidth}px)`).matches){
+            maxWidth = maxWidth;
+        }
+        else{
+            shouldStartSlide = false;
+            maxWidth = 100;
+            unit = `%`;
+        }
         fetch(`https://newsapi.org/v2/everything?q=${section}&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9`)
         .then(function(result){
             return(result.json());
@@ -96,39 +106,54 @@ var getNews = function(id, section, number, random, tileOrBlock){
             console.log(print)
             for(i = 0; i != number; i++){
                 if (tileOrBlock == "block"){
-                    document.getElementById(id).innerHTML += 
-                    `<div class = "card"><img src="${print.articles[each[i]].urlToImage}" 
+                    var cont = document.getElementById(id);
+                    cont.setAttribute("style", `max-width:${maxWidth}${unit};`)
+                    cont.innerHTML += `<div class = "card" style = min-width:${maxWidth}${unit};><img src="${print.articles[each[i]].urlToImage}" 
                     class="news-image"><p class = "caption">${print.articles[each[i]].title}"</p>
-                    <p class="story">${print.articles[each[i]].description}</p></div>`;
+                    <p class="story">${print.articles[each[i]].description}</p>
+                    <p class = "date">${print.articles[each[i]].source.name} on ${print.articles[each[i]].publishedAt}</p></div>`;
+                    if(shouldStartSlide){
+                        startSlide = true;
+                    }
+                    move(id, number, maxWidth);
                 }
                 if (tileOrBlock == "tile"){
-                    document.getElementById(id).innerHTML += 
-                    `<div class = "tile"><img src="${print.articles[each[i]].urlToImage}" 
-                    class="tileNews-image"><p class = "tileCaption">${print.articles[each[i]].title}"</p>
-                    <p class="tileStory">${print.articles[each[i]].description}</p></div>`;
+                    var cont = document.getElementById(id);
+                    cont.setAttribute("style", `max-width:${maxWidth}${unit};`)
+                    cont.innerHTML += `<div class = "tile" style = min-width:${maxWidth}${unit};>
+                    <div>
+                    <img src="${print.articles[each[i]].urlToImage}" 
+                    class="tileNews-image">
+                    </div>
+                    <div>
+                    <p class = "tileCaption">${print.articles[each[i]].title}"</p>
+                    <p class = "tileDate">${print.articles[each[i]].source.name} on ${print.articles[each[i]].publishedAt}
+                    </p></div>`;
                 }
             }
-            startSlide = true;
-            move(id, number);
         })
     }
 }
-var news = new getNews("req", "bitcoin", 5, true, "block");
+var news = new getNews("req", "bitcoin", 5, true, "block", 400);
+var tiledNews = new getNews("tiles", "bitcoin", 5, false, "tile", 400);
+tiledNews.fetchApi();
 news.fetchApi();
 //news carousel
-function move(dId, num){
+function move(dId, num, maxW){
     if(startSlide){
         var scrollVal = document.getElementById(dId); 
             if(scrollVal.scrollLeft == 0){
+                // clearInterval(stopLoop);
                 var startLoop = setInterval(function(){
-                     scrollVal.scrollLeft+=320;
+                     scrollVal.scrollLeft+=maxW;
                      move(dId, num)
                    },5000)
             }
-            if(scrollVal.scrollLeft >= 320*(num-2)){
-                clearInterval(startLoop);
+            if(scrollVal.scrollLeft >= maxW*(num-2)){
+                console.log("flem")
+                // clearInterval(startLoop);
                 var stopLoop = setInterval(function(){
-                    scrollVal.scrollLeft-=320;
+                    scrollVal.scrollLeft-=maxW;
                     move(dId, num)
                   },5000)
             }     

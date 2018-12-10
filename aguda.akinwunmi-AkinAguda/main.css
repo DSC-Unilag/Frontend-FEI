@@ -1,6 +1,7 @@
 body, html {
   margin: 0px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 header {
@@ -177,9 +178,6 @@ nav h1 {
 
 .card {
   padding-top: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  min-width: 300px;
 }
 
 .req :nth-child(even) {
@@ -189,16 +187,28 @@ nav h1 {
 .news-image {
   width: 100%;
   max-height: 200px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .caption {
   font-family: "Ubuntu", sans-serif;
   font-size: 1.4rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .story {
   font-family: "Ubuntu", sans-serif;
   color: #312f2f;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .req {
@@ -213,10 +223,53 @@ nav h1 {
   transition: transform 1s, -webkit-transform 1s;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 .req::-webkit-scrollbar {
   width: 0%;
+}
+
+.date {
+  font-family: "Ubuntu", sans-serif;
+  color: #969191;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tile {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 4fr;
+      grid-template-columns: 1fr 4fr;
+  padding-top: 5px;
+  -webkit-box-shadow: 0 4px 4px 0 rgba(36, 35, 35, 0.2);
+          box-shadow: 0 4px 4px 0 rgba(36, 35, 35, 0.2);
+}
+
+.tileNews-image {
+  height: 100px;
+  width: 100px;
+  float: left;
+  padding-top: 10px;
+}
+
+.tileCaption {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.1rem;
+}
+
+.tileDate {
+  margin-left: 10px;
+  font-family: "Ubuntu", sans-serif;
+  color: #969191;
+  margin-top: 0px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -236,9 +289,7 @@ nav h1 {
     display: inline;
   }
   .card {
-    padding-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding-top: 5px;
     width: 100%;
     overflow-y: hidden;
   }
@@ -252,7 +303,6 @@ nav h1 {
     transition: -webkit-transform 1s;
     transition: transform 1s;
     transition: transform 1s, -webkit-transform 1s;
-    max-width: 320px;
     max-height: 500px;
     overflow-y: hidden;
     text-overflow: ellipsis;
@@ -296,6 +346,18 @@ nav h1 {
   }
   header {
     height: 95vh;
+  }
+  .content {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto;
+        grid-template-columns: auto auto;
+  }
+  .mainSection {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto auto;
+        grid-template-columns: auto auto;
   }
 }
 /*# sourceMappingURL=main.css.map */
