@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
-<body onload="switchImage(0)">
+<body>
     <header>
         <div id="mask"></div>
         <nav id="navigation">
@@ -28,7 +28,7 @@
                     <li><a class="item">Sports</a></li>
                     <li><a class="item">Travel</a></li>
                     <li><a class="item">Style</a></li>
-                    <li><input type="search"></li>
+                    <li><input type="search" class="item"></li>
                     <!-- <li><a class="item">Health</a></li> -->
                 </ul>
         </nav>
@@ -40,18 +40,18 @@
         </div> -->
     </header>
     <div class="content">
-            <ul class="sub-nav">
-                    <li class="status">Don't Miss</li>
-                    <span>
-                        <li class="list"><a>All</a></li>
-                        <li class="list"><a>Politics</a></li>
-                        <li class="list"><a>Business</a></li>
-                        <li class="list"><a>Entertainment</a></li>
-                        <li class="list"><a>Sports</a></li>
-                        <li class="list"><a>Travel</a></li>
-                        <li class="list"><a>Style</a></li>
-                    </span>
-                </ul><br><br><br>
+        <ul class="sub-nav">
+            <li class="status">Don't Miss</li>
+                <span>
+                    <li class="list"><a>All</a></li>
+                    <li class="list"><a>Politics</a></li>
+                    <li class="list"><a>Business</a></li>
+                    <li class="list"><a>Entertainment</a></li>
+                    <li class="list"><a>Sports</a></li>
+                    <li class="list"><a>Travel</a></li>
+                    <li class="list"><a>Style</a></li>
+                </span>
+            </ul><br>
         <div class="mainSection">  
             <div id="req" class="req">
                 
@@ -69,10 +69,12 @@
             <div id="tiles">
             </div>
         </div>
-    <div class="last-section">
-    <p class="caption">About World</p>  
-    <p class="story">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat nihil vitae labore? Corporis saepe omnis eum aperiam, velit ab nulla cumque provident molestiae nostrum et dolore vel qui laborum accusamus.</p>
-    </div>
+        <div class="last-section">
+            <p class="caption">About World</p>  
+            <p class="story">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat nihil vitae labore? Corporis saepe omnis eum aperiam, velit ab nulla cumque provident molestiae nostrum et dolore vel qui laborum accusamus.</p>
+            <p class="caption">Top Stories</p>
+            <div id="top-stories"></div>
+        </div>
     </div>   
     <script src="main.js"></script>
 </body>

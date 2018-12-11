@@ -19,7 +19,7 @@ function animHam(x) {
             for(i = 0; i < links.length; i++){
                 links[i].style.visibility = "visible";
             }
-            nav.style.width = '100%';
+            nav.style.width = '94%';
         }
         shouldSlide = false;
     }
@@ -84,7 +84,7 @@ var getNews = function(id, section, number, random, tileOrBlock, maxWidth){
             maxWidth = 100;
             unit = `%`;
         }
-        fetch(`https://newsapi.org/v2/everything?q=${section}&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9`)
+        fetch(section)
         .then(function(result){
             return(result.json());
         })
@@ -107,15 +107,12 @@ var getNews = function(id, section, number, random, tileOrBlock, maxWidth){
             for(i = 0; i != number; i++){
                 if (tileOrBlock == "block"){
                     var cont = document.getElementById(id);
-                    cont.setAttribute("style", `max-width:${maxWidth}${unit};`)
-                    cont.innerHTML += `<div class = "card" style = min-width:${maxWidth}${unit};><img src="${print.articles[each[i]].urlToImage}" 
+                    cont.setAttribute("style", `width:${maxWidth}${unit};`)
+                    cont.innerHTML += `<div class = "card" style = min-width:${maxWidth}${unit} id = "id-${id}";>
+                    <img src="${print.articles[each[i]].urlToImage}" 
                     class="news-image"><p class = "caption">${print.articles[each[i]].title}"</p>
                     <p class="story">${print.articles[each[i]].description}</p>
                     <p class = "date">${print.articles[each[i]].source.name} on ${print.articles[each[i]].publishedAt}</p></div>`;
-                    if(shouldStartSlide){
-                        startSlide = true;
-                    }
-                    move(id, number, maxWidth);
                 }
                 if (tileOrBlock == "tile"){
                     var cont = document.getElementById(id);
@@ -131,31 +128,26 @@ var getNews = function(id, section, number, random, tileOrBlock, maxWidth){
                     </p></div>`;
                 }
             }
+            if(shouldStartSlide){
+                startSlide = true;
+                setInterval(move(maxWidth), 5000);
+            }
         })
     }
 }
-var news = new getNews("req", "bitcoin", 5, true, "block", 400);
-var tiledNews = new getNews("tiles", "bitcoin", 5, false, "tile", 500);
+var techCrunch = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9" ;
+var topUs = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9";
+var news = new getNews("req", techCrunch, 5, false, "block", 400);
+var tiledNews = new getNews("tiles", techCrunch, 4, false, "tile", 400);
+var tiledTopNews = new getNews("top-stories", topUs, 5, false, "tile", 400);
 tiledNews.fetchApi();
+tiledTopNews.fetchApi();
 news.fetchApi();
-//news carousel
-function move(dId, num, maxW){
-    if(startSlide){
-        var scrollVal = document.getElementById(dId); 
-            if(scrollVal.scrollLeft == 0){
-                // clearInterval(stopLoop);
-                var startLoop = setInterval(function(){
-                     scrollVal.scrollLeft+=maxW;
-                     move(dId, num)
-                   },5000)
-            }
-            if(scrollVal.scrollLeft >= maxW*(num-2)){
-                console.log("flem")
-                // clearInterval(startLoop);
-                var stopLoop = setInterval(function(){
-                    scrollVal.scrollLeft-=maxW;
-                    move(dId, num)
-                  },5000)
-            }     
-    }
-}
+// function move(maxW){
+//     if(startSlide){
+//             var components = document.getElementsByClassName("card");
+//             for (var i = 0; i < components.length; i++) {
+//                 components[i].setAttribute('style', `transform:translateX(-${maxW}px)`);
+//         }
+//     }  
+// }
