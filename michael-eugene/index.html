@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/master.css">
     <link rel="stylesheet" href="style.css">
+    <script src="assets/js/newsapi.js"></script>
 </head>
-<body>
+<body onload="loaderAnimation()">
     <header class="scroll-shadow fad">
         <div class="top-nav">
             <i class="fas fa-bars top-nav-item menu-icon"></i>
@@ -23,6 +24,8 @@
             <a href="#" class="und">Log in</a>
         </div>
     </header>
+
+    
 
     <div class="wrapper-container-all">
             <nav class="nav-container">
@@ -72,79 +75,88 @@
                 <p class="marquee-text">Breaking News</p>
                 <marquee behavior="scroll" direction="left">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate quos error similique cum excepturi sit rem nesciunt eligendi a sequi porro expedita deleniti aliquid alias, quisquam labore! Animi, dolorem consequuntur.</marquee>
             </div>
+
+            <div id="loader"></div>
+            <div class="animate-bottom" id="myDiv">
+                <!-- World News -->
+                <div class="top-stories container" id="worldNews">
+                    <h1 class="top-stories heading">World News</h1>
+                    <div class="wrapper"></div>
+                    <!-- <a href="#" class="btn-pry">&downarrow; More Stories &downarrow;</a> -->
+                </div>
+                <hr>
+                <!-- Technology News -->
+                <div class="top-stories container" id="technologyNews">
+                    <h1 class="top-stories heading">Technology News</h1>
+                    <div class="wrapper"></div>
+                    <!-- <a href="#" class="btn-pry">&downarrow; More Stories &downarrow;</a> -->
+                </div>
+                <hr>
+                <!-- Entertainment News -->
+                <div class="top-stories container" id="entertainmentNews">
+                    <h1 class="top-stories heading">Entertainment News</h1>
+                    <div class="wrapper"></div>
+                    <!-- <a href="#" class="btn-pry">&downarrow; More Stories &downarrow;</a> -->
+                </div>
+                <hr>
+                <!-- Sports News -->
+                <div class="top-stories container" id="sportNews">
+                    <h1 class="top-stories heading">Sport News</h1>
+                    <div class="wrapper"></div>
+                    <!-- <a href="#" class="btn-pry">&downarrow; More Stories &downarrow;</a> -->
+                </div>
+
+
+
+                <footer>
+                    <div class="grid-item">
+                        <ul>
+                            <li><a href="">Subscribe</a></li>
+                            <li><a href="">Group Subsriptions</a></li>
+                            <li><a href="">Contact Us</a></li>
+                            <li><a href="">Help</a></li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <p>Stay Updated</p>
+                        <div class="grid-link grid-link-1">
+                            <a href=""><i class="fab fa-facebook"></i></a>
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-tumblr"></i></a>
+                            <a href=""><i class="fab fa-youtube"></i></a>
+                            <a href=""><i class="fab fa-google"></i></a>
+                            <a href=""><i class="fab fa-linkedin"></i></a>
+                            <a href=""><i class="fas fa-rss"></i></a>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <p>Sign up to get more from <em>News Illustrated</em></p>
+                        <p class="muted">Get 3 free articles per week, daily newsletters and more.</p>
+                        <form action="">
+                            <input type="email" name="email" id="email" placeholder="Email Address" required>
+                            <input type="submit" value="Sign Up" class="btn-sec" class="btn-sec">
+                        </form>
+                    </div>
+                    <div class="grid-item" style="border:none;">
+                            <p><a href="#" class="muted">About <em>News Illustrated</em></a></p>
+                            <div class="grid-link grid-link-2">
+                                <a href="" class="muted">Advertise</a>
+                                <a href="" class="muted">Reprints</a>
+                                <a href="" class="muted">Careers</a>
+                                <a href="" class="muted">Media Centre</a>
+                            </div>
+                        </div>
+                    </footer>
+            </div>
             
-            <!-- World News -->
-            <div class="top-stories container" id="worldNews">
-                <h1 class="top-stories heading">World News</h1>
-                <div class="wrapper"></div>
-                <!-- <a href="#" class="btn-pry">&downarrow; More Stories &downarrow;</a> -->
-            </div>
-            <hr>
-            <!-- Technology News -->
-            <div class="top-stories container" id="technologyNews">
-                <h1 class="top-stories heading">Technology News</h1>
-                <div class="wrapper"></div>
-                <!-- <a href="#" class="btn-pry">&downarrow; More Stories &downarrow;</a> -->
-            </div>
-            <hr>
-            <!-- Entertainment News -->
-            <div class="top-stories container" id="entertainmentNews">
-                <h1 class="top-stories heading">Entertainment News</h1>
-                <div class="wrapper"></div>
-                <!-- <a href="#" class="btn-pry">&downarrow; More Stories &downarrow;</a> -->
-            </div>
-            <hr>
-            <!-- Sports News -->
-            <div class="top-stories container" id="sportNews">
-                <h1 class="top-stories heading">Sport News</h1>
-                <div class="wrapper"></div>
-                <!-- <a href="#" class="btn-pry">&downarrow; More Stories &downarrow;</a> -->
-            </div>
+            
 
             
             
-            <footer>
-                <div class="grid-item">
-                    <ul>
-                        <li><a href="">Subscribe</a></li>
-                        <li><a href="">Group Subsriptions</a></li>
-                        <li><a href="">Contact Us</a></li>
-                        <li><a href="">Help</a></li>
-                    </ul>
-                </div>
-                <div class="grid-item">
-                    <p>Stay Updated</p>
-                    <div class="grid-link grid-link-1">
-                        <a href=""><i class="fab fa-facebook"></i></a>
-                        <a href=""><i class="fab fa-twitter"></i></a>
-                        <a href=""><i class="fab fa-instagram"></i></a>
-                        <a href=""><i class="fab fa-tumblr"></i></a>
-                        <a href=""><i class="fab fa-youtube"></i></a>
-                        <a href=""><i class="fab fa-google"></i></a>
-                        <a href=""><i class="fab fa-linkedin"></i></a>
-                        <a href=""><i class="fas fa-rss"></i></a>
-                    </div>
-                </div>
-                <div class="grid-item">
-                    <p>Sign up to get more from <em>News Illustrated</em></p>
-                    <p class="muted">Get 3 free articles per week, daily newsletters and more.</p>
-                    <form action="">
-                        <input type="email" name="email" id="email" placeholder="Email Address" required>
-                        <input type="submit" value="Sign Up" class="btn-sec" class="btn-sec">
-                    </form>
-                </div>
-                <div class="grid-item" style="border:none;">
-                        <p><a href="#" class="muted">About <em>News Illustrated</em></a></p>
-                        <div class="grid-link grid-link-2">
-                            <a href="" class="muted">Advertise</a>
-                            <a href="" class="muted">Reprints</a>
-                            <a href="" class="muted">Careers</a>
-                            <a href="" class="muted">Media Centre</a>
-                        </div>
-                    </div>
-                </footer>
+            
                 
-            </div>
+        </div>
     </div>
         <script src="assets/js/script.js"></script>
     </body>
