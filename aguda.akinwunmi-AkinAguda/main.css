@@ -69,12 +69,13 @@ nav {
   -webkit-transition: margin-top 0.5s, background-color 0.5s;
   transition: margin-top 0.5s, background-color 0.5s;
   z-index: 150;
+  height: 80px;
   width: 94.5%;
 }
 
 .topAnim {
   background-color: black;
-  margin-top: -10px;
+  margin-top: -13px;
 }
 
 nav h1 {
@@ -134,6 +135,7 @@ nav h1 {
   margin-right: 10px;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
+  position: relative;
 }
 
 .lineVanish {
@@ -235,8 +237,8 @@ input[type = search]{
   width: 25px;
   background-color: transparent;
   color: #969191;
-  transition: 0.5s;
-  margin-top: -7px;
+  transition: 0.3s;
+  transform: translateY(-5px);
   padding-left: 10px;
 }
 input[type = search]:hover{
@@ -244,9 +246,10 @@ input[type = search]:hover{
 }
 input[type = search]:focus{
   height: 35px;
-  width: 120px;
+  width: 150px;
   outline: none;
   cursor: text;
+  /* margin-top: -3px; */
 }
 input[type = search]::before{
   content: " jijgihgih";
