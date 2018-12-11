@@ -11,6 +11,7 @@
 html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     overflow-x: hidden;
+    scroll-behavior: ease;
 }
 
 a {
@@ -120,11 +121,11 @@ nav.nav-container {
     div.nav-menu {
         position: absolute;
         width: 100vw;
-        height: 80vh;
+        height: 100vh;
         background: $accent;
-        transform: translateY(-100%);
-        z-index: 1;
-        transition: transform ease-in-out 250ms;
+        transform: translateX(-100%);
+        z-index: 5;
+        transition: all ease-in-out 250ms;
 
         ul {
 
@@ -156,11 +157,32 @@ nav.nav-container {
     }
 }
 
+.total-container {
+    transition: transform ease-in-out 250ms;
+}
+
+
 .nav-is-visible {
-    position: fixed;
+
+    header {
+        position: fixed;
+        top: 0;
+    }
+
+    .wrapper-container-all {
+        margin-top: 173px;
+    }
+
+
+    .total-container {
+        transform: translateX(350px);
+        opacity: .5;
+        position: fixed;
+    }
 
     .nav-container .nav-menu {
-        transform: translateY(0);
+        transform: translateX(0);
+        box-shadow: 0px 0px 10px 5px $muted;
     }
 }
 
@@ -225,6 +247,24 @@ footer {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
+
+    nav.nav-container div.nav-menu {
+        margin-top: 0;
+    }
+
+    .nav-is-visible {
+        .wrapper-container-all {
+            margin-top: 102px;
+        }
+    }
+}
+
+@media screen and (min-width:600px) {
+    nav.nav-container div.nav-menu {
+        width: 350px;
+    }
+
+    
 }
 
 

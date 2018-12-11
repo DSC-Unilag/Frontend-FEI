@@ -58,7 +58,7 @@ fetch(url)
             <div class="hero-txt">
                 <h2 class="grid-txt">${response.articles[0].title}</h2>
                 <p class="grid-txt">${response.articles[0].description}</p>
-                <div><a href="${response.articles[0].url}" class="btn-sec">Read More</a></div>
+                <div><a href="${response.articles[0].url}" class="btn-sec">Read More &rightarrow;</a></div>
             </div>
         </div>
         `
@@ -78,7 +78,7 @@ fetch(url)
             <div class="hero-txt">
                 <h2 class="grid-txt">${response.articles[0].title}</h2>
                 <p class="grid-txt">${response.articles[0].description}</p>
-                <div><a href="${response.articles[0].url}" class="btn-sec">Read More</a></div>
+                <div><a href="${response.articles[0].url}" class="btn-sec">Read More &rightarrow;</a></div>
             </div>
         </div>
         `
@@ -98,7 +98,7 @@ fetch(url)
             <div class="hero-txt">
                 <h2 class="grid-txt">${response.articles[0].title}</h2>
                 <p class="grid-txt">${response.articles[0].description}</p>
-                <div><a href="${response.articles[0].url}" class="btn-sec">Read More</a></div>
+                <div><a href="${response.articles[0].url}" class="btn-sec">Read More &rightarrow;</a></div>
             </div>
         </div>
         `
@@ -118,7 +118,7 @@ fetch(url)
             <div class="hero-txt">
                 <h2 class="grid-txt">${response.articles[0].title}</h2>
                 <p class="grid-txt">${response.articles[0].description}</p>
-                <div><a href="${response.articles[0].url}" class="btn-sec">Read More</a></div>
+                <div><a href="${response.articles[0].url}" class="btn-sec">Read More &rightarrow;</a></div>
             </div>
         </div>
         `
