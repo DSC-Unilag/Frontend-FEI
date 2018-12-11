@@ -89,33 +89,13 @@ ul#results{
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.493);
     padding: 0;
+    display: none;
 }
 ul#results li{
     position: relative;
     font-size: 1.2em;
     padding: 5px 10px;
     
-}
-ul#results li:nth-of-type(odd){
-    background: rgba(0, 0, 0, 0.25);
-}
-p.text-muted{
-    color: rgba(0, 0, 0, 0.6);
-    margin: 5px 0;
-}
-
-ul#results{
-    list-style-type: none;
-    width: 82%;
-    margin: auto;
-    box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.493);
-    padding: 0;
-}
-ul#results li{
-    position: relative;
-    font-size: 1.2em;
-    padding: 5px 10px;
 }
 ul#results li:nth-of-type(odd){
     background: rgba(0, 0, 0, 0.25);
@@ -127,7 +107,9 @@ ul#results li span.date{
     font-size: 1.3em;
 }
 ul#results p.text-muted{
+    margin: 5px 0;
     color: rgba(0, 0, 0, 0.6);
+    width: 80%;
 }
 ul#results p{
     margin: 5px 0;
@@ -135,4 +117,39 @@ ul#results p{
 ul#results li a{
     color: initial;
     text-decoration: none;
+}
+#loader{
+    border-radius: 50%;
+    border: 5px solid #dcd8d8;
+    border-top: 5px solid #808080eb;
+    margin: 100px auto;
+    height: 100px;
+    width: 100px;
+    -webkit-animation: rotating 1s linear infinite;
+	-moz-animation: rotating 1s linear infinite;
+	-ms-animation: rotating 1s linear infinite;
+	-o-animation: rotating 1s linear infinite;
+	animation: rotating 1s linear infinite;
+}
+
+@keyframes rotating{
+	from{
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+    }
+	to{
+		transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@-webkit-keyframes rotating{
+	from{
+		transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+    }
+	to{
+		transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+	}
 }

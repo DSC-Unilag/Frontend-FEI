@@ -1,5 +1,5 @@
 const searchQuery = location.search.split('=')[1];
-let request = `https://newsapi.org/v2/top-headlines?apiKey=9ac2b559698d40bc9757fb14d7a6925c&q=${searchQuery}`;
+let request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&q=${searchQuery}&language=en`;
 const search = async (request) => {
     const reply = await fetch(request);
     const replyjson = await reply.json();
@@ -7,7 +7,8 @@ const search = async (request) => {
 }
 
 search(request).then((data) => {
-    data.articles.forEach((elem) => {
+    if(data.totalResults){
+        data.articles.forEach((elem) => {
         if(elem.title && elem.description && elem.publishedAt){
             const title = elem.title;
             const desc = elem.description;
@@ -15,7 +16,7 @@ search(request).then((data) => {
             const datetxt = `${date.getDay()}/${date.getMonth()}/${date.getYear()}`
             const li = document.createElement('li');
             const link = document.createElement('a');
-            link.src = elem.url;
+            link.href = elem.url;
             const titleElem = document.createElement('p');
             titleElem.textContent = title;
             titleElem.classList.add('title')    
@@ -30,11 +31,13 @@ search(request).then((data) => {
             link.appendChild(dateElem)
             li.appendChild(link);
             document.querySelector('#results').appendChild(li)
-                
-            
         }
     })
-    
+    document.querySelector('#loader').style.display = "none";
+    document.querySelector('#results    ').style.display = "block";
+    }else{
+        document.querySelector('')
+    }
     
 })
 
