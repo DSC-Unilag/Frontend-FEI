@@ -109,9 +109,9 @@ ul#results li span.date{
 ul#results p.text-muted{
     margin: 5px 0;
     color: rgba(0, 0, 0, 0.6);
-    width: 80%;
 }
 ul#results p{
+    width: 80%;
     margin: 5px 0;
 }
 ul#results li a{
@@ -153,8 +153,20 @@ ul#results li:nth-of-type(odd):hover{
     border: 1px solid #0000006e;
     margin: 0 10px;
 }
-#filter select:focus{
-
+#links{
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+    display: none;
+}
+#links button{
+    border: none;
+    background: transparent;
+    color: #009fff;
+    font-size: 17px;
+}
+#links button.active{
+    color: black;
 }
 @keyframes rotating{
 	from{

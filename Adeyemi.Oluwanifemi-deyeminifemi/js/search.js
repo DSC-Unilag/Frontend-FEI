@@ -1,6 +1,13 @@
-let searchQuery = location.search.split('=')[1];
+let searchQuery = location.search.split('&')[0].split('=')[1];
 document.querySelector('#search-lg input').value = searchQuery;
+document.querySelector('#links input').value = searchQuery;
+const page = location.search.split('&')[1] ? location.search.split('&')[1].split('=')[1] : '1';
+document.querySelector(`#page-${page}`).classList.add('active');
+document.querySelector('#prev-page').value = page == 1 ? 1 : page - 1;
+document.querySelector('#next-page').value = parseInt(page) + 1;
+
 let request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&q=${searchQuery}&language=en`;
+request += page !== 1 ? `&page=${page}` : page;
 const search = async (request,args = {}) => {
     args.sortBy = args.sortBy ? args.sortBy : "publishedAt";
     request += `&sortBy=${args.sortBy}`;
@@ -8,6 +15,7 @@ const search = async (request,args = {}) => {
     const replyjson = await reply.json();
     return replyjson;
 }
+
 
 const processData = (data) => {
     if(data.totalResults){
@@ -38,6 +46,7 @@ const processData = (data) => {
     })
     document.querySelector('#loader').style.display = "none";
     document.querySelector('#results').style.display = "block";
+    document.querySelector('#links').style.display = "block";
     }else{
         document.querySelector('')
     }
@@ -45,9 +54,12 @@ const processData = (data) => {
 
 search(request).then(processData)
 
+
+
 document.querySelector('#filter select').addEventListener('change',(e) => {
     document.querySelector('#loader').style.display = "block";
     document.querySelector('#results').style.display = "none";
+    document.querySelector('#links').style.display = "none";
     document.querySelector('#results').innerHTML = '';
     search(request,{sortBy : e.target.value}).then(processData)
 })
@@ -55,6 +67,7 @@ document.querySelector('#filter select').addEventListener('change',(e) => {
 document.querySelector('#search-lg button').addEventListener('click',(e) => {
     document.querySelector('#loader').style.display = "block";
     document.querySelector('#results').style.display = "none";
+    document.querySelector('#links').style.display = "none";
     document.querySelector('#results').innerHTML = '';
     searchQuery = document.querySelector('#search-lg input').value
     request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&q=${searchQuery}&language=en`;
