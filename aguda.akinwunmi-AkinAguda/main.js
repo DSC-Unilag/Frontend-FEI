@@ -143,11 +143,14 @@ var tiledTopNews = new getNews("top-stories", topUs, 5, false, "tile", 400);
 tiledNews.fetchApi();
 tiledTopNews.fetchApi();
 news.fetchApi();
-// function move(maxW){
-//     if(startSlide){
-//             var components = document.getElementsByClassName("card");
-//             for (var i = 0; i < components.length; i++) {
-//                 components[i].setAttribute('style', `transform:translateX(-${maxW}px)`);
-//         }
-//     }  
-// }
+function move(maxW){
+    if(startSlide){
+            var components = document.getElementsByClassName("card");
+            for (var i = 0; i < components.length; i++) {
+                // components[i].classList.add('sliding');
+                // setTimeout(function(i){components[i].classList.remove('sliding')},1000)
+            }
+    }  
+    
+}
+setAttribute('style', `transform:translateX(-${maxW}px)`)
