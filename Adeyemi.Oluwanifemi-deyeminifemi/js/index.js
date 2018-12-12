@@ -55,6 +55,7 @@ const fillBlock = (data,block,numOfArticles = 4) => {
 }
 const displayLatestStories = async () => {
     const latestStories = await getlastestStories();
+    document.querySelector('#latest-stories ul').innerHTML = '';
     for(let i = 0;i < latestStories.articles.length && i < 20;i++){
         const article = latestStories.articles[i];
         const li = document.createElement('li');
@@ -72,6 +73,7 @@ const displayLatestStories = async () => {
 } 
 displayLatestStories();
 
+setInterval(displayLatestStories,600000)
 const createCard = (data) => {
     const card = document.createElement('div');
     card.classList.add('card');
