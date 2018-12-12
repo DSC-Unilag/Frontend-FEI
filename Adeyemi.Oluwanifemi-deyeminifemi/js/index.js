@@ -8,56 +8,51 @@ const getStories = async (args,type = "top") => {
 }
 
 const getlastestStories = async () => {
-    const now = new Date;
-    let from = "2018-11-12T";
-    from += `${now.getHours()}:${now.getMinutes()-30}:00`
-    let request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&language=en&from=${from}&domains=washingtontimes.com,domain=bbc.co.uk,bleacherreport.com,businessinsider.com,dailymail.co.uk,espn.com,mashable.com,mtv.com,talksport.com,techradar.com,nytimes.com`;
+    const now = new Date();
+    let from = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+    const hours = now.getMinutes() - 30 < 0 ? now.getHours() - 1 : now.getHours();
+    const minutes = now.getMinutes() - 30 < 0 ? now.getMinutes() : now.getMinutes() - 30;
+    from += `${hours}:${minutes}:00`
+    let request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&language=en&from=${from}&domains=washingtontimes.com,domain=bbc.co.uk,bleacherreport.com,businessinsider.com,dailymail.co.uk,espn.com,mashable.com,mtv.com,talksport.com,techradar.com,nytimes.com&sortBy=publishedAt`;
     const response = await fetch(request);
     return await response.json();
 }
 const displayTopStories = getStories({country : "us",limit : 10})
 
-displayTopStories.then((data)=>{
-    let created = 0;
-    const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content)
-    for(let i = 0;created < 6;i++){
-        const article = articles[i];
-        if(article.title && article.url && article.urlToImage && article.content){
-            document.querySelector(`#top-card-${created+1} .loader`).style.display = "none";
-            document.querySelector(`#top-card-${created+1}`).appendChild(createCard(article));
-            created++;
-        }
-    }
-})
+displayTopStories.then((data)=>fillBlock(data,"top",6))
 
 const displayPolitics = getStories({query : "politics"},"politics");
-displayPolitics.then((data) => {
-    const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content)
-    let created = 0;
-    for(let i = 0;created < 4 && i < data.totalResults;i++){
-        const article = articles[created];
-        if(article.title && article.url && article.urlToImage && article.content){
-            document.querySelector(`#politics-card-${created+1} .loader`).style.display = "none";
-            document.querySelector(`#politics-card-${created+1}`).appendChild(createCard(article));
-            created++;
-        }
-    }
-})
-
+displayPolitics.then((data) => fillBlock(data,"politics"))
+const displayBusiness = getStories({query : "business"},"business");
+displayBusiness.then((data) => fillBlock(data,"business"))
 const displaySports = getStories({query : "sports"},"sports");
-displaySports.then((data) => {
+displaySports.then((data) => fillBlock(data,"sports"))
+const displaytech = getStories({query : "tech"},"tech");
+displaytech.then((data) => fillBlock(data,"tech"))
+const displayarts = getStories({query : "arts"},"arts");
+displayarts.then((data) => fillBlock(data,"arts"))
+const displayentertainment = getStories({query : "entertainment"},"entertainment");
+displayentertainment.then((data) => fillBlock(data,"entertainment"))
+const displaytravel = getStories({query : "travel"},"travel");
+displaytravel.then((data) => fillBlock(data,"travel"))
+const displaystyle = getStories({query : "style"},"style");
+displaystyle.then((data) => fillBlock(data,"style"))
+const displayhealth = getStories({query : "health"},"health");
+displayhealth.then((data) => fillBlock(data,"health"))
+
+
+const fillBlock = (data,block,numOfArticles = 4) => {
     const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content)
     let created = 0;
-    for(let i = 0;created < 4 && i < data.totalResults;i++){
+    for(let i = 0;created < numOfArticles && i < data.totalResults;i++){
         const article = articles[created];
         if(article.title && article.url && article.urlToImage && article.content){
-            document.querySelector(`#sports-card-${created+1} .loader`).style.display = "none";
-            document.querySelector(`#sports-card-${created+1}`).appendChild(createCard(article));
+            document.querySelector(`#${block}-card-${created+1} .loader`).style.display = "none";
+            document.querySelector(`#${block}-card-${created+1}`).appendChild(createCard(article));
             created++;
         }
     }
-})
-
+}
 const displayLatestStories = async () => {
     const latestStories = await getlastestStories();
     for(let i = 0;i < latestStories.articles.length && i < 20;i++){
