@@ -1,19 +1,22 @@
-const searchQuery = location.search.split('=')[1];
+let searchQuery = location.search.split('=')[1];
+document.querySelector('#search-lg input').value = searchQuery;
 let request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&q=${searchQuery}&language=en`;
-const search = async (request) => {
+const search = async (request,args = {}) => {
+    args.sortBy = args.sortBy ? args.sortBy : "publishedAt";
+    request += `&sortBy=${args.sortBy}`;
     const reply = await fetch(request);
     const replyjson = await reply.json();
     return replyjson;
 }
 
-search(request).then((data) => {
+const processData = (data) => {
     if(data.totalResults){
         data.articles.forEach((elem) => {
         if(elem.title && elem.description && elem.publishedAt){
             const title = elem.title;
             const desc = elem.description;
             const date = new Date(elem.publishedAt);
-            const datetxt = `${date.getDay()}/${date.getMonth()}/${date.getYear()}`
+            const datetxt = `${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
             const li = document.createElement('li');
             const link = document.createElement('a');
             link.href = elem.url;
@@ -34,11 +37,29 @@ search(request).then((data) => {
         }
     })
     document.querySelector('#loader').style.display = "none";
-    document.querySelector('#results    ').style.display = "block";
+    document.querySelector('#results').style.display = "block";
     }else{
         document.querySelector('')
     }
-    
+}
+
+search(request).then(processData)
+
+document.querySelector('#filter select').addEventListener('change',(e) => {
+    document.querySelector('#loader').style.display = "block";
+    document.querySelector('#results').style.display = "none";
+    document.querySelector('#results').innerHTML = '';
+    search(request,{sortBy : e.target.value}).then(processData)
 })
+
+document.querySelector('#search-lg button').addEventListener('click',(e) => {
+    document.querySelector('#loader').style.display = "block";
+    document.querySelector('#results').style.display = "none";
+    document.querySelector('#results').innerHTML = '';
+    searchQuery = document.querySelector('#search-lg input').value
+    request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&q=${searchQuery}&language=en`;
+    search(request).then(processData)
+})
+
 
 

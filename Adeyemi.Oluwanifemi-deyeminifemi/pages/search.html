@@ -21,10 +21,21 @@
         </nav>
         <form id="search-lg">
             <input type="text" placeholder="Search..." name="search">
-            <button>Search</button>
+            <button type="button">Search</button>
         </form>
+        <div id="filter">
+            <label for="sortBy">
+                Sort By
+                <select name="sortBy" id="sortBy">'
+                    <option value="popularity">Popularity of Article</option>
+                    <option value="relevancy">Relevancy of Article</option>
+                    <option value="publishedAt" selected>Date Published</option>
+                </select>
+            </label>
+        </div>
         <div id="loader"></div>
         <ul id="results"></ul>
+        
         <div id="errors">
 
         </div>

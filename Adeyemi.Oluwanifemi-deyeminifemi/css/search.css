@@ -64,7 +64,7 @@ form#nav-search button img{
 #search-lg input{
     width: 75%;
     height: 40px;
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 7px 0 0 7px;
     border-right: none;
     border: 1px solid;
@@ -131,7 +131,31 @@ ul#results li a{
 	-o-animation: rotating 1s linear infinite;
 	animation: rotating 1s linear infinite;
 }
+ul#results li:hover{
+    box-shadow: 0 0 15px grey;
+}
+ul#results li:nth-of-type(odd):hover{
+    box-shadow: 0 0 15px black;
+}
+#filter{
+    width: 82%;
+    margin: 20px auto;
+}
+#filter label{
+    font-size: 24px;
+}
+#filter select{
+    height: 30px;
+    vertical-align: bottom;
+    width: 500px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 1px solid #0000006e;
+    margin: 0 10px;
+}
+#filter select:focus{
 
+}
 @keyframes rotating{
 	from{
 		transform: rotate(0deg);
