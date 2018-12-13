@@ -157,14 +157,19 @@ footer {
       color: white;
       text-align: center; }
 
-#loader {
+#loader-container {
+  width: 100vw;
+  height: 100vh;
   position: absolute;
-  left: 50%;
-  top: 50%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+#loader {
   z-index: 1;
   width: 150px;
   height: 150px;
-  margin: -50px 0 0 -73px;
   border: 16px solid #fcd40f;
   border-radius: 50%;
   border-top: 16px solid #1f1f1f;
