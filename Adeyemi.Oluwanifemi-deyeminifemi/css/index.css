@@ -10,6 +10,7 @@ button,a{
 .text-muted{
     color: rgba(0, 0, 0, 0.6);
 }
+/* navbar css start */
 nav{
     box-shadow: 0 0 10px grey;
     display: flex;
@@ -56,6 +57,7 @@ form#nav-search *{
 form#nav-search button img{
     height: 16px;
 }
+/* navbar css end */
 #stories-container{
     display: grid;
     grid-template-columns: 3fr 1.2fr;
@@ -111,6 +113,8 @@ form#nav-search button img{
 .card button:hover a{
     color: white;
 }
+
+/* latest stories  style start */
 #latest-stories{
     grid-row: 1/2;
     height: initial;
@@ -149,6 +153,8 @@ form#nav-search button img{
     text-decoration: none;
     margin: 0 10px;
 }
+
+/* latest stories style end */
 .top-story-summary p{
     margin: 10px 0;
     padding: 0 5px 0 0;
