@@ -5,7 +5,9 @@ const page = location.search.split('&')[1] ? location.search.split('&')[1].split
 document.querySelector(`#page-${page}`).classList.add('active');
 document.querySelector('#prev-page').value = page == 1 ? 1 : page - 1;
 document.querySelector('#next-page').value = parseInt(page) + 1;
-
+if(page === 10){
+    document.querySelector('#next-page').style.display = "none";
+}
 let request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&q=${searchQuery}&language=en`;
 request += page !== 1 ? `&page=${page}` : page;
 const search = async (request,args = {}) => {
