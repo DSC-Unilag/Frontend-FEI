@@ -3,3 +3,5 @@ Add responsitivity everywhere
 Make latest news refresh every 30 minutes
 Test for cases where articles < 2000 (pages for search)
 Fix problem with loaders in latest-stories
+Display error messages and catch errors for promises
+Make latest stories actually latest on RELEVANT topics 
