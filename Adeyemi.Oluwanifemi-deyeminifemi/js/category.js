@@ -1,9 +1,8 @@
-const makeRequest = async (args,type = "top") => {
-    let request = type === "top" ? `https://newsapi.org/v2/top-headlines?apiKey=9ac2b559698d40bc9757fb14d7a6925c` : "https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c";
-    request += args.category ? `&category=${args.category}` : ''; 
-    const respone = await fetch(request);
-    return await respone.json();
+const getStories = async (category,pageSize = 20,page = 1) => {
+    const response = await fetch(`https://newsapi.org/v2/top-headlines?apiKey=9ac2b559698d40bc9757fb14d7a6925c&category=${category}&pageSize=${pageSize}&country=us&page=${page}`);
+    return await response.json();
 }
+
 const getlastestStories = async (category) => {
     const now = new Date();
     let from = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
@@ -29,7 +28,7 @@ const createCarouselItem = (article,articleNum) => {
     const title = document.createElement('h2');
     title.innerText = article.title;
     const desc = document.createElement('p');
-    desc.innerText = article.description;
+    desc.innerHTML = article.description;
     itemInfo.appendChild(title);
     itemInfo.appendChild(desc);
     item.appendChild(image);
@@ -53,12 +52,48 @@ const displayLatestStories = async (category) => {
         link.innerHTML += article.title;
         li.appendChild(link)
         document.querySelector('#latest-stories ul').appendChild(li);
-    } 
+    }
+}
+const createCard = (data) => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    const img = document.createElement('img');
+    img.src = data.urlToImage;
+    const imgdiv = document.createElement('div');
+    imgdiv.classList.add('img-div');
+    imgdiv.appendChild(img);
+    const span = document.createElement('span');
+    span.classList.add('top-story-summary');
+    let title = document.createElement('p');
+    title.classList.add('title')
+    title.innerText = data.title;
+    const desc = document.createElement('p');
+    desc.classList.add('text-muted');
+    const contentArr = data.content.split(' ');
+    const content = contentArr.splice(0,15).join(" ");
+    desc.innerText = content + '...';
+    span.appendChild(title)
+    span.appendChild(desc)
+    card.appendChild(imgdiv);
+    card.appendChild(span)
+    card.innerHTML += `<button><a href= '${data.url}'>Read more</a></button>`
+    return card;    
 }
 
-if(location.search){    
-    const category = location.search.split('=')[1];
-    const carouselArticles = makeRequest({category});
+const sections = ['business','sports','technology','entertainment','health','science'];
+if(location.search && sections.filter(elem => location.search.includes(elem)).length > 0){    
+    const category = location.search.split('&')[0].split('=')[1];
+    const page = location.search.split('&')[1] ? location.search.split('&')[1].split('=')[1] : '1';
+    document.querySelector('#links input').value = category;
+    document.querySelector(`#page-${page}`).classList.add('active');
+    document.querySelector('#prev-page').value = page == 1 ? 1 : page - 1;
+    document.querySelector('#next-page').value = parseInt(page) + 1;
+    if(page === 10){
+        document.querySelector('#next-page').style.display = "none";
+    }
+
+    document.querySelector('category_name');
+    const carouselArticles = getStories(category);
     let currentCarArticle = 1;
     carouselArticles.then((data) => {
         const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content)
@@ -77,6 +112,31 @@ if(location.search){
         document.querySelector(`#item-${currentCarArticle}`).classList.add('active');
     })
     displayLatestStories(category);
+    setInterval(() => {
+        displayLatestStories(category)
+    },600000)
+    let categoryname = category.split('');
+    categoryname[0] = categoryname[0].toUpperCase();
+    categoryname = categoryname.join('');
+    document.querySelector('#category_name').innerText = categoryname;    
+    const stories = page == 1 ? getStories(category,30) : getStories(category,30,page);
+    stories.then((data) => {
+        const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content);
+        const totalPages = parseInt(data.totalResults / 20);
+        for(let i = totalPages + 1;i <= 10;i++){
+            document.querySelector(`#page-${i}`).style.display = "none";
+        }
+        if(page > totalPages){
+            document.querySelector('#page-1').click();
+        }
+        for(let i = 1;i <= 20;i++){
+            article = articles[i];
+            document.querySelector(`#story-item-${i} .loader`).style.display = "none";
+            document.querySelector(`#story-item-${i}`).appendChild(createCard(article));
+        }
+        document.querySelector('#links').style.display = "block";
+    })
+ 
 }else{
     document.querySelector('.nav-brand a').click();
 }
