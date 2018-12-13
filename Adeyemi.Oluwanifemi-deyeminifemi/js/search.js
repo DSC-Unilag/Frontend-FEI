@@ -21,6 +21,10 @@ const search = async (request,args = {}) => {
 
 const processData = (data) => {
     if(data.totalResults){
+        const totalPages = parseInt(data.totalResults / 20);
+        for(let i = totalPages + 1;i <= 10;i++){
+            document.querySelector(`#page-${i}`).style.display = "none";
+        }   
         data.articles.forEach((elem) => {
         if(elem.title && elem.description && elem.publishedAt){
             const title = elem.title;
