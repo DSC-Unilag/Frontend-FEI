@@ -77,6 +77,8 @@ form#nav-search button img{
     grid-row-gap: 20px;
     grid-auto-rows: max-content;
 }
+
+/* card styling start */
 .card-wrap{
     min-height: 320px;
     max-height: 320px;
@@ -113,6 +115,10 @@ form#nav-search button img{
 .card button:hover a{
     color: white;
 }
+.card .img-div{
+    height: 45%;
+}
+/* card styling end */
 
 /* latest stories  style start */
 #latest-stories{
@@ -171,9 +177,7 @@ form#nav-search button img{
     margin: 18px 0;
     padding: 0 15px;
 }
-.img-div{
-    height: 45%;
-}
+
 .header{
     grid-column: 1/5;
     height: 20px;
