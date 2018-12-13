@@ -37,6 +37,27 @@ nav li.nav-brand{
 nav li.nav-link{
     font-size: 20px;
 }
+form#nav-search{
+    display: flex;
+    margin: 0 20px 0 auto;
+    height: 27px;
+    border: 1px solid black;
+}
+form#nav-search input{
+    font-size: 16px;   
+    width: 170px;   
+    padding: 0 3px;
+}
+form#nav-search button{
+    background-color: transparent;
+}
+form#nav-search *{
+    border: none;
+}
+form#nav-search button img{
+    height: 16px;
+}
+
 /* navbar css end */
 
 div{
