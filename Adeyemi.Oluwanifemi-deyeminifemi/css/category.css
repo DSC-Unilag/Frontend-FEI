@@ -1,0 +1,129 @@
+body{
+    margin: 0;
+}
+button,a{
+    cursor: pointer;
+}
+:focus{
+    outline: none;
+}
+.text-muted{
+    color: rgba(0, 0, 0, 0.6);
+}
+/* navbar css start */
+nav{
+    /* box-shadow: 0 0 10px grey; */
+    display: flex;
+    color: white;
+    height: 60px;
+    align-items: center;  
+}
+nav ul{
+    margin: 0;
+}
+nav li{
+    display: inline-flex;
+    align-items: center;
+    align-content: center;
+    padding: 0px 15px;
+}
+nav li a{
+    color: black;
+    text-decoration: none;    
+}
+nav li.nav-brand{
+    font-size: 25px;
+}
+nav li.nav-link{
+    font-size: 20px;
+}
+/* navbar css end */
+
+div{
+    position: relative;
+}
+
+#top-wrap{
+    height: 450px;
+    width: 100%;
+    display: flex;
+}
+
+#carousel{
+    display: flex;
+    flex: 3;
+}
+
+#carousel img,#carousel .item.active{
+    width: 100%;
+    height: 100%;
+}
+
+#carousel .item{
+    width: 0;
+    transition: 1s;
+}
+#carousel .item:not(.active) .iteminfo{
+    display: none;
+}
+.carouselcontrol{
+    position: absolute;
+    top: 38%;
+    border: none;
+    background: none;
+    height: 60px;
+    width: 60px;
+    z-index: 10;
+    color: white;
+}
+#nextbtn{
+    right: 0;
+}
+.iteminfo{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    padding: 0 60px;
+}
+/* latest stories  style start */
+
+#latest-stories{
+    grid-row: 1/2;
+    flex: 1;
+    height: initial;
+}
+#latest-stories ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid grey;
+    height: 100%;
+    overflow: hidden scroll;
+    box-sizing: border-box;
+}
+#latest-stories ul li{
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    font-size: 18px;
+    transition: all .5s;
+}
+#latest-stories ul li .text-muted{
+    margin: 0 10px 0 5px;
+}
+#latest-stories ul li a{
+    color: inherit;
+    text-decoration: none;
+}
+#latest-stories ul li:hover{
+    transform: scale(1.1);
+}
+#latest-stories li:nth-of-type(odd){
+    background-color: rgba(0, 0, 0, 0.25);
+}
+#latest-stories ul li a{
+    color: black;
+    text-decoration: none;
+    margin: 0 10px;
+}
