@@ -16,8 +16,9 @@ nav{
     color: white;
     height: 60px;
     align-items: center;  
+    overflow-y: hidden;
 }
-nav ul{
+nav ul#largenav{
     margin: 0;
 }
 nav li{
@@ -75,9 +76,12 @@ form#nav-search button img{
     border: 1px solid;
     border-radius: 0 7px 7px 0;
     border-left: 0;
-    width: 100px;
+    width: 7%;
     font-size: 18px;
     transition: 250ms;
+}
+#search-lg button img{
+    display: none;
 }
 #search-lg button:hover{
     background: rgb(150, 149, 149);
@@ -168,6 +172,91 @@ ul#results li:nth-of-type(odd):hover{
 #links button.active{
     color: black;
 }
+#errors{
+    width: 82%;
+    margin: auto;
+    font-size: 24px;
+    background-color: #fbaaaa;
+    color: #fb4a4a;
+    padding: 20px;
+    box-sizing: border-box;
+    display: none;
+}
+#navsmallbtn{
+    background: transparent;
+    height: 30px;
+    margin: 0 10px 0 auto;
+    border: 1px solid #0000003b;
+    box-shadow: 0 0 3px grey;
+    border-radius: 4px;
+  display: none;
+}
+#navsmallbtn img{
+    width: 20px;
+}
+#navsmall{
+    display: none;
+}
+@media(max-width : 900px){
+    #search-lg button{
+        width: 10%;
+        height: 40px;
+    }
+    
+}
+@media(max-width : 700px){
+    #search-lg button{
+        font-size: 0;
+        width: 6%;
+        display: flex;
+        justify-content: center;
+    }
+    #navsmall{
+        width: 100%;
+        margin-top: 20px;
+        border-top: 1px solid rgba(0,0,0,.15);
+        display: none;        
+    }
+    #navsmallbtn{
+        float: right;
+        display: inline;
+    }
+    nav ul#largenav{
+        display: inline;
+    }
+    nav ul#largenav li.nav-link{
+        display: none;
+    }
+    #search-lg button img{
+        display: block;
+        height: 20px;
+    }
+    #filter select{
+        width: 450px;
+    }
+    nav.active #navsmall{
+        display: block;
+    }           
+    #navsmall ul li {
+        display: block;        
+    }
+    #navsmall ul li a{
+        color: rgba(0, 0, 0, 0.6);
+    }
+    #navsmall ul li a:hover{
+        color: black;
+    }
+    nav{
+        height: 40px;
+        padding: 10px 0;
+        transition: 0.5s;
+        display: block;
+    }
+    nav.active{
+        height: 200px;        
+    }
+}
+
 @keyframes rotating{
 	from{
 		transform: rotate(0deg);
