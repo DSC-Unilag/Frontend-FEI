@@ -70,7 +70,7 @@ const createCard = (data) => {
     const desc = document.createElement('p');
     desc.classList.add('text-muted');
     const contentArr = data.content.split(' ');
-    const content = contentArr.splice(0,15).join(" ");
+    const content = contentArr.splice(0,10).join(" ");
     desc.innerText = content + '...';
     span.appendChild(title)
     span.appendChild(desc)
@@ -118,6 +118,7 @@ if(location.search && sections.filter(elem => location.search.includes(elem)).le
     let categoryname = category.split('');
     categoryname[0] = categoryname[0].toUpperCase();
     categoryname = categoryname.join('');
+    document.querySelector('title').innerText = categoryname;
     document.querySelector('#category_name').innerText = categoryname;    
     const stories = page == 1 ? getStories(category,30) : getStories(category,30,page);
     stories.then((data) => {
@@ -141,3 +142,19 @@ if(location.search && sections.filter(elem => location.search.includes(elem)).le
     document.querySelector('.nav-brand a').click();
 }
 
+// Code for responsive navbar
+window.addEventListener('resize',(e) => {    
+    if(window.innerWidth > 700){
+        document.querySelector('nav').classList.remove('active');
+    }
+})
+let display = 0;
+document.querySelector('#navsmallbtn').addEventListener('click', () => {
+    if(display){
+        document.querySelector('nav').classList.remove('active');
+        display--;
+    }else{
+        document.querySelector('nav').classList.add('active');
+        display++;
+    }
+})
