@@ -151,7 +151,7 @@ ul#results li:nth-of-type(odd):hover{
 #filter select{
     height: 30px;
     vertical-align: bottom;
-    width: 500px;
+    width: 50%;
     border-radius: 5px;
     font-size: 16px;
     border: 1px solid #0000006e;
@@ -182,6 +182,7 @@ ul#results li:nth-of-type(odd):hover{
     box-sizing: border-box;
     display: none;
 }
+/* css for responsive nav */
 #navsmallbtn{
     background: transparent;
     height: 30px;
@@ -211,6 +212,10 @@ ul#results li:nth-of-type(odd):hover{
         display: flex;
         justify-content: center;
     }
+    #search-lg button img{
+        display: block;
+        height: 20px;
+    }
     #navsmall{
         width: 100%;
         margin-top: 20px;
@@ -227,13 +232,7 @@ ul#results li:nth-of-type(odd):hover{
     nav ul#largenav li.nav-link{
         display: none;
     }
-    #search-lg button img{
-        display: block;
-        height: 20px;
-    }
-    #filter select{
-        width: 450px;
-    }
+    
     nav.active #navsmall{
         display: block;
     }           
@@ -255,6 +254,19 @@ ul#results li:nth-of-type(odd):hover{
     nav.active{
         height: 200px;        
     }
+    ul#results li span.date {
+        font-size: 1em;
+    }
+    ul#results p {
+        width: 60%;
+    }
+}
+@media(max-width : 400px){
+    #filter label {
+        font-size: 22px;
+        padding: 10px;
+    }
+    
 }
 
 @keyframes rotating{

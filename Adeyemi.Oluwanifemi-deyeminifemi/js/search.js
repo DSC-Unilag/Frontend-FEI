@@ -91,8 +91,7 @@ document.querySelector('#search-lg button').addEventListener('click',(e) => {
 
 
 // Code for responsive navbar
-window.addEventListener('resize',(e) => {
-    
+window.addEventListener('resize',(e) => {    
     if(window.innerWidth > 700){
         document.querySelector('nav').classList.remove('active');
     }

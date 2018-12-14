@@ -90,7 +90,7 @@ const createCard = (data) => {
     const desc = document.createElement('p');
     desc.classList.add('text-muted');
     const contentArr = data.content.split(' ');
-    const content = contentArr.splice(0,15).join(" ");
+    const content = contentArr.splice(0,10).join(" ");
     desc.innerText = content + '...';
     span.appendChild(title)
     span.appendChild(desc)
@@ -99,3 +99,20 @@ const createCard = (data) => {
     card.innerHTML += `<button><a href= '${data.url}'>Read more</a></button>`
     return card;    
 }
+
+// Code for responsive navbar
+window.addEventListener('resize',(e) => {    
+    if(window.innerWidth > 700){
+        document.querySelector('nav').classList.remove('active');
+    }
+})
+let display = 0;
+document.querySelector('#navsmallbtn').addEventListener('click', () => {
+    if(display){
+        document.querySelector('nav').classList.remove('active');
+        display--;
+    }else{
+        document.querySelector('nav').classList.add('active');
+        display++;
+    }
+})
