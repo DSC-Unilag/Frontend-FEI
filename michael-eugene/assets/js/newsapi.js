@@ -1,34 +1,33 @@
+// If you are reading this, im new to javascript so most of my code will be irrelevant.... lol
+// Please feel free to help refactor my code... I would greatly appreciate it ;) Cheers
+
+
+const bbc = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=f3d6aa29b4af4d45ad9cb6542b496c04";
+const techcrunch = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=f3d6aa29b4af4d45ad9cb6542b496c04";
+const mtv = "https://newsapi.org/v2/top-headlines?sources=mtv-news&apiKey=f3d6aa29b4af4d45ad9cb6542b496c04";
+const espn = "https://newsapi.org/v2/top-headlines?sources=espn&apiKey=f3d6aa29b4af4d45ad9cb6542b496c04";
+
+
+
 function fetchAndRenderNews(url, index) {
     fetch(url)
-        .then((res) => res.json())
-        .then((res) =>
-            res.articles.slice(-4).forEach(art => {
-                document.getElementsByClassName("wrapper")[index].innerHTML 
-                += `
-                <div class="grid-item sm">
-                <div class="img-wrapper" style="background-image:url(${res.articles[0].urlToImage});"></div>
-                    <div class="hero-txt">
-                        <h2 class="grid-txt">${res.articles[0].title}</h2>
-                        <p class="grid-txt">${res.articles[0].description}</p>
-                        <div><a href="${res.articles[0].url}" class="btn-sec">Read More &rightarrow;</a></div>
-                    </div>
-                </div>
-                `
+    .then((res) => res.json())
+    .then((res) =>
+    res.articles.slice(0,4).forEach((art,num)  => {
+    document.getElementsByClassName("wrapper")[index].innerHTML 
+    += `
+    <div class="grid-item sm">
+    <div class="img-wrapper" style="background-image:url(${art.urlToImage});"></div>
+    <div class="hero-txt">
+    <h2 class="grid-txt">${art.title}</h2>
+    <p class="grid-txt">${art.description}</p>
+    <div><a href="${art.url}" class="btn-sec">Read More &rightarrow;</a></div>
+    </div>
+    </div>
+    `
             }))
 }
-
-// BBC API
-var url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=f3d6aa29b4af4d45ad9cb6542b496c04";
-fetchAndRenderNews(url, 0);
-
-// Technology API
-var url = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=f3d6aa29b4af4d45ad9cb6542b496c04";
-fetchAndRenderNews(url, 1);
-
-// Entertainment API
-var url = "https://newsapi.org/v2/top-headlines?sources=mtv-news&apiKey=f3d6aa29b4af4d45ad9cb6542b496c04";
-fetchAndRenderNews(url, 2);
-
-// Sport API
-var url = "https://newsapi.org/v2/top-headlines?sources=espn&apiKey=f3d6aa29b4af4d45ad9cb6542b496c04";
-fetchAndRenderNews(url, 3);
+fetchAndRenderNews(bbc, 0);
+fetchAndRenderNews(techcrunch, 1);
+fetchAndRenderNews(mtv, 2);
+fetchAndRenderNews(espn, 3);
