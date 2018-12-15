@@ -1,0 +1,135 @@
+
+@media screen and (max-width: 800px) {
+/*Mobile layout*/
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+    header, footer {
+        display: flex;
+        margin: 0px;
+        padding: 0px;
+    }
+    nav {
+        display: none;
+    }
+    main {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 800px));
+        grid-template-rows: auto auto auto;
+        grid-row-gap: 4px;
+        grid-auto-flow: row;
+        margin: 0px;
+        padding: 0px;
+    }
+    .topnews, .sports, .technology {
+        grid-column: 2/-2;
+		text-align: center;
+    }
+    .image__display-none {
+        display: none;
+    }
+    .image__size {
+        height: 300px;
+        width: 90%;
+        object-fit: cover;
+    }   
+}
+/*Desktop layout*/
+@media screen and (min-width: 800px) {
+	header, footer, ul {
+		display: flex;
+	}
+	body {
+		box-sizing: border-box;
+		margin: 0px;
+		padding: 0px;
+	}
+	main {
+		display: grid;
+		grid-template-rows: auto auto auto;
+		grid-template-columns: auto;
+		box-sizing: border-box;
+		grid-gap: 10px;
+		margin: 6px;
+	}
+	.topnews {
+		display: grid;
+		grid-template-rows: auto auto;
+		grid-template-columns: auto;
+		box-sizing: border-box;
+		grid-gap: 10px;
+		margin: 4px;
+	}
+	.toptopnews {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		box-sizing: border-box;
+		grid-gap: 10px;
+	}
+	.asidetopNews {
+		display: grid;
+		grid-template-rows: 1fr 1fr 1fr;
+		box-sizing: border-box;
+		grid-gap: 10px;
+	}
+	.recentnews>figure>img {
+		width: 100%;
+		height: 400px;
+		object-fit: cover;
+		box-sizing: border-box;
+	}
+	.asidetopNews>figure>img {
+		width: 100%;
+		height: 100px;
+		object-fit: fill;
+		box-sizing: border-box;
+	}
+	.bottomtopnews {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		box-sizing: border-box;
+		grid-gap: 10px;
+	}
+}
+
+
+/*Other styles*/
+header {
+    background-color: rgba(75, 99, 225, 1);
+}
+header>h1 {
+	margin-right: auto;
+}
+footer {
+    background-color: rgba(75, 99, 225, 1);
+    justify-content: center;
+    align-content: center;
+}
+.all__font-size {
+    font-size: 1.5rem;
+}
+figure {
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: rgba(0, 0, 0, 1);
+}
+li {
+	list-style: none;
+}
+hr {
+	border: none;
+	border-top: 0.2rem solid rgba(75, 99, 225, 1);
+	width: 90%;
+	height: 0px;
+}
+h1 {
+	margin-left: 1rem;
+}
+input[type="submit"], input[type="search"] {
+	border: none;
+	border-bottom: 0.1rem solid rgba(0, 0, 0, 1);
+	background-color: rgba(75, 99, 225, 1);
+}
