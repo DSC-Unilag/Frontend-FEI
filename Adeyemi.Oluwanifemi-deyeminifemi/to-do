@@ -1,8 +1,10 @@
 Add pages to search - done
-Add responsitivity everywhere
+Add responsitivity everywhere - done!!!
 Make latest news refresh every 30 minutes - done
 Test for cases where articles < 2000 (pages for search) - done
 Fix problem with loaders in latest-stories 
 Display error messages and catch errors for promises
-Make latest stories actually latest on RELEVANT topics 
+Make latest stories actually latest on RELEVANT topics category (you'll pro)
 Add error messages
+Change latest stories to links for categories - Works i guess
+Break at 600px for homepage
