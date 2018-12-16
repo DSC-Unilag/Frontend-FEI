@@ -114,7 +114,7 @@ nav.top
 {
   display: -ms-flexbox; /* IE10 */
   display: flex;
-  width: 60vw;
+  width: 95vw;
   margin: 5px;
 }
 
@@ -137,6 +137,15 @@ nav.top
   border: 2px solid dodgerblue;
 }
 
+@media (min-width:400px)
+{
+    .input-container 
+    {
+      width: 60vw;
+   
+    }
+
+}
 
 .logo
 {
@@ -467,3 +476,21 @@ footer
     font-family: 'Rubik', sans-serif;
 }
 
+
+.disclaimer
+{
+  margin-top: 6px;
+  font-size: 0.6em;
+}
+
+.disclaimer a
+{
+    
+    color: rgb(72, 72, 146);
+}
+
+.sad
+{
+    font-size:30vh
+    
+}

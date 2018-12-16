@@ -146,7 +146,7 @@ function GetPage()
         .catch(err => 
             {
                 console.log(err);
-            trending.innerHTML =`<h1 class="error">Unable to retrieve news articles. Try refreshing the page<h1>`
+            trending.innerHTML =` <p class="sad">&#9785;</p>  <h1 class="error">Unable to retrieve news articles. Try refreshing the page.<h1>`;
             loader.style.display = "none";          
             })    
         
@@ -221,8 +221,6 @@ function GetCatPage(category)
 
             )
             
-
-
             catTitle.style.textTransform = "uppercase";
             pageContent.append(catTitle);
             pageContent.append(doc);
@@ -230,7 +228,7 @@ function GetCatPage(category)
 
         }).catch(err => {
             console.log(err);
-            pageContent.innerHTML = `<h1 class="error">Unable to retrieve news articles. Try refreshing the page<h1>`
+            pageContent.innerHTML = ` <p class="sad">&#9785;</p>  <h1 class="error">Unable to retrieve news articles. Try refreshing the page.<h1>`;
             loader.style.display = "none";
         })    
 
@@ -241,6 +239,7 @@ function GetCatPage(category)
 function Query(keyword) 
 {
 
+    //https://newsapi.org/v2/everything?q=bitcoin&from=2018-11-16&sortBy=publishedAt&apiKey=95b59d83c586471e8438bc6e0eb91bba
     
 }
 
