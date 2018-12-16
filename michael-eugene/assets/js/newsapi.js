@@ -16,6 +16,7 @@ function fetchAndRenderNews(url, index) {
     res.articles.slice(0,4).forEach((art,num)  => {
     document.getElementsByClassName("wrapper")[index].innerHTML += `
     <div class="grid-item sm">
+    <i class="fas fa-heart liked" id=""></i>
     <div class="img-wrapper" style="background-image:url(${art.urlToImage});"></div>
     <div class="hero-txt">
     <h2 class="grid-txt">${art.title}</h2>

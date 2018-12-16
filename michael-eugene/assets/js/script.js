@@ -21,10 +21,10 @@ navToggle.addEventListener("click", () => {
     document.body.classList.toggle("nav-is-visible");
 })
 
-var world = document.querySelectorAll('.nav-link')[1];
-var tech = document.querySelectorAll('.nav-link')[2];
-var ent = document.querySelectorAll('.nav-link')[3];
-var sports = document.querySelectorAll('.nav-link')[4];
+var world = document.querySelectorAll('.nav-link')[2];
+var tech = document.querySelectorAll('.nav-link')[3];
+var ent = document.querySelectorAll('.nav-link')[4];
+var sports = document.querySelectorAll('.nav-link')[5];
 
 function navItemIsClicked(item) {
     item.addEventListener("click", () => {

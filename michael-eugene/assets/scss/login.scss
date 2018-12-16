@@ -1,0 +1,44 @@
+@import "variables.scss";
+
+div.form-validation-error {
+    background: rgb(224, 144, 144);
+    padding: 1em;
+    border: 1px solid $error;
+    border-radius: 6px;
+    text-align: center;
+    display: none;
+
+    p i {
+        color: inherit;
+    }
+}
+
+form {
+    text-align: center;
+    margin: 1em auto;
+    max-width: 500px;
+
+    input {
+        margin: 1em 0em;
+    }
+
+    .login-input {
+        padding: 1em;
+        border: none;
+        border-bottom: 1px solid $muted;
+        transition: all ease-in-out 90ms;
+        width: 80%
+    }
+
+    .login-input:focus {
+        border-bottom: 2px solid $accent;
+    }
+}
+
+#login-submit {
+    display: none;
+}
+
+.btn-pry {
+    padding: .5em;
+}

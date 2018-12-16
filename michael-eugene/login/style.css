@@ -1,0 +1,32 @@
+div.form-validation-error {
+  background: #e09090;
+  padding: 1em;
+  border: 1px solid #fa0000;
+  border-radius: 6px;
+  text-align: center;
+  display: none; }
+  div.form-validation-error p i {
+    color: inherit; }
+
+form {
+  text-align: center;
+  margin: 1em auto;
+  max-width: 500px; }
+  form input {
+    margin: 1em 0em; }
+  form .login-input {
+    padding: 1em;
+    border: none;
+    border-bottom: 1px solid #7a7a7a;
+    transition: all ease-in-out 90ms;
+    width: 80%; }
+  form .login-input:focus {
+    border-bottom: 2px solid #1f1f1f; }
+
+#login-submit {
+  display: none; }
+
+.btn-pry {
+  padding: .5em; }
+
+/*# sourceMappingURL=style.css.map */
