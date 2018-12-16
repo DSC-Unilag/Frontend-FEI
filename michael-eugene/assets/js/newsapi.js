@@ -14,8 +14,7 @@ function fetchAndRenderNews(url, index) {
     .then((res) => res.json())
     .then((res) =>
     res.articles.slice(0,4).forEach((art,num)  => {
-    document.getElementsByClassName("wrapper")[index].innerHTML 
-    += `
+    document.getElementsByClassName("wrapper")[index].innerHTML += `
     <div class="grid-item sm">
     <div class="img-wrapper" style="background-image:url(${art.urlToImage});"></div>
     <div class="hero-txt">
@@ -25,7 +24,7 @@ function fetchAndRenderNews(url, index) {
     </div>
     </div>
     `
-            }))
+    }))
 }
 fetchAndRenderNews(bbc, 0);
 fetchAndRenderNews(techcrunch, 1);
