@@ -201,7 +201,7 @@ function GetCatPage(category)
                     image.src = article["urlToImage"];
                 }
                 else {
-                    image.src = "../images/logo_little.png"
+                    image.src = `../images/logo_little.png`;
                 }
 
                 imagediv.appendChild(image);
