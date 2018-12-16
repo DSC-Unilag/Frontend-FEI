@@ -1,7 +1,8 @@
-const displayTopStories = getStories({country : "us",limit : 10})
-if(displayTopStories){
-    displayTopStories.then((data)=>fillBlock(data,"top",6))
+let online = navigator.onLine;
 
+if(online){
+    const displayTopStories = getStories({country : "us",limit : 10})
+    displayTopStories.then((data)=>fillBlock(data,"top",6));    
     const displayPolitics = getStories({query : "politics"},"politics");
     displayPolitics.then((data) => fillBlock(data,"politics"))
     const displayBusiness = getStories({query : "business"},"business");
@@ -20,11 +21,20 @@ if(displayTopStories){
     displaystyle.then((data) => fillBlock(data,"style"))
     const displayhealth = getStories({query : "health"},"health");
     displayhealth.then((data) => fillBlock(data,"health"))
+    displayLatestStories();
+    setInterval(displayLatestStories,600000);
+}else{
+    setInterval(() => {
+        if(navigator.onLine){
+            location.reload();
+        };
+    },3000)
+    const sections = ['top','politics','business','sports','tech','arts','entertainment','travel','style','health'];
+    const news = JSON.parse(localStorage.getItem("news"))
+    sections.forEach((e) => {
+        fillBlock(news[e],e,e === "top" ? 6 : 4,0);
+    })
 }
-displayLatestStories();
-
-setInterval(displayLatestStories,600000)
-
 // Code for responsive navbar
 window.addEventListener('resize',(e) => {    
     if(window.innerWidth > 700){

@@ -55,10 +55,15 @@ const createCarouselItem = (article,articleNum) => {
 
 const displayLatestStories = async (category = "") => {
     let latestStories;
-    if(category){
-        latestStories = await getlastestStories(category);
-    }else{
-        latestStories = await getlastestStories();
+    try{
+        if(category){
+            latestStories = await getlastestStories(category);
+        }else{
+            latestStories = await getlastestStories();
+        }   
+    }catch{
+        const latestStories = news['latest'];
+        
     }
     document.querySelector('#latest-stories ul').innerHTML = '';
     for(let i = 0;i < latestStories.articles.length && i < 20;i++){
@@ -102,16 +107,21 @@ const createCard = (data) => {
     return card;    
 }
 
-const fillBlock = (data,block,numOfArticles = 4) => {
+const fillBlock = (data,block,numOfArticles = 4,mode = 1) => {
+    if(mode){   
+        const news = localStorage.getItem("news") ?  JSON.parse(localStorage.getItem("news")) : {};
+        news[block] = data;
+        localStorage.setItem("news",JSON.stringify(news));  
+    }  
     const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content)
     let created = 0;
     for(let i = 0;created < numOfArticles && i < data.totalResults;i++){
         const article = articles[created];
         if(article.title && article.url && article.urlToImage && article.content){
             document.querySelector(`#${block}-card-${created+1} .loader`).style.display = "none";
-            document.querySelector(`#${block}-card-${created+1}`).appendChild(createCard(article));
+            document.querySelector(`#${block}-card-${created+1}`).appendChild(mode ? createCard(article) : createOfflineCard(article));
             created++;
-        }
+        } 
     }
 }
 
@@ -168,4 +178,29 @@ const processData = (data) => {
         document.querySelector('#errors').style.display = "block";        
         document.querySelector('#errors').innerHTML = data ?  "There were no results related to your search" : "You seem to be offline. Please connect to the internet and try again";
     }
+}
+const createOfflineCard = (data,page = "index") => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    const img = document.createElement('img');
+    img.src = page === "index" ?  "images/default.jpg" : "../images/default.jpg";
+    const imgdiv = document.createElement('div');
+    imgdiv.classList.add('img-div');
+    imgdiv.appendChild(img);
+    const span = document.createElement('span');
+    span.classList.add('top-story-summary');
+    let title = document.createElement('p');
+    title.classList.add('title')
+    title.innerText = data.title;
+    const desc = document.createElement('p');
+    desc.classList.add('text-muted');
+    const contentArr = data.content.split(' ');
+    const content = contentArr.splice(0,10).join(" ");
+    desc.innerText = content + '...';
+    span.appendChild(title)
+    span.appendChild(desc)
+    card.appendChild(imgdiv);
+    card.appendChild(span)
+    card.innerHTML += `<button><a href= '${data.url}'>Read more</a></button>`
+    return card;    
 }
