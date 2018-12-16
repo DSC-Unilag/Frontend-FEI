@@ -100,40 +100,41 @@ function GetPage()
             {
             console.log(data);
             let doc = document.createDocumentFragment();
-                [...data.articles].forEach( article =>
-                    {
-                    let panel = document.createElement("div");                   
-                    let imagediv = document.createElement("div");
-                    let image = document.createElement("img");
-                    let desc = document.createElement("div");
-                    let link = document.createElement("a");
-                  
-                    panel.classList.add("panel"); 
-                    imagediv.classList.add("panel-img"); 
-                    desc.classList.add("panel-desc");
-                    link.classList.add("read-more");
+            [...data.articles].forEach(article => {
+                let panel = document.createElement("div");
+                let imagediv = document.createElement("div");
+                let image = document.createElement("img");
+                let desc = document.createElement("div");
+                let sourceDate = document.createElement("div");
+                let link = document.createElement("a");
 
-                    if (article["urlToImage"]) 
-                    {
-                        image.src = article["urlToImage"];
-                    }
-                    else
-                    {
-                        image.src = "../images/logo_little.png"
-                    }
-                    
-                    
-                    imagediv.appendChild(image);
-                    desc.innerHTML = article["title"];
-                    link.href = article["url"];
-                    link.target="_blank";
-                    link.innerHTML = "Read More...";
+                panel.classList.add("panel");
+                imagediv.classList.add("panel-img");
+                desc.classList.add("panel-desc");
+                link.classList.add("read-more");
+                sourceDate.classList.add("source-date");
+
+                if (article["urlToImage"]) {
+                    image.src = article["urlToImage"];
+                }
+                else {
+                    image.src = `../images/logo_little.png`;
+                }
+
+                imagediv.appendChild(image);
+                desc.innerHTML = article["title"];
+                link.href = article["url"];
+                link.target = "_blank";
+                link.innerHTML = "Read More...";
+                let date = article["publishedAt"];
+                sourceDate.innerHTML = `<p>Source : ${article["source"]["name"]}</p> <br> <p>Published:${date.substring(0, 10)}</p>`;
 
 
-                    panel.appendChild(imagediv);
-                    panel.appendChild(desc)
-                    panel.appendChild(link);  
-                    doc.appendChild(panel)   
+                panel.appendChild(imagediv);
+                panel.appendChild(desc)
+                panel.appendChild(link);
+                panel.appendChild(sourceDate);
+                doc.appendChild(panel) 
 
                     }
                     
@@ -189,12 +190,14 @@ function GetCatPage(category)
                 let imagediv = document.createElement("div");
                 let image = document.createElement("img");
                 let desc = document.createElement("div");
+                let sourceDate = document.createElement("div");
                 let link = document.createElement("a");
 
                 panel.classList.add("panel");
                 imagediv.classList.add("panel-img");
                 desc.classList.add("panel-desc");
                 link.classList.add("read-more");
+                sourceDate.classList.add("source-date");
 
                 if (article["urlToImage"]) 
                 {
@@ -209,12 +212,14 @@ function GetCatPage(category)
                 link.href = article["url"];
                 link.target = "_blank";
                 link.innerHTML = "Read More...";
-
+                let date = article["publishedAt"];
+                sourceDate.innerHTML = `<p>Source : ${article["source"]["name"]}</p>  <br> <p>Published:${date.substring(0,10)}</p>`;
                 
 
                 panel.appendChild(imagediv);
                 panel.appendChild(desc)
                 panel.appendChild(link);
+                panel.appendChild(sourceDate);
                 doc.appendChild(panel)
 
             }

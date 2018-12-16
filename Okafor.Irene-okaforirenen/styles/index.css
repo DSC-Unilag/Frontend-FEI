@@ -361,7 +361,7 @@ main
 .trending
 {
     background: white;
-    margin: 10px;
+    margin: 10px 0;
     padding: 10px;
 }
 
@@ -417,6 +417,19 @@ main
 
 }
 
+.source-date
+{
+    background-color: rgb(57, 57, 148);
+    position: absolute;
+    bottom: 0;
+    color: wheat;
+    left: 0;
+    width: 40%;
+    font-size:0.7em;
+    padding: 5px;
+    text-align: center;
+}
+
 a.read-more 
 {
     color: black;
@@ -447,7 +460,7 @@ a.read-more
   z-index:50;
   color:rgb(255, 250, 250);
   font-size: 1.2em;
-  margin-left:50vw; 
+  margin-left:45vw; 
   top:5vh;
   border-radius: 10%;
   box-shadow: 0 0 5px rgb(219, 131, 131);
@@ -467,8 +480,20 @@ a.read-more
 .pageContent .title
 {
     font-family:Georgia, 'Times New Roman', Times, serif;
-    font-size: 3em;
+    font-size:2em;
     text-decoration: underline;
+    margin-top: 10px;
+}
+
+
+@media (min-width:458px)
+{
+    .pageContent .title
+    {
+        
+        font-size: 3em;
+    }
+
 }
 /*************FOOTER************************/
 
