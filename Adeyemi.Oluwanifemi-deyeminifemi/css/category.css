@@ -107,6 +107,8 @@ div{
     color: white;
     padding: 0 60px;
     background-color: rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    width: 100%;
 }
 /* latest stories  style start */
 
@@ -170,6 +172,12 @@ div{
 .card{
     height: 100%;
     position: relative;
+    box-shadow: 0 0 10px grey;
+    border-radius: 25px;
+    transition: all 0.2s;
+}
+.card:hover{
+    box-shadow: 0 0 2rem #000000;
 }
 .card .img-div{
     height: 45%;
@@ -177,16 +185,20 @@ div{
 .card img{
     width: 100%;
     height: 100%;
+    border-radius: 25px 25px 0 0;
 }
 .card a{
     text-decoration: none;
     color: black;
 }
+.top-story-summary p{
+    padding: 0 10px;
+} 
 .card button{
     margin-right: 10px;
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 5px;
+    bottom: 20px;
     border: 1px solid grey;
     background: transparent;
     border-radius: 5px;
