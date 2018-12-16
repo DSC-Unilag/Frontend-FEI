@@ -1,9 +1,16 @@
+@font-face
+ {
+    font-family: Digital;
+    src: url(../fonts/digital-7.ttf)
+  }
+
 *
 {
     padding: 0;
     margin:0;
     box-sizing:border-box;
     word-wrap: break-word;
+    font-family:'Merriweather';
 }
 
 
@@ -87,9 +94,11 @@ nav.top
     color:white;
 }
 
-.date
+#today
 {  
     text-align: center;    
+    font-family: Digital;
+    font-size: 2em;
 }
 
 .share
@@ -98,6 +107,34 @@ nav.top
 
 .social
 {
+}
+
+
+.input-container 
+{
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 60vw;
+  margin: 5px;
+}
+
+.icon {
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid dodgerblue;
 }
 
 
@@ -112,18 +149,7 @@ nav.top
 
 }
 
-.search
-{
-    margin: 0 0 0 70vw;
-    background: blue;
-    width: 30vw;
-}
 
-
-.search input
-{
-    width: 100%;
-}
 
 @media (min-width:700px)
 {
@@ -169,9 +195,14 @@ main
     position: sticky;
     top:5vh;
     display: none;
-    z-index: 300;
+    z-index: 100;
+    width:35%;
+    padding: 5px 2px;
+    background: red;
 
 }
+
+
 
 .categories
 {
@@ -186,16 +217,16 @@ main
 
 #close-btn
 {
-     font-size: 1.5em;
-     text-align: center;
-     height: 30px;
+     font-size: 1.5em; 
+     height: 38px;
      width: 30px;
      outline: none;
      background: blue;
-     border-radius: 50%;
+     border-radius: 50px;
      cursor: pointer;
      margin-left: 80%;
      display: none;
+     text-align: center;
 
 }
 
@@ -224,8 +255,18 @@ main
 
     }
 
+}
 
 
+
+@media (max-width:430px)
+{
+    .toggle-categories
+    {
+        font-size: 0.8em;
+        padding: 5px;
+        width:30vw;
+    }
 
 }
 
@@ -295,6 +336,14 @@ main
 
 }
 
+.top-stories
+{
+    font-size:3rem;
+    padding: 5px;
+   font-family: 'Abril Fatface', cursive;
+}
+
+
 .trending
 {
     background: white;
@@ -309,13 +358,14 @@ main
     min-height: 300px;
     position: relative;
     color: black;
+    box-shadow: 0 0 20px 2px rgb(221, 59, 59);
    
 }
 
 .panel-img
 {
     width: 100%;
-    height:60%;
+    height:70%;
    
 }
 
@@ -361,19 +411,13 @@ a.read-more
 
 @media (min-width:991px)
 {
-    .panel-img
-    {
-        height:50vh;
-    
-    }
-
+  
     .panel
     {
         width: 40%;       
         display: inline-block;
         position: relative;
-        
-        
+               
     
     }
 
@@ -387,11 +431,13 @@ a.read-more
   position: sticky;
   padding: 10px 5px;
   z-index:50;
-  color:black;
+  color:rgb(255, 250, 250);
   font-size: 1.2em;
   margin-left:50vw; 
   top:5vh;
-  background: red;
+  border-radius: 10%;
+  box-shadow: 0 0 5px rgb(219, 131, 131);
+  background: rgb(62, 3, 156);
 }
 
 .pageContent
@@ -404,6 +450,12 @@ a.read-more
     margin: 70px auto auto 40px;
 }
 
+.pageContent .title
+{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 3em;
+    text-decoration: underline;
+}
 /*************FOOTER************************/
 
 footer
@@ -411,4 +463,7 @@ footer
     z-index: 99;
     color: red;
     text-align: center;
+    padding: 10px;
+    font-family: 'Rubik', sans-serif;
 }
+

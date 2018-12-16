@@ -18,6 +18,7 @@ const daysArr = ["SUNDAY","MONDAY", "TUESDAY", "WEDNESDAY",
 const fulldate = `${daysArr[day]}, ${monthArr[month]} ${datenum} , ${year}`;
 
 document.getElementById("today").append(fulldate);
+document.getElementById("today").children[0].style.marginRight  ="15px";
 
 //SIDE NAV FOR MOBILE//
 
@@ -92,11 +93,12 @@ function GetPage()
               'apiKey=95b59d83c586471e8438bc6e0eb91bba';
   
     let req = new Request(url);
-   
+    
     fetch(req)
         .then(resp => resp.json())
         .then(data => 
             {
+            console.log(data);
             let doc = document.createDocumentFragment();
                 [...data.articles].forEach( article =>
                     {
@@ -111,7 +113,15 @@ function GetPage()
                     desc.classList.add("panel-desc");
                     link.classList.add("read-more");
 
-                    image.src = article["urlToImage"];
+                    if (article["urlToImage"]) 
+                    {
+                        image.src = article["urlToImage"];
+                    }
+                    else
+                    {
+                        image.src = "../images/logo_little.png"
+                    }
+                    
                     
                     imagediv.appendChild(image);
                     desc.innerHTML = article["title"];
@@ -161,6 +171,9 @@ function GetCatPage(category)
     homebtn.setAttribute("id", "home-btn");
     pageContent.appendChild(homebtn);
     homebtn.addEventListener("click", Hidepage, false);
+    let catTitle = document.createElement("h2");
+    catTitle.classList.add("title");
+    catTitle.innerHTML = `${category}`;
 
 
     // https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=95b59d83c586471e8438bc6e0eb91bba
@@ -168,9 +181,8 @@ function GetCatPage(category)
 
     fetch(req)
         .then(resp => resp.json())
-        .then(data => {
-
-           
+        .then(data => {            
+            console.log("cat",data);
             let doc = document.createDocumentFragment();
             [...data.articles].forEach(article => {
                 let panel = document.createElement("div");
@@ -184,7 +196,13 @@ function GetCatPage(category)
                 desc.classList.add("panel-desc");
                 link.classList.add("read-more");
 
-                image.src = article["urlToImage"];
+                if (article["urlToImage"]) 
+                {
+                    image.src = article["urlToImage"];
+                }
+                else {
+                    image.src = "../images/logo_little.png"
+                }
 
                 imagediv.appendChild(image);
                 desc.innerHTML = article["title"];
@@ -192,6 +210,7 @@ function GetCatPage(category)
                 link.target = "_blank";
                 link.innerHTML = "Read More...";
 
+                
 
                 panel.appendChild(imagediv);
                 panel.appendChild(desc)
@@ -201,7 +220,11 @@ function GetCatPage(category)
             }
 
             )
+            
 
+
+            catTitle.style.textTransform = "uppercase";
+            pageContent.append(catTitle);
             pageContent.append(doc);
             loader.style.display = "none";
 
@@ -213,4 +236,13 @@ function GetCatPage(category)
 
 }
 
+
+
+function Query(keyword) 
+{
+
+    
+}
+
+loader.style.display = "block";
 window.onload = GetPage;
