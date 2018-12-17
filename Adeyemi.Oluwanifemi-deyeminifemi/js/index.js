@@ -24,16 +24,22 @@ if(online){
     displayLatestStories();
     setInterval(displayLatestStories,600000);
 }else{
+    document.querySelector('div.error').style.display = "block";
     setInterval(() => {
         if(navigator.onLine){
             location.reload();
         };
     },3000)
     const sections = ['top','politics','business','sports','tech','arts','entertainment','travel','style','health'];
-    const news = JSON.parse(localStorage.getItem("news"))
-    sections.forEach((e) => {
-        fillBlock(news[e],e,e === "top" ? 6 : 4,0);
-    })
+    const news = localStorage.getItem("home-news") ? JSON.parse(localStorage.getItem("home-news")) : {};
+    if(Object.keys(news).length){
+        sections.forEach((e) => {
+            fillBlock(news[e],e,e === "top" ? 6 : 4,0);
+        })
+    }else{
+        //Wipe Stories Container and Show Error Message
+    }
+    displayLatestStories();
 }
 // Code for responsive navbar
 window.addEventListener('resize',(e) => {    

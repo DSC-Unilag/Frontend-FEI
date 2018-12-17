@@ -25,11 +25,15 @@ const getlastestStories = async (category = "") => {
     from += `${hours}:${minutes}:00`
     let request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&language=en&from=${from}&domains=washingtontimes.com,domain=bbc.co.uk,bleacherreport.com,businessinsider.com,dailymail.co.uk,espn.com,mashable.com,mtv.com,talksport.com,techradar.com,nytimes.com&sortBy=publishedAt`;
     request += category ? `&query=${category}` : "";
-    const response = await fetch(request);
-    return await response.json();
+    try{
+        const response = await fetch(request);
+        return await response.json();   
+    }catch{
+        return undefined;
+    }
 }
 
-const createCarouselItem = (article,articleNum) => {
+const createCarouselItem = (article,articleNum,mode = 1) => {
     const item = document.createElement('div');
     item.classList.add('item');
     if(articleNum === 1){
@@ -38,6 +42,11 @@ const createCarouselItem = (article,articleNum) => {
     item.id = `item-${articleNum}`;
     const image = document.createElement('img');
     image.src = article.urlToImage;
+    const publishedAt = new Date(article.publishedAt);
+    image.id = 'carousel-' + article.title.split(' ').join('') + '-' + publishedAt.getTime();
+    image.addEventListener("error",(e) => {
+        document.getElementById(e.target.id).src = page === "index" ?  "images/default.jpg" : "../images/default.jpg";        
+    })
     const itemInfo = document.createElement('div');
     itemInfo.classList.add('iteminfo');
     const link = document.createElement('a');
@@ -55,15 +64,22 @@ const createCarouselItem = (article,articleNum) => {
 
 const displayLatestStories = async (category = "") => {
     let latestStories;
-    try{
-        if(category){
-            latestStories = await getlastestStories(category);
-        }else{
-            latestStories = await getlastestStories();
-        }   
-    }catch{
-        const latestStories = news['latest'];
-        
+    if(category){
+        latestStories = await getlastestStories(category);
+    }else{
+        latestStories = await getlastestStories();
+    }
+    if(!latestStories){
+        latestStories = localStorage.getItem(`${category ? category-'latest-news' : 'home-latest-news'}`) ? JSON.parse(localStorage.getItem(`${category ? category-'news' : 'home-latest-news'}`)) : {};
+        date = new Date();
+        const difference = date.getTime() - latestStories.time
+        if(!(Object.keys(latestStories).length && !(difference  > 30 * 60000))){
+            document.querySelector('#latest-stories ul').innerHTML = '<li class = "error">You are not online you don\'t have access to latest news</li>'       
+            return;
+        }
+    }else{
+        latestStories.time = new Date().getTime();
+        localStorage.setItem(`${category ? category-'latest-news' : 'home-latest-news'}`,JSON.stringify(latestStories));
     }
     document.querySelector('#latest-stories ul').innerHTML = '';
     for(let i = 0;i < latestStories.articles.length && i < 20;i++){
@@ -81,11 +97,16 @@ const displayLatestStories = async (category = "") => {
         document.querySelector('#latest-stories ul').appendChild(li);
     }
 }
-const createCard = (data) => {
+const createCard = (data,page = "index") => {
     const card = document.createElement('div');
     card.classList.add('card');
     const img = document.createElement('img');
     img.src = data.urlToImage;
+    const publishedAt = new Date(data.publishedAt);
+    img.id = data.title.split(' ').join('') + '-' + publishedAt.getTime();
+    img.addEventListener("error",(e) => {
+        document.getElementById(e.target.id).src = page === "index" ?  "images/default.jpg" : "../images/default.jpg";        
+    })
     const imgdiv = document.createElement('div');
     imgdiv.classList.add('img-div');
     imgdiv.appendChild(img);
@@ -109,9 +130,9 @@ const createCard = (data) => {
 
 const fillBlock = (data,block,numOfArticles = 4,mode = 1) => {
     if(mode){   
-        const news = localStorage.getItem("news") ?  JSON.parse(localStorage.getItem("news")) : {};
+        const news = localStorage.getItem("home-news") ?  JSON.parse(localStorage.getItem("home-news")) : {};
         news[block] = data;
-        localStorage.setItem("news",JSON.stringify(news));  
+        localStorage.setItem("home-news",JSON.stringify(news));  
     }  
     const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content)
     let created = 0;
@@ -119,12 +140,11 @@ const fillBlock = (data,block,numOfArticles = 4,mode = 1) => {
         const article = articles[created];
         if(article.title && article.url && article.urlToImage && article.content){
             document.querySelector(`#${block}-card-${created+1} .loader`).style.display = "none";
-            document.querySelector(`#${block}-card-${created+1}`).appendChild(mode ? createCard(article) : createOfflineCard(article));
+            document.querySelector(`#${block}-card-${created+1}`).appendChild(createCard(article));
             created++;
         } 
     }
 }
-
 const search = async (request,args = {}) => {
     try{
         args.sortBy = args.sortBy ? args.sortBy : "publishedAt";
@@ -136,8 +156,6 @@ const search = async (request,args = {}) => {
         return undefined;
     }
 }
-
-
 const processData = (data) => {
     if(data && data.totalResults){
         const totalPages = parseInt(data.totalResults / 20);
@@ -178,29 +196,4 @@ const processData = (data) => {
         document.querySelector('#errors').style.display = "block";        
         document.querySelector('#errors').innerHTML = data ?  "There were no results related to your search" : "You seem to be offline. Please connect to the internet and try again";
     }
-}
-const createOfflineCard = (data,page = "index") => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    const img = document.createElement('img');
-    img.src = page === "index" ?  "images/default.jpg" : "../images/default.jpg";
-    const imgdiv = document.createElement('div');
-    imgdiv.classList.add('img-div');
-    imgdiv.appendChild(img);
-    const span = document.createElement('span');
-    span.classList.add('top-story-summary');
-    let title = document.createElement('p');
-    title.classList.add('title')
-    title.innerText = data.title;
-    const desc = document.createElement('p');
-    desc.classList.add('text-muted');
-    const contentArr = data.content.split(' ');
-    const content = contentArr.splice(0,10).join(" ");
-    desc.innerText = content + '...';
-    span.appendChild(title)
-    span.appendChild(desc)
-    card.appendChild(imgdiv);
-    card.appendChild(span)
-    card.innerHTML += `<button><a href= '${data.url}'>Read more</a></button>`
-    return card;    
 }
