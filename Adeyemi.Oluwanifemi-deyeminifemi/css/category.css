@@ -194,11 +194,11 @@ div{
 .top-story-summary p{
     padding: 0 10px;
 } 
-.card button{
+.card button.read-more{
     margin-right: 10px;
     position: absolute;
-    right: 5px;
-    bottom: 20px;
+    right: 0;
+    bottom: 15px;
     border: 1px solid grey;
     background: transparent;
     border-radius: 5px;
@@ -206,14 +206,28 @@ div{
     width: 80px;
     transition: all 0.2s;
 }
-.card button:hover{
+.card button.read-more:hover{
     transform: scale(1.1);
     background-color: #808080cc;
 }
-.card button:hover a{
+.card button.read-more:hover a{
     color: white;
 }
-/* card styling end */
+.card button.bookmark{
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    width: 30px;
+    height: 60px;
+    background-image: url(../images/svg/bookmark.svg);
+    border: none;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.card button.bookmark.active{
+    background-image: url(../images/svg/bookmark-active.svg)
+}/* card styling end */
 
 #links{
     width: 100%;
@@ -272,6 +286,9 @@ div{
 }
 div.error{
     display: none;
+    border-radius: 100px;
+    margin: 10px auto;
+    width: 75%;
 }
 @media(max-width : 900px){
 	#stories h2{

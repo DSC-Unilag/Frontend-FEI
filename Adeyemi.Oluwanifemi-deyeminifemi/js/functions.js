@@ -97,7 +97,7 @@ const displayLatestStories = async (category = "") => {
         document.querySelector('#latest-stories ul').appendChild(li);
     }
 }
-const createCard = (data,page = "index") => {
+const createCard = (data,id,page = "index") => {
     const card = document.createElement('div');
     card.classList.add('card');
     const img = document.createElement('img');
@@ -120,18 +120,25 @@ const createCard = (data,page = "index") => {
     const contentArr = data.content.split(' ');
     const content = contentArr.splice(0,10).join(" ");
     desc.innerText = content + '...';
-    span.appendChild(title)
-    span.appendChild(desc)
+    const bookmark = document.createElement('button');
+    bookmark.id = id;
+    bookmark.classList.add('bookmark');
+    span.appendChild(title);
+    span.appendChild(desc);
     card.appendChild(imgdiv);
-    card.appendChild(span)
-    card.innerHTML += `<button><a href= '${data.url}'>Read more</a></button>`
+    card.appendChild(span);
+    card.appendChild(bookmark);
+    card.innerHTML += `<button class = 'read-more'><a href= '${data.url}'>Read more</a></button>`
     return card;    
 }
 
 const fillBlock = (data,block,numOfArticles = 4,mode = 1) => {
-    if(mode){   
+    if(mode){ 
         const news = localStorage.getItem("home-news") ?  JSON.parse(localStorage.getItem("home-news")) : {};
         news[block] = data;
+        news[block].articles.forEach((e,index) => {
+            e.id = `${block}-${index+1}`
+        })
         localStorage.setItem("home-news",JSON.stringify(news));  
     }  
     const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content)
@@ -139,8 +146,10 @@ const fillBlock = (data,block,numOfArticles = 4,mode = 1) => {
     for(let i = 0;created < numOfArticles && i < data.totalResults;i++){
         const article = articles[created];
         if(article.title && article.url && article.urlToImage && article.content){
-            document.querySelector(`#${block}-card-${created+1} .loader`).style.display = "none";
-            document.querySelector(`#${block}-card-${created+1}`).appendChild(createCard(article));
+            if(document.querySelector(`#${block}-card-${created+1} .loader`)){
+                document.querySelector(`#${block}-card-${created+1} .loader`).style.display = "none";                
+            }
+            document.querySelector(`#${block}-card-${created+1}`).appendChild(createCard(article,`${block}-${created+1}`));
             created++;
         } 
     }
@@ -196,4 +205,37 @@ const processData = (data) => {
         document.querySelector('#errors').style.display = "block";        
         document.querySelector('#errors').innerHTML = data ?  "There were no results related to your search" : "You seem to be offline. Please connect to the internet and try again";
     }
+}
+const toggleClass = (elem,classs) => {
+    if(elem.classList.contains(classs)){
+        elem.classList.remove(classs)
+        return false;
+    }else{
+        elem.classList.add(classs)
+        return true;
+    }
+}
+const addBookmark = (id,page = "") => {
+    const bookmarked = localStorage.getItem('bookmarked') ? JSON.parse(localStorage.getItem('bookmarked')) : [];
+    const saved = JSON.parse(localStorage.getItem(`${page ? page : 'home'}-news`));
+    let article;
+    if(page){
+        const articleIndex = saved.articles.findIndex((e) => e.id === id)
+        article = saved.articles[articleIndex];
+    }else{
+        const part = id.split('-')[0];
+        const articleIndex = saved[part].articles.findIndex((e) => e.id === id)
+        article = saved[part].articles[articleIndex];
+    } 
+    article.id = id;
+    bookmarked.push(article);
+    localStorage.setItem("bookmarked",JSON.stringify(bookmarked))
+}
+const removeBookmark = (id) => {
+    const bookmarked = JSON.parse(localStorage.getItem('bookmarked'));
+    const index = bookmarked.findIndex((e) => e.id == id)
+    if(index >= 0){
+        bookmarked.splice(index,1);
+    }
+    localStorage.setItem("bookmarked",JSON.stringify(bookmarked))
 }

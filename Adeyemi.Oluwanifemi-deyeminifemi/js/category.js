@@ -13,12 +13,16 @@ if(location.search && sections.filter(elem => location.search.includes(elem)).le
     const carouselArticles = getStories({category});
     let currentCarArticle = 1;
     const articles = localStorage.getItem(`carousel-${category}`) ? JSON.parse(localStorage.getItem(`carousel-${category}`)) : {};
-    for(let i = 1;i <= 5;i++){
-        document.querySelector('#carousel').appendChild(createCarouselItem(articles[i],i))
-    }    
+    if(Object.keys(articles).length){
+        for(let i = 1;i <= 5;i++){
+            document.querySelector('#carousel').appendChild(createCarouselItem(articles[i],i))
+        }    
+    }
     carouselArticles.then((data) => {
         for(let i = 1;i <= 5;i++){
-            document.querySelector(`#carousel #item-${i}`).remove()
+            if(document.querySelector(`#carousel #item-${i}`)){
+                document.querySelector(`#carousel #item-${i}`).remove()
+            }
         }
         let articles;
         if(data){
@@ -27,7 +31,9 @@ if(location.search && sections.filter(elem => location.search.includes(elem)).le
         }else{
             articles = localStorage.getItem(`carousel-${category}`) ? JSON.parse(localStorage.getItem(`carousel-${category}`)) : {};
             if(!(Object.keys(articles).length)){
-                //Wipe Carousel and Put Error Message
+                document.querySelector("#top-wrap").remove();
+                document.querySelector("div.error").innerHTML += " and there is no saved carousel news please go online to access news"
+                document.querySelector("div.error").style.display = "block";
                 return;
             }
         }
@@ -67,6 +73,9 @@ if(location.search && sections.filter(elem => location.search.includes(elem)).le
     stories.then((data) => {
         let articles;
         if(data){
+            data.articles.forEach((e,index) => {
+                e.id = `${category}-${index + 1}`;
+            })
             localStorage.setItem(`${category}-news`,JSON.stringify(data))
         }else{
             if(page > 1 || page < 0){
@@ -77,10 +86,15 @@ if(location.search && sections.filter(elem => location.search.includes(elem)).le
                 if(navigator.onLine){
                     location.reload();
                 };
-            },3000)
+            },600000)
             data = localStorage.getItem(`${category}-news`) ? JSON.parse(localStorage.getItem(`${category}-news`)) : {};
             if(!(Object.keys(data).length)){
-                //Wipe stories container and show error message
+                document.querySelector("#stories").remove();
+                if(!(document.querySelector("div.error").innerText.includes('and there is no'))){
+                    document.querySelector("div.error").innerHTML += " and there is no saved news please go online to access news"
+                }else{
+                    document.querySelector("div.error").innerHTML += "<br>There is no saved news either"
+                }
                 return;
             }
         } 
@@ -93,11 +107,25 @@ if(location.search && sections.filter(elem => location.search.includes(elem)).le
             document.querySelector('#page-1').click();
         }
         for(let i = 1;i <= 20;i++){
-            article = articles[i];
+            article = articles[i-1];
             document.querySelector(`#story-item-${i} .loader`).style.display = "none";
-            document.querySelector(`#story-item-${i}`).appendChild(createCard(article,category));
+            document.querySelector(`#story-item-${i}`).appendChild(createCard(article,`${category}-${i}`,category));
         } 
         document.querySelector('#links').style.display = navigator.onLine ? "block" : "none";
+        document.querySelectorAll('.bookmark').forEach((e) => {
+            e.addEventListener('click',() => {
+                const active = toggleClass(e,'active');
+                active ? addBookmark(e.id,category) : removeBookmark(e.id);
+            })
+        })
+        const bookmarked = localStorage.getItem("bookmarked") ? JSON.parse(localStorage.getItem("bookmarked")) : [];
+        if(bookmarked.length > 0){
+            bookmarked.forEach((e) => {
+                if(document.querySelector(`#${e.id}`)){
+                    document.querySelector(`#${e.id}`).classList.add('active')
+                }
+            })
+        }
     })
 }else{
     document.querySelector('.nav-brand a').click();

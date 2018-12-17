@@ -103,7 +103,7 @@ form#nav-search button img{
     text-decoration: none;
     color: black;
 }
-.card button{
+.card button.read-more{
     margin-right: 10px;
     position: absolute;
     right: 0;
@@ -115,12 +115,27 @@ form#nav-search button img{
     width: 80px;
     transition: all 0.2s;
 }
-.card button:hover{
+.card button.read-more:hover{
     transform: scale(1.1);
     background-color: #808080cc;
 }
-.card button:hover a{
+.card button.read-more:hover a{
     color: white;
+}
+.card button.bookmark{
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    width: 30px;
+    height: 60px;
+    background-image: url(../images/svg/bookmark.svg);
+    border: none;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.card button.bookmark.active{
+    background-image: url(../images/svg/bookmark-active.svg)
 }
 .card .img-div{
     height: 45%;
@@ -161,6 +176,9 @@ form#nav-search button img{
 }
 div.error{
     display: none;
+    border-radius: 100px;
+    margin: 10px auto;
+    width: 75%;
 }
 #latest-stories ul li .text-muted{
     margin: 0 10px 0 5px;
