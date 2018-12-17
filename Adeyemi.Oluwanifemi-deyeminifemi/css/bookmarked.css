@@ -1,0 +1,260 @@
+body{
+    margin: 0;
+}
+button,a{
+    cursor: pointer;
+}
+:focus{
+    outline: none;
+}
+.text-muted{
+    color: rgba(0, 0, 0, 0.6);
+}
+/* navbar css start */
+nav{
+    box-shadow: 0 0 10px grey;
+    display: flex;
+    color: white;
+    height: 60px;
+    align-items: center;  
+}
+nav ul{
+    margin: 0;
+}
+nav li{
+    display: inline-flex;
+    align-items: center;
+    align-content: center;
+    padding: 0px 15px;
+}
+nav li a{
+    color: black;
+    text-decoration: none;    
+}
+nav li.nav-brand{
+    font-size: 25px;
+}
+nav li.nav-link{
+    font-size: 20px;
+}
+form#nav-search{
+    display: flex;
+    margin: 0 20px 0 auto;
+    height: 27px;
+    border: 1px solid black;
+}
+form#nav-search input{
+    font-size: 16px;   
+    width: 170px;   
+    padding: 0 3px;
+}
+form#nav-search button{
+    background-color: transparent;
+}
+form#nav-search *{
+    border: none;
+}
+form#nav-search button img{
+    height: 16px;
+}
+/* navbar css end */
+/* Responsive nav */
+#navsmallbtn{
+    background: transparent;
+    height: 30px;
+    margin: 0 10px 0 auto;
+    border: 1px solid #0000003b;
+    box-shadow: 0 0 3px grey;
+    border-radius: 4px;
+  display: none;
+}
+#navsmallbtn img{
+    width: 20px;
+}
+#navsmall{
+    display: none;
+}
+
+#stories {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    padding: 0 30px;
+}
+.error{
+    background-color: #fbaaaa;
+    color: #fb4a4a;
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    text-align: center;
+    padding: 10px;
+    justify-content: center;
+}
+div.error{
+    display: none;
+    border-radius: 100px;
+    margin: 10px auto;
+    width: 75%;
+}
+/* card styling start */
+.card-wrap{
+    min-height: 320px;
+    max-height: 320px;
+    height: 320px;
+}
+.card{
+    height: 350px;
+    position: relative;
+    box-shadow: 0 0 10px grey;
+    border-radius: 25px;
+    transition: all 0.2s;
+}
+.card:hover{
+    box-shadow: 0 0 2rem #000000;
+}
+.card .img-div{
+    height: 45%;
+}
+.card img{
+    width: 100%;
+    height: 100%;
+    border-radius: 25px 25px 0 0;
+}
+.card a{
+    text-decoration: none;
+    color: black;
+}
+.top-story-summary p{
+    padding: 0 10px;
+} 
+.card button.read-more{
+    margin-right: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+    border: 1px solid grey;
+    background: transparent;
+    border-radius: 5px;
+    height: 30px;
+    width: 80px;
+    transition: all 0.2s;
+}
+.card button.read-more:hover{
+    transform: scale(1.1);
+    background-color: #808080cc;
+}
+.card button.read-more:hover a{
+    color: white;
+}
+.card button.bookmark{
+    display: none;
+}
+@media(max-width : 900px){
+	#stories h2{
+		grid-column : 1/4;
+	}
+	#stories{
+		grid-template-columns : repeat(3,1fr)
+	}
+}
+@media(max-width : 700px){
+	#stories{
+		grid-template-columns : 1fr 1fr;
+	}
+	#stories h2{
+		grid-column : 1/3;
+	}
+	.card{
+		width : 80%;
+		margin : auto;
+    }
+    .card  .text-muted{
+        margin: 0;
+    }
+	.card button{
+		position  :relative;
+		left : 100px;
+	}
+    #navsmall{
+        width: 100%;
+        margin-top: 20px;
+        border-top: 1px solid rgba(0,0,0,.15);
+        display: none;        
+    }
+    #navsmallbtn{
+        float: right;
+        display: inline;
+    }
+    nav ul#largenav{
+        display: inline;
+    }
+    nav ul#largenav li.nav-link{
+        display: none;
+    }
+    
+    nav.active #navsmall{
+        display: block;
+    }           
+    #navsmall ul li {
+        display: block;        
+    }
+    #navsmall ul li a{
+        color: rgba(0, 0, 0, 0.6);
+    }
+    form#nav-search{
+        display: none;
+    }
+    #navsmall ul li a:hover{
+        color: black;
+    }
+    nav{
+        height: 40px;
+        padding: 10px 0;
+        transition: 0.5s;
+        display: block;
+    }
+    nav.active{
+        height: 200px;        
+    }
+    #nav-search-small{
+        padding-left: 57px;
+        display: flex;
+    }
+    #nav-search-small input{
+        width: 400px;
+        border-radius: 5px 0 0 5px;
+        border: 1px solid grey;
+        border-right: 0;
+    }
+    #nav-search-small button{
+        height: 30px;
+        width: 30px;
+        border-left: 0;
+        border: 1px solid grey;
+        border-radius: 0 5px 5px 0;
+    }
+    ul#results li span.date {
+        font-size: 1em;
+    }
+    ul#results p {
+        width: 60%;
+    }
+    #carousel{
+        display: none;
+    }
+}
+@media(max-width : 500px){
+	#stories{
+		grid-template-columns : 1fr;
+    }
+    .card{
+		width : 60%;
+	}
+}
+@media(max-width : 400px){
+	.card{
+		width : 80%;
+	}
+}
