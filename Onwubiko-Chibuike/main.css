@@ -22,8 +22,8 @@
         margin: 0px;
         padding: 0px;
     }
-    .topnews, .sports, .technology {
-        grid-column: 2/-2;
+    .topnews, .sports, .technology, .search-result {
+        grid-column: 1/-1;
 		text-align: center;
     }
     .image__display-none {
@@ -96,11 +96,18 @@
 
 
 /*Other styles*/
+main {
+	margin: 1rem;
+}
 header {
     background-color: rgba(75, 99, 225, 1);
 }
 header>h1 {
 	margin-right: auto;
+}
+nav {
+	margin-right: 1rem;
+	vertical-align: middle;
 }
 footer {
     background-color: rgba(75, 99, 225, 1);
@@ -126,7 +133,7 @@ hr {
 	width: 90%;
 	height: 0px;
 }
-h1 {
+h1,form {
 	margin-left: 1rem;
 }
 input[type="submit"], input[type="search"] {
