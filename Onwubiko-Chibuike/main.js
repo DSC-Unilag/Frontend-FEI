@@ -7,6 +7,9 @@ let req = new Request(url);
 let input = document.querySelectorAll('.news');
 let image = document.querySelectorAll('img');
 
+let searchHeader = document.createElement('h3');
+
+let search = document.getElementById("search");
 
 function validateAndReturnResponse(res) {
     if(!res.ok) {
@@ -25,7 +28,14 @@ function displayOutput(output) {
 }
 
 function displaySearchOutput(output) {
-    //document.querySelector('main').style.display = 'grid';
+    document.querySelector('.news-container').style.display = 'none';
+    if(output.totalResults > 1) {
+         wordings = " Search results for ";
+    } else {
+         wordings = " Search result for "
+    }
+    searchHeader.textContent = output.totalResults + wordings + search.value;
+    document.querySelector('main').appendChild(searchHeader);
     for (let i = 0; i < output.articles.length; i++) {
         if(i != 10 || i <= output.articles.length) {
             let searchResult = document.createElement('div');
@@ -33,9 +43,10 @@ function displaySearchOutput(output) {
             let p = document.createElement('p');
             let searchResultLink = searchResult.appendChild(a);
             let searchResultContent = searchResult.appendChild(p);
+            searchResult.setAttribute('class', 'search-results');
             searchResultLink.textContent = output.articles[i].title;
             searchResultLink.href = output.articles[i].url;
-            searchResultContent.textContent = output.articles[i].content;
+            searchResultContent.textContent = output.articles[i].description;
             console.log(output.articles[i],  searchResultLink.href, searchResultContent.textContent );
             document.querySelector('main').appendChild(searchResult);
         }
@@ -61,43 +72,48 @@ makeRequest(req);
 window.addEventListener('DOMContentLoaded', getSearch);
 
 function getSearch() {
-    //let getSearchResult = document.querySelectorAll('search');
     let getSearchResult = document.getElementById('form');
-    getSearchResult.addEventListener('click', makeSearchRequest);
+    getSearchResult.addEventListener('submit', makeSearchRequest, false);
+    return;
+}
+
+function removePreviousSearchResult() {
+    let query = document.querySelectorAll('.search-results');
+    query.forEach( (q) => {q.remove();});
+    searchHeader.remove();
+    return;
 }
 
 
 function makeSearchRequest(e) {
     e.preventDefault();
-    //document.querySelector('main').style.display = 'none';
-    let search = document.getElementById("search").value;
-    
-        let formData = new FormData(document.getElementById('form')); 
- 
-        var data = new URLSearchParams();
-        for (let pair of formData) {
-            data.append(pair[0],pair[1]);
-        }
-    
-        data.append('apikey', apikeys);
-        data.toString();
 
-        let searchUrl = 'https://newsapi.org/v2/top-headlines?' +
-                          data;
+    removePreviousSearchResult();
+    
+    let formData = new FormData(document.getElementById('form')); 
 
-        let request = new Request(searchUrl, {
-            method: 'GET',
-            headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
-        });
-        fetch(request)
-        .then(validateAndReturnResponse)
-        .then(displaySearchOutput)
-        .catch(catchError)
-        //return makeRequest(request);
-        return;
-        //document.getElementById('form').value = '';
-        //document.getElementById('search').value = '';
-    //}
+    var data = new URLSearchParams();
+    for (let pair of formData) {
+        data.append(pair[0],pair[1]);
+    }
+
+    data.append('apikey', apikeys);
+    data.toString();
+
+    let searchUrl = 'https://newsapi.org/v2/top-headlines?' + data;
+
+    let init = {
+        method: 'GET',
+        headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
+    };
+
+    let request = new Request(searchUrl, init);
+    
+    fetch(request)
+    .then(validateAndReturnResponse)
+    .then(displaySearchOutput)
+    .catch(catchError)
+    return;
 }
 
 
