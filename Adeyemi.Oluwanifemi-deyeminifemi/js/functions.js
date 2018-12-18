@@ -4,7 +4,7 @@ const getStories = async (args,type = "top") => {
     if(args.category){
         request = `https://newsapi.org/v2/top-headlines?apiKey=9ac2b559698d40bc9757fb14d7a6925c&category=${args.category}&pageSize=${args.pageSize}&country=us&page=${args.page}`;
     }else{
-        request = type === "top" ? 'https://newsapi.org/v2/top-headlines?apiKey=9ac2b559698d40bc9757fb14d7a6925c' : 'https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c';
+        request = type === "top" ? 'https://newsapi.org/v2/top-headlines?apiKey=9ac2b559698d40bc9757fb14d7a6925c' : 'https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&sortBy=publishedAt';
         request = args.query ? request += `&q=${args.query}` : request;
         request = args.limit ? request += `&pageSize=${args.limit}` : request;
         request = args.country ? request += `&country=${args.country}` : request;
@@ -50,6 +50,7 @@ const createCarouselItem = (article,articleNum,mode = 1) => {
     const itemInfo = document.createElement('div');
     itemInfo.classList.add('iteminfo');
     const link = document.createElement('a');
+    link.href = article.url;
     const title = document.createElement('h2');
     title.innerText = article.title;
     const desc = document.createElement('p');
@@ -117,12 +118,13 @@ const createCard = (data,id,page = "index") => {
     title.innerText = data.title;
     const desc = document.createElement('p');
     desc.classList.add('text-muted');
-    const contentArr = data.content.split(' ');
+    const contentArr = data.content ? data.content.split(' ') : data.description.split(' ');
     const content = contentArr.splice(0,10).join(" ");
     desc.innerText = content + '...';
     const bookmark = document.createElement('button');
     bookmark.id = id;
     bookmark.classList.add('bookmark');
+    bookmark.innerHTML += "<span>Bookmark</span>"
     span.appendChild(title);
     span.appendChild(desc);
     card.appendChild(imgdiv);
