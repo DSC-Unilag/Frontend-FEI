@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    padding: 0;
 }
 button,a{
     cursor: pointer;
@@ -140,6 +141,33 @@ form#nav-search button img{
 .card .img-div{
     height: 45%;
 }
+.card button.bookmark span{
+    visibility: hidden;
+    width: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 85%;
+    margin-left: -60px;
+}
+.card button.bookmark span::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+.card button.bookmark:hover span{
+    visibility: visible;
+}
 /* card styling end */
 
 /* latest stories  style start */
@@ -231,7 +259,7 @@ div.error{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-column-gap: 15px;
-    margin: 0 20px 0 10px;
+    padding: 0 20px 0 10px;
     box-sizing: border-box;
 }
 #latest-stories .loader {
@@ -302,7 +330,7 @@ div.error{
         display: block;
     }
     nav.active{
-        height: 200px;        
+        height: 240px;        
     }
     form#nav-search{
         display: none;
