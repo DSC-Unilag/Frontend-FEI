@@ -1,22 +1,32 @@
 *{
     box-sizing: border-box;
 }
+
 /*
 
-    colors: green and red
+    colors: greeen, yellow and red
 
 */
+
 body{
     margin: 0;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Gill Sans", sans-serif;;
 }
 .main-container{
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 a{
     text-decoration: none;
-    color: white;
+    color: black;
+}
+.news__header__container{
+    width: 70%;
+}
+.top__flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .news__header{
     margin: 0;
@@ -33,10 +43,18 @@ a{
     margin: 3px 5px;
 }
 .news__header .search_bar{
-    width: 16%;
-    float: right;
-    position: relative;
-    top: 25px;
+    width: 29%;
+    text-align: right;
+    height: 23px;
     display: inline-block;
-    margin: 0px 30px;
+}
+.other__news__container{
+    width: 15%;
+}
+#other__news__1, #other__news__2{
+    display: inline-block;
+    width: 100%;
+}
+.tech_news{
+    width: 100%;
 }
