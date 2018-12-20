@@ -1,5 +1,3 @@
-//this always has to be present
-document.getElementById('getData').addEventListener('click', getText);
 
 // function setUp(){
 //     nocanvas(); 
@@ -70,6 +68,8 @@ function getText(){
     // Sends request
     xhr.send();
 }
+
+getText();
 
     // readyState values
     // 0: request not initialized
