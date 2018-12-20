@@ -1,3 +1,13 @@
+if('serviceWorker' in navigator){
+    navigator.serviceWorker
+        .register('/sw.js')
+        .then((data) => {
+            console.log('Service Worked Registered')
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
 
 const getStories = async (args,type = "top") => {
     let request;
