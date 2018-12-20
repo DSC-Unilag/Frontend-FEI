@@ -1,125 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>News Illustrated :: Search Results</title>
-    <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/master.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/master.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="../assets/js/searchapi.js"></script>
-</head>
-<body onload="loaderAnimation()">
-        <header class="scroll-shadow fad">
-            <div class="top-nav">
-                <i class="fas fa-bars top-nav-item menu-icon"></i>
-                <p class="menu top-nav-item men-icon">Menu</p>
-                <i class="fas fa-search top-nav-item"></i>
-            </div>
-            <div>
-                <a href="../index.html" class="web-logo">News Illustrated</a>
-            </div>
-            <div id="central-500px">
-                <a href="../login/login.html" class="und">Log in</a>
-            </div>
-        </header>
-    
-        <div class="wrapper-container-all">
-            <nav class="nav-container">
-                <div class="nav-menu">
-                    <form action="../search/results.html" class="nav-section">
-                        <input type="text" name="search" id="search" placeholder="Search For An Article">
-                    </form>
-                    <hr>
-                    <ul class="nav-section">
-                        <li><a href="../index.html" class="nav-link" class="nav-link">Home</a></li>
-                        <li><a href="../localstorage/favorites.html" class="nav-link">Favorites</a></li>
-                    </ul>
-                    <hr>
-                    <ul class="nav-section">
-                        <li><a href="../index.html#worldNews" class="nav-link">World</a></li>
-                        <li><a href="../index.html#technologyNews" class="nav-link">Technology</a></li>
-                        <li><a href="../index.html#entertainmentNews" class="nav-link">Entertainment</a></li>
-                        <li><a href="../index.html#sportNews" class="nav-link">Sports</a></li>
-                    </ul>
-                    <hr>
-                    <ul class="nav-section">
-                        <li><a href="" class="nav-link">Contact Us</a></li>
-                        <li><a href="" class="nav-link">About <em>News Illustrated</em></a></li>
-                        <li><a href="" class="nav-link">Advertise</a></li>
-                        <li><a href="" class="nav-link">Become A Writer</a></li>
-                    </ul>
-                </div>
-            </nav>
-    
-            <div class="total-container">
-                 
-                
-                
-                <div class="marquee"></div>
-
-                <div id="loader-container"><div id="loader"></div></div>
-
-                <div class="animate-bottom" id="myDiv">
-                    <!-- Search Results -->
-                    <div class="top-stories container">
-                        <h1 class="top-stories heading">Latest Results</h1>
-                        <h3 class="top-stories heading muted">Showing Results From 1 - 10</h3>
-                        <div id="wrapper"></div>
-                        <a class="btn-sec" id="button">More Stories</a>
-                        <!-- <a href="#" class="btn-pry">&downarrow; More Stories &downarrow;</a> -->
-                    </div>
-
-                    <footer>
-                        <div class="grid-item">
-                            <ul>
-                                <li><a href="">Subscribe</a></li>
-                                <li><a href="">Group Subsriptions</a></li>
-                                <li><a href="">Contact Us</a></li>
-                                <li><a href="">Help</a></li>
-                            </ul>
-                        </div>
-                        <div class="grid-item">
-                            <p>Stay Updated</p>
-                            <div class="grid-link grid-link-1">
-                                <a href=""><i class="fab fa-facebook"></i></a>
-                                <a href=""><i class="fab fa-twitter"></i></a>
-                                <a href=""><i class="fab fa-instagram"></i></a>
-                                <a href=""><i class="fab fa-tumblr"></i></a>
-                                <a href=""><i class="fab fa-youtube"></i></a>
-                                <a href=""><i class="fab fa-google"></i></a>
-                                <a href=""><i class="fab fa-linkedin"></i></a>
-                                <a href=""><i class="fas fa-rss"></i></a>
-                            </div>
-                        </div>
-                        <div class="grid-item">
-                            <p>Sign up to get more from <em>News Illustrated</em></p>
-                            <p class="muted">Get 3 free articles per week, daily newsletters and more.</p>
-                            <form action="">
-                                <input type="email" name="email" id="email" placeholder="Email Address" required>
-                                <input type="submit" value="Sign Up" class="btn-sec" class="btn-sec">
-                            </form>
-                        </div>
-                        <div class="grid-item" style="border:none;">
-                            <p><a href="#" class="muted">About <em>News Illustrated</em></a></p>
-                            <div class="grid-link grid-link-2">
-                                <a href="" class="muted">Advertise</a>
-                                <a href="" class="muted">Reprints</a>
-                                <a href="" class="muted">Careers</a>
-                                <a href="" class="muted">Media Centre</a>
-                            </div>
-                        </div>
-                    </footer>
-                </div>
-                
-    
-                
-                
-                
-                    
-                </div>
+  </head>
+  <body onload="loaderAnimation()">
+    <div id="loader-container"><div id="loader"></div></div>
+    <div class="animate-bottom" id="myDiv">
+      <header class="scroll-shadow fad">
+        <div class="top-nav">
+          <i class="fas fa-bars top-nav-item menu-icon"></i>
+          <p class="menu top-nav-item men-icon">Menu</p>
+          <i class="fas fa-search top-nav-item"></i>
         </div>
-            <script src="../assets/js/script.js"></script> 
-        </body>
+        <div><a href="../index.html" class="web-logo">News Illustrated</a></div>
+        <div id="central-500px">
+          <a href="../login/login.html" class="und">Log in</a>
+        </div>
+      </header>
+
+      <div class="wrapper-container-all">
+        <nav class="nav-container">
+          <div class="nav-menu">
+            <form action="../search/results.html" class="nav-section">
+              <input
+                type="text"
+                name="search"
+                id="search"
+                placeholder="Search For An Article"
+              />
+            </form>
+            <hr />
+            <ul class="nav-section">
+              <li>
+                <a href="../index.html" class="nav-link" class="nav-link"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a href="../localstorage/favorites.html" class="nav-link"
+                  >Favorites</a
+                >
+              </li>
+            </ul>
+            <hr />
+            <ul class="nav-section">
+              <li>
+                <a href="../index.html#worldNews" class="nav-link">World</a>
+              </li>
+              <li>
+                <a href="../index.html#technologyNews" class="nav-link"
+                  >Technology</a
+                >
+              </li>
+              <li>
+                <a href="../index.html#entertainmentNews" class="nav-link"
+                  >Entertainment</a
+                >
+              </li>
+              <li>
+                <a href="../index.html#sportNews" class="nav-link">Sports</a>
+              </li>
+            </ul>
+            <hr />
+            <ul class="nav-section">
+              <li><a href="" class="nav-link">Contact Us</a></li>
+              <li>
+                <a href="" class="nav-link">About <em>News Illustrated</em></a>
+              </li>
+              <li><a href="" class="nav-link">Advertise</a></li>
+              <li><a href="" class="nav-link">Become A Writer</a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="total-container">
+          <div class="marquee"></div>
+
+          <!-- Search Results -->
+          <div class="top-stories container">
+            <h1 class="top-stories heading">Latest Results</h1>
+            <h3 class="top-stories heading muted">
+              Showing Results From 1 - 10
+            </h3>
+            <div id="wrapper"></div>
+            <a class="btn-sec" id="button">More Stories</a>
+            <!-- <a href="#" class="btn-pry">&downarrow; More Stories &downarrow;</a> -->
+          </div>
+
+          <footer>
+            <div class="grid-item">
+              <ul>
+                <li><a href="">Subscribe</a></li>
+                <li><a href="">Group Subsriptions</a></li>
+                <li><a href="">Contact Us</a></li>
+                <li><a href="">Help</a></li>
+              </ul>
+            </div>
+            <div class="grid-item">
+              <p>Stay Updated</p>
+              <div class="grid-link grid-link-1">
+                <a href=""><i class="fab fa-facebook"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-tumblr"></i></a>
+                <a href=""><i class="fab fa-youtube"></i></a>
+                <a href=""><i class="fab fa-google"></i></a>
+                <a href=""><i class="fab fa-linkedin"></i></a>
+                <a href=""><i class="fas fa-rss"></i></a>
+              </div>
+            </div>
+            <div class="grid-item">
+              <p>Sign up to get more from <em>News Illustrated</em></p>
+              <p class="muted">
+                Get 3 free articles per week, daily newsletters and more.
+              </p>
+              <form action="">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email Address"
+                  required
+                />
+                <input
+                  type="submit"
+                  value="Sign Up"
+                  class="btn-sec"
+                  class="btn-sec"
+                />
+              </form>
+            </div>
+            <div class="grid-item" style="border:none;">
+              <p>
+                <a href="#" class="muted">About <em>News Illustrated</em></a>
+              </p>
+              <div class="grid-link grid-link-2">
+                <a href="" class="muted">Advertise</a>
+                <a href="" class="muted">Reprints</a>
+                <a href="" class="muted">Careers</a>
+                <a href="" class="muted">Media Centre</a>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="../assets/js/script.js"></script>
+  </body>
 </html>
