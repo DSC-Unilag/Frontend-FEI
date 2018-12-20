@@ -1,6 +1,6 @@
 if('serviceWorker' in navigator){
     navigator.serviceWorker
-        .register('/sw.js')
+        .register('/Adeyemi.Oluwanifemi-deyeminifemi/sw.js')
         .then((data) => {
             console.log('Service Worked Registered')
         })
@@ -162,6 +162,11 @@ const fillBlock = (data,block,numOfArticles = 4,mode = 1) => {
                 document.querySelector(`#${block}-card-${created+1} .loader`).style.display = "none";                
             }
             document.querySelector(`#${block}-card-${created+1}`).appendChild(createCard(article,`${block}-${created+1}`));
+            const bookmark = document.querySelector(`#${block}-card-${created+1} .bookmark`);
+            bookmark.addEventListener('click',(e) => {
+                const active = toggleClass(bookmark,'active');
+                active ? addBookmark(bookmark.id) : removeBookmark(bookmark.id);
+            })
             created++;
         } 
     }
