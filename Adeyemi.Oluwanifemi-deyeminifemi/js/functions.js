@@ -1,6 +1,6 @@
 if('serviceWorker' in navigator){
     navigator.serviceWorker
-        .register('/Adeyemi.Oluwanifemi-deyeminifemi/sw.js')
+        .register('sw.js')
         .then((data) => {
             console.log('Service Worked Registered')
         })
