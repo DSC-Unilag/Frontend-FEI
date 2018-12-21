@@ -23,7 +23,15 @@ let techNews = document.querySelectorAll('.tech-news');
 let techNewsImages = document.querySelectorAll('.technology-news-image');
 let searchHeader = document.createElement('h3');
 
+
 let search = document.getElementById("search");
+
+let body = document.querySelector('body');
+let main = document.querySelector('main');
+let preLoader = document.querySelector('.lds-ellipsis');
+let newsContainer = document.querySelector('.news-container');
+
+let header = document.querySelector('#header');
 
 function validateAndReturnResponse(res) {
     if(!res.ok) {
@@ -63,14 +71,14 @@ function displayTechnologyOutput(output) {
 }
 
 function displaySearchOutput(output) {
-    document.querySelector('.news-container').style.display = 'none';
+    newsContainer.style.display = 'none';
     if(output.totalResults > 1) {
          wordings = " Search results for ";
     } else {
          wordings = " Search result for "
     }
     searchHeader.textContent = output.totalResults + wordings + search.value;
-    document.querySelector('main').appendChild(searchHeader);
+    main.appendChild(searchHeader);
     for (let i = 0; i < output.articles.length; i++) {
         if(i != 10 || i <= output.articles.length) {
             let searchResult = document.createElement('div');
@@ -82,8 +90,8 @@ function displaySearchOutput(output) {
             searchResultLink.textContent = output.articles[i].title;
             searchResultLink.href = output.articles[i].url;
             searchResultContent.textContent = output.articles[i].description;
-            console.log(output.articles[i]);
-            document.querySelector('main').appendChild(searchResult);
+            //console.log(output.articles[i]);
+            main.appendChild(searchResult);
         }
     }
     return;
@@ -91,6 +99,8 @@ function displaySearchOutput(output) {
 
 function catchError(error) {
     console.log('looks like there was a problem: \n' + error );
+    main.textContent = "Kindly Check your internet connection";
+    main.setAttribute('class', 'all__font-size');
 }
 
 function makeRequest(req,displayOutput) {
@@ -150,7 +160,26 @@ function makeSearchRequest(e) {
     return;
 }
 
+//Setting Navbar
+//window.addEventListener('scroll', fixNavbar);
+function fixNavbar() {
+    header.style.width = '100%';
+    header.style.position = 'fixed';
+    header.style.top = '0';
+    header.style.left = '0';
+}
 
- 
 
+//Setting a preloader icon
+
+window.addEventListener('load', timing);
+function timing() {
+    let timeOut = setTimeout(loadPage, 3000);
+}
+function loadPage() {
+    preLoader.style.display = 'none';
+    newsContainer.style.display = 'grid';
+}
+
+//Collapsible mobile navbar
 
