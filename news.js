@@ -119,9 +119,10 @@ function getText_main(){
                 '<img src="' + news.articles[i].urlToImage +'" />' +
                 '<h3>' + news.articles[i].title + '</h3>' +
                 '<ul>' +
-                '<li>' + news.articles[i].title + '</h3></li>' +
+                '<li>' + news.articles[i].title + '</li>' +
                 '<li>' + news.articles[i].description + '</li>' +
                 '<li>' + news.articles[i].publishedAt + '</li>' +
+                '<hr>' +
                 '</ul>' +
                 '</div>' +
                 '</a>' +
@@ -139,3 +140,43 @@ function getText_main(){
 
 
 getText_main();
+
+function getText_sports(){
+    
+    let xml = new XMLHttpRequest();
+
+    xml.open('GET', 'https://newsapi.org/v2/top-headlines?country=ng&category=sports&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec', true);
+
+    console.log('READYSTATE3: ', xml.readyState);
+
+    xml.onload = function () {
+        if(this.status == 200){
+            let sports = JSON.parse(this.responseText);
+
+            let output = "";
+            for(let i=0; i<sports.totalResults - 65; i++){
+                output +=        
+                '<div class="sports_news">' +
+                '<a href="' + sports.articles[i].url + '">' +
+                '<div class="sports__news__api">' +
+                '<img src="' + sports.articles[i].urlToImage +'" />' +
+                '<h3>' + sports.articles[i].title + '</h3>' +
+                '<ul>' +
+                '<li>' + sports.articles[i].title + '</h3></li>' +
+                '<li>' + sports.articles[i].description + '</li>' +
+                '<li>' + sports.articles[i].publishedAt + '</li>' +
+                '</ul>' +
+                '</div>' +
+                '</a>' +
+                '</div>';
+            }
+            document.getElementById('sports__news').innerHTML = output;
+        }
+        xml.onerror = function(){
+            console.log('Request error....');
+        }
+    }
+    xml.send();
+}
+
+getText_sports();
