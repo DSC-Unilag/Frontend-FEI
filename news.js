@@ -51,17 +51,17 @@ function getText_tech(){
             for(let i=0; i < name.totalResults - 1; i++){
             output += 
             '<div class="tech_news">' +
-            '<a href="' + name.articles[i].url + '">' +
             '<div class="tech__news__api">' +
+            '<a href="' + name.articles[i].url + '">' +
             '<img src="' + name.articles[i].urlToImage +'" />' +
             '<ul>' +
             '<li>Author ' + name.articles[i].author + '</li>' +
+            '</a>' +
             '<li>' + name.articles[i].title + '</li>' +
             '<li>' + name.articles[i].description + '</li>' +
             '<li>' + name.articles[i].publishedAt + '</li>' +
             '</ul>' +
             '</div>' +
-            '</a>' +
             '</div>';
             }
             document.getElementById('other__news__2').innerHTML = output;
@@ -114,9 +114,10 @@ function getText_main(){
             for(let i=0; i < news.totalResults - 4; i++){
                 output +=        
                 '<div class="main_news">' +
-                '<a href="' + news.articles[i].url + '">' +
                 '<div class="main__news__api">' +
+                '<a href="' + news.articles[i].url + '">' +
                 '<img src="' + news.articles[i].urlToImage +'" />' +
+                '</a>' +
                 '<h3>' + news.articles[i].title + '</h3>' +
                 '<ul>' +
                 '<li>' + news.articles[i].title + '</li>' +
@@ -125,7 +126,6 @@ function getText_main(){
                 '<hr>' +
                 '</ul>' +
                 '</div>' +
-                '</a>' +
                 '</div>';
             }
             document.getElementById('other__news__1').innerHTML = output;
@@ -157,17 +157,17 @@ function getText_sports(){
             for(let i = 0; i < sports.totalResults - 65; i++){
                 output +=        
                 '<div class="sports_news">' +
-                '<a href="' + sports.articles[i].url + '">' +
                 '<div class="sports__news__api">' +
+                '<a href="' + sports.articles[i].url + '">' +
                 '<img src="' + sports.articles[i].urlToImage +'" />' +
                 '<h3>' + sports.articles[i].title + '</h3>' +
+                '</a>' +
                 '<ul>' +
                 '<li>' + sports.articles[i].title + '</li>' +
                 '<li>' + sports.articles[i].description + '</li>' +
                 '<li>' + sports.articles[i].publishedAt + '</li>' +
                 '</ul>' +
                 '</div>' +
-                '</a>' +
                 '</div>';
             }
             document.getElementById('sports__news').innerHTML = output;

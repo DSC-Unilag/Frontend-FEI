@@ -19,6 +19,7 @@ body{
 a{
     text-decoration: none;
     color: white;
+    display: inline-block;
 }
 .news__header__container{
     width: 100%;
@@ -127,11 +128,15 @@ a{
 .other__news__container_1{
     width: 100%;
     display: inline-block;
+    position: relative;
+    height: auto;
 }
 .other__news__container_1 h2{
     color: #424242;
     border-bottom: 2.1pt solid red;
     width: fit-content;
+    position: relative;
+    left: 25px;
     display: inline-block;
     padding: 5px 0px;
 }
@@ -144,6 +149,9 @@ a{
 }
 .main_news .main__news__api{
     display: inline-block;
+    padding: 0px 23px;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
     width: 100%;
 }
 .main_news .main__news__api h3{
@@ -165,14 +173,19 @@ a{
     display: block;
 }
 .main_news .main__news__api hr{
-    border: 0.6pt solid #0000006b;
+    border: 0.3pt solid #ccc;
+    background: #ccc;
     position: relative;
-    top: 28px;
+    top: 75px;
 }
 .main_news .main__news__api img{
     width: 100%;
     height: auto;
 }
+.main_news .main__news__api img:hover{
+    box-shadow: 0px 1px 3px rgba(10, 10, 10, 0.7);;
+}
+
 .main_news .main__news__api ul{
     min-height: 130px;
     padding: 25px 15px;
@@ -260,6 +273,8 @@ a{
     }
     .news__header .search_bar{
         position: static;
+        width: 15%;
+        padding: 48px 0px;
     }
     .sports__news__container{
         width: 20%;
