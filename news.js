@@ -1,3 +1,18 @@
+let hamburger_icon = document.getElementById('news__burger__icon');
+let close_button = document.getElementById('news__close__icon');
+let news_ul_links = document.getElementById('news__links');
+
+hamburger_icon.addEventListener('click', function () {
+    news_ul_links.style.display = 'inline-block';
+    hamburger_icon.style.display = 'none';
+    close_button.style.display = 'inline-block';
+});
+
+close_button.addEventListener('click', function(){
+    news_ul_links.style.display = 'none';
+    hamburger_icon.style.display = 'inline-block';
+    close_button.style.display = 'none';
+})
 
 // function setUp(){
 //     nocanvas(); 
@@ -7,8 +22,7 @@
 // function getText(){
 
 //     fetch("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec")
-
-function getText(){
+function getText_tech(){
     
     //Create XHR Object
     let xhr = new XMLHttpRequest();
@@ -16,7 +30,7 @@ function getText(){
     //OPEB -type, url/file, aync(true/false)
     xhr.open('GET', 'https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec', true);
 
-    console.log('READYSTATE: ', xhr.readyState);
+    console.log('READYSTATE1: ', xhr.readyState);
     
     //OPTIONAL - used for loaders (yes, loaders are optional)
 
@@ -67,9 +81,9 @@ function getText(){
 
     // Sends request
     xhr.send();
-}
+};
 
-getText();
+getText_tech();
 
     // readyState values
     // 0: request not initialized
@@ -82,3 +96,46 @@ getText();
     // 200: "Ok"
     // 403: "Forbidden"
     // 404: "Not Found" 
+
+function getText_main(){
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open('GET', 'https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec', true);
+
+    console.log('READYSTATE2: ', xhr.readyState);
+
+    xhr.onload = function(){
+        console.log('READYSTATE2 :', xhr.readyState);
+        if(this.status == 200){
+            let news = JSON.parse(this.responseText);
+
+            let output = "";
+            for(let i=0; i < news.totalResults - 4; i++){
+                output +=        
+                '<div class="main_news">' +
+                '<a href="' + news.articles[i].url + '">' +
+                '<div class="main__news__api">' +
+                '<img src="' + news.articles[i].urlToImage +'" />' +
+                '<h3>' + news.articles[i].title + '</h3>' +
+                '<ul>' +
+                '<li>' + news.articles[i].title + '</h3></li>' +
+                '<li>' + news.articles[i].description + '</li>' +
+                '<li>' + news.articles[i].publishedAt + '</li>' +
+                '</ul>' +
+                '</div>' +
+                '</a>' +
+                '</div>';
+            }
+            document.getElementById('other__news__1').innerHTML = output;
+        }
+
+        xhr.onerror = function() {
+            console.log("Request error......");
+        }
+    }
+    xhr.send();
+};
+
+
+getText_main();
