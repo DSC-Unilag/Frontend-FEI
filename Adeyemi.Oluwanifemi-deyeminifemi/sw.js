@@ -25,7 +25,21 @@ self.addEventListener('activate', () => {
 self.addEventListener('fetch',(event) => {
     event.respondWith(
         caches.match(event.request)
-        .then(response => response ? response : fetch(event.response))
+        .then(response => {
+            if(response) {
+                return response;
+            }else{
+                return fetch(event.response)
+                    .then((data) => {
+                        return caches.open('dynamic')
+                            .then((cache) => {
+                                cache.put(event.request.url,data.clone());
+                                return data;
+                            })
+                    })
+            }
+        }                                   
+    )
     );
 })
 
