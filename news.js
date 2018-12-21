@@ -154,7 +154,7 @@ function getText_sports(){
             let sports = JSON.parse(this.responseText);
 
             let output = "";
-            for(let i=0; i<sports.totalResults - 65; i++){
+            for(let i = 0; i < sports.totalResults - 65; i++){
                 output +=        
                 '<div class="sports_news">' +
                 '<a href="' + sports.articles[i].url + '">' +
@@ -162,7 +162,7 @@ function getText_sports(){
                 '<img src="' + sports.articles[i].urlToImage +'" />' +
                 '<h3>' + sports.articles[i].title + '</h3>' +
                 '<ul>' +
-                '<li>' + sports.articles[i].title + '</h3></li>' +
+                '<li>' + sports.articles[i].title + '</li>' +
                 '<li>' + sports.articles[i].description + '</li>' +
                 '<li>' + sports.articles[i].publishedAt + '</li>' +
                 '</ul>' +
