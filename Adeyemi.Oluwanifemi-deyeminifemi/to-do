@@ -4,19 +4,17 @@ Make latest news refresh every 30 minutes - done
 Test for cases where articles < 2000 (pages for search) - done
 Fix problem with loaders in latest-stories - done
 Display error messages and catch errors for promises - done
-Make latest stories actually latest on RELEVANT topics category (you'll pro) 
 Add error messages  - done
-Change latest stories to links for categories - Works i guess
+Change latest stories to links for categories - done
 Break at 600px for homepage - done
 Implement click card to go page 
 Provide for case where kosi news rararara in localstorage throw error if offline during fetch  - done
-    |
-    |
-   this
-Fillblock method should never get undefined so if it does either show old news or reload - I prefer reload sha how will one be showing gooe news one will now be showing old kiniyen - done
+Fillblock method should never get undefined so if it does either show old news or reload - done
 Add error message if user searches something that doesn't exist
 Read the tooltip css
 Comments everywhere
 Fix bookmark not working on mobile
 Break nav earlier because of bookmarked link
 Adjust height of card with screen height
+Make latest stories actually latest on RELEVANT topics category
+Can't detect icon from manifest
