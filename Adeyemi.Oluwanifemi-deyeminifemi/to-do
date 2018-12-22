@@ -17,3 +17,4 @@ Fillblock method should never get undefined so if it does either show old news o
 Add error message if user searches something that doesn't exist
 Read the tooltip css
 Comments everywhere
+Change getstories function to search everytbing
