@@ -65,7 +65,7 @@ div{
 }
 
 #top-wrap{
-    height: 475px;
+    height: 450px;
     width: 100%;
     display: flex;
 }
@@ -121,16 +121,12 @@ div{
     flex: 1;
     height: initial;
 }
-#latest-stories h2{
-    margin: 5px 0;
-    text-align: center;
-}
 #latest-stories ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
     border: 1px solid grey;
-    height: 92%;
+    height: 100%;
     overflow: hidden scroll;
     box-sizing: border-box;
 }
@@ -437,13 +433,9 @@ div.error{
 	#stories h2{
 		grid-column : 1/2;
 	}
-	/* .card{
+	.card{
 		width : 60%;
-    } */
-    .card button.bookmark{
-        top: -10px;
-        left: 85%
-    }
+	}
 }
 @media(max-width : 400px){
 	.card{

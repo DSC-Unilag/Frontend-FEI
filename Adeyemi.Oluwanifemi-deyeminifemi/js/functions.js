@@ -1,13 +1,3 @@
-if('serviceWorker' in navigator){
-    navigator.serviceWorker
-        .register('sw.js')
-        .then((data) => {
-            console.log('Service Worked Registered')
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-}
 
 const getStories = async (args,type = "top") => {
     let request;
@@ -134,7 +124,7 @@ const createCard = (data,id,page = "index") => {
     const bookmark = document.createElement('button');
     bookmark.id = id;
     bookmark.classList.add('bookmark');
-    bookmark.innerHTML += "<span>Add Bookmark</span>"
+    bookmark.innerHTML += "<span>Bookmark</span>"
     span.appendChild(title);
     span.appendChild(desc);
     card.appendChild(imgdiv);
@@ -162,17 +152,6 @@ const fillBlock = (data,block,numOfArticles = 4,mode = 1) => {
                 document.querySelector(`#${block}-card-${created+1} .loader`).style.display = "none";                
             }
             document.querySelector(`#${block}-card-${created+1}`).appendChild(createCard(article,`${block}-${created+1}`));
-            const bookmark = document.querySelector(`#${block}-card-${created+1} .bookmark`);
-            bookmark.addEventListener('click',(e) => {
-                const active = toggleClass(bookmark,'active');
-                active ? addBookmark(bookmark.id) : removeBookmark(bookmark.id);
-            })
-            const bookmarked = localStorage.getItem("bookmarked") ? JSON.parse(localStorage.getItem("bookmarked")) : [];
-            const index = bookmarked.findIndex(e => e.id === bookmark.id)
-            if(index !== -1){
-                bookmark.classList.add('active');
-                document.querySelector(`#${block}-card-${created+1} .bookmark span`).innerText = "Remove Bookmark"
-            }
             created++;
         } 
     }
@@ -253,7 +232,6 @@ const addBookmark = (id,page = "") => {
     article.id = id;
     bookmarked.push(article);
     localStorage.setItem("bookmarked",JSON.stringify(bookmarked))
-    document.querySelector(`#${id} span`).innerText = "Remove Bookmark"
 }
 const removeBookmark = (id) => {
     const bookmarked = JSON.parse(localStorage.getItem('bookmarked'));
@@ -262,5 +240,4 @@ const removeBookmark = (id) => {
         bookmarked.splice(index,1);
     }
     localStorage.setItem("bookmarked",JSON.stringify(bookmarked))
-    document.querySelector(`#${id} span`).innerText = "Add Bookmark"
 }

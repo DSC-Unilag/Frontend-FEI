@@ -1,9 +1,0 @@
-Rename caches
-
-event.waitUntil(
-    caches.keys()
-    .then(keylist => Promise.all(keylist.map(key ) => {
-        if key === oldname
-            return caches.delete
-    }))
-)
