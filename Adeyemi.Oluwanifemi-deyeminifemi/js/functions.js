@@ -1,3 +1,6 @@
+const CURRENT_DYNAMIC_CACHE = 'dynamic-v3'
+
+
 if('serviceWorker' in navigator){
     navigator.serviceWorker
         .register('sw.js')
@@ -9,37 +12,51 @@ if('serviceWorker' in navigator){
         })
 }
 
-const getStories = async (args,type = "top") => {
+const getStories = async (args) => {
     let request;
-    if(args.category){
-        request = `https://newsapi.org/v2/top-headlines?apiKey=9ac2b559698d40bc9757fb14d7a6925c&category=${args.category}&pageSize=${args.pageSize}&country=us&page=${args.page}`;
+    // if(args.category){
+    request = `https://newsapi.org/v2/top-headlines?apiKey=9ac2b559698d40bc9757fb14d7a6925c&country=us`;
+    request += args.category ? `&category=${args.category}` : '';
+    request += args.pageSize ? `&pageSize=${args.pageSize}` : '';
+    request += args.page ? `&page=${args.page}` : '';
+    // }else{
+        // request = type === "top" ? 'https://newsapi.org/v2/top-headlines?apiKey=9ac2b559698d40bc9757fb14d7a6925c' : 'https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&sortBy=publishedAt';
+        // request = args.query ? request += `&q=${args.query}` : request;
+        // request = args.limit ? request += `&pageSize=${args.limit}` : request;
+    // } 
+    if(args.cache){
+        return await caches.open(CURRENT_DYNAMIC_CACHE)
+        .then((cache) => caches.match(request))
+        .then((response) => response.json())
     }else{
-        request = type === "top" ? 'https://newsapi.org/v2/top-headlines?apiKey=9ac2b559698d40bc9757fb14d7a6925c' : 'https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&sortBy=publishedAt';
-        request = args.query ? request += `&q=${args.query}` : request;
-        request = args.limit ? request += `&pageSize=${args.limit}` : request;
-        request = args.country ? request += `&country=${args.country}` : request;
-    } 
-    try{
-        const response = await fetch(request);
-        return await response.json();   
-    }catch{
-        return undefined;
+       try{
+            const response = await fetch(request);
+            return await response.json();   
+        }catch{
+            return undefined;
+        }
     }
 }
 
-const getlastestStories = async (category = "") => {
+const getlastestStories = async (args) => {
     const now = new Date();
     let from = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
     const hours = now.getMinutes() - 30 < 0 ? now.getHours() - 1 : now.getHours();
     const minutes = now.getMinutes() - 30 < 0 ? now.getMinutes() : now.getMinutes() - 30;
     from += `${hours}:${minutes}:00`
     let request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&language=en&from=${from}&domains=washingtontimes.com,domain=bbc.co.uk,bleacherreport.com,businessinsider.com,dailymail.co.uk,espn.com,mashable.com,mtv.com,talksport.com,techradar.com,nytimes.com&sortBy=publishedAt`;
-    request += category ? `&query=${category}` : "";
-    try{
-        const response = await fetch(request);
-        return await response.json();   
-    }catch{
-        return undefined;
+    request += args.category ? `&query=${args.category}` : "";
+    if(args.cache){
+        return await caches.open(CURRENT_DYNAMIC_CACHE)
+        .then((cache) => caches.match(request))
+        .then((response) => response.json())
+    }else{
+        try{
+            const response = await fetch(request);
+            return await response.json();   
+        }catch{
+            return undefined;
+        }
     }
 }
 
@@ -73,39 +90,27 @@ const createCarouselItem = (article,articleNum,mode = 1) => {
     return item;
 }
 
-const displayLatestStories = async (category = "") => {
-    let latestStories;
-    if(category){
-        latestStories = await getlastestStories(category);
-    }else{
-        latestStories = await getlastestStories();
-    }
-    if(!latestStories){
-        latestStories = localStorage.getItem(`${category ? category-'latest-news' : 'home-latest-news'}`) ? JSON.parse(localStorage.getItem(`${category ? category-'news' : 'home-latest-news'}`)) : {};
-        date = new Date();
-        const difference = date.getTime() - latestStories.time
-        if(!(Object.keys(latestStories).length && !(difference  > 30 * 60000))){
-            document.querySelector('#latest-stories ul').innerHTML = '<li class = "error">You are not online you don\'t have access to latest news</li>'       
-            return;
+const displayLatestStories = async (args = {}) => {
+    displayLatestStories({
+        cache : true
+    })
+    let latestStories = await getlastestStories(args);
+    if(await latestStories){
+        document.querySelector('#latest-stories ul').innerHTML = '';
+        for(let i = 0;i < latestStories.articles.length && i < 20;i++){
+            const article = latestStories.articles[i];
+            const li = document.createElement('li');
+            const span = document.createElement('span');
+            const link = document.createElement('a');
+            link.href = article.url;
+            span.classList.add('text-muted');
+            const date = new Date(article.publishedAt);
+            span.textContent = `${date.getHours() % 12}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`;
+            link.appendChild(span);
+            link.innerHTML += article.title;
+            li.appendChild(link)
+            document.querySelector('#latest-stories ul').appendChild(li);
         }
-    }else{
-        latestStories.time = new Date().getTime();
-        localStorage.setItem(`${category ? category-'latest-news' : 'home-latest-news'}`,JSON.stringify(latestStories));
-    }
-    document.querySelector('#latest-stories ul').innerHTML = '';
-    for(let i = 0;i < latestStories.articles.length && i < 20;i++){
-        const article = latestStories.articles[i];
-        const li = document.createElement('li');
-        const span = document.createElement('span');
-        const link = document.createElement('a');
-        link.href = article.url;
-        span.classList.add('text-muted');
-        const date = new Date(article.publishedAt);
-        span.textContent = `${date.getHours() % 12}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`;
-        link.appendChild(span);
-        link.innerHTML += article.title;
-        li.appendChild(link)
-        document.querySelector('#latest-stories ul').appendChild(li);
     }
 }
 const createCard = (data,id,page = "index") => {
@@ -115,9 +120,6 @@ const createCard = (data,id,page = "index") => {
     img.src = data.urlToImage;
     const publishedAt = new Date(data.publishedAt);
     img.id = data.title.split(' ').join('') + '-' + publishedAt.getTime();
-    img.addEventListener("error",(e) => {
-        document.getElementById(e.target.id).src = page === "index" ?  "images/default.jpg" : "../images/default.jpg";        
-    })
     const imgdiv = document.createElement('div');
     imgdiv.classList.add('img-div');
     imgdiv.appendChild(img);
@@ -145,25 +147,29 @@ const createCard = (data,id,page = "index") => {
 }
 
 const fillBlock = (data,block,numOfArticles = 4,mode = 1) => {
-    if(mode){ 
-        const news = localStorage.getItem("home-news") ?  JSON.parse(localStorage.getItem("home-news")) : {};
-        news[block] = data;
-        news[block].articles.forEach((e,index) => {
-            e.id = `${block}-${index+1}`
-        })
-        localStorage.setItem("home-news",JSON.stringify(news));  
-    }  
-    const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content)
-    let created = 0;
-    for(let i = 0;created < numOfArticles && i < data.totalResults;i++){
-        const article = articles[created];
-        if(article.title && article.url && article.urlToImage && article.content){
-            if(document.querySelector(`#${block}-card-${created+1} .loader`)){
-                document.querySelector(`#${block}-card-${created+1} .loader`).style.display = "none";                
-            }
-            document.querySelector(`#${block}-card-${created+1}`).appendChild(createCard(article,`${block}-${created+1}`));
-            created++;
-        } 
+    // if(mode){ 
+    //     const news = localStorage.getItem("home-news") ?  JSON.parse(localStorage.getItem("home-news")) : {};
+    //     news[block] = data;
+    //     news[block].articles.forEach((e,index) => {
+    //         e.id = `${block}-${index+1}`
+    //     })
+    //     localStorage.setItem("home-news",JSON.stringify(news));  
+    // }  
+    if(data){
+        const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content)
+        let created = 0;
+        for(let i = 0;created < numOfArticles && i < data.totalResults;i++){
+            const article = articles[created];
+            if(article.title && article.url && article.urlToImage && article.content){
+                if(document.querySelector(`#${block}-card-${created+1} .loader`)){
+                    document.querySelector(`#${block}-card-${created+1} .loader`).style.display = "none";                
+                }
+                const card = document.querySelector(`#${block}-card-${created+1}`);
+                card.innerHTML = ''
+                card.appendChild(createCard(article,`${block}-${created+1}`));
+                created++;
+            } 
+        }
     }
 }
 const search = async (request,args = {}) => {
