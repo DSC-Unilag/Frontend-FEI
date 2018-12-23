@@ -1,16 +1,4 @@
-const CURRENT_DYNAMIC_CACHE = 'dynamic-v3'
-
-
-if('serviceWorker' in navigator){
-    navigator.serviceWorker
-        .register('sw.js')
-        .then((data) => {
-            console.log('Service Worked Registered')
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-}
+const CURRENT_DYNAMIC_CACHE = 'dynamic-v9'
 
 const getStories = async (args) => {
     let request;
@@ -71,9 +59,6 @@ const createCarouselItem = (article,articleNum,mode = 1) => {
     image.src = article.urlToImage;
     const publishedAt = new Date(article.publishedAt);
     image.id = 'carousel-' + article.title.split(' ').join('') + '-' + publishedAt.getTime();
-    image.addEventListener("error",(e) => {
-        document.getElementById(e.target.id).src = page === "index" ?  "images/default.jpg" : "../images/default.jpg";        
-    })
     const itemInfo = document.createElement('div');
     itemInfo.classList.add('iteminfo');
     const link = document.createElement('a');
@@ -91,9 +76,13 @@ const createCarouselItem = (article,articleNum,mode = 1) => {
 }
 
 const displayLatestStories = async (args = {}) => {
-    displayLatestStories({
-        cache : true
-    })
+    category = args.category ? args.category : undefined;
+    if(!args.cache){
+        displayLatestStories({
+            cache : true,
+            category
+        })
+    }
     let latestStories = await getlastestStories(args);
     if(await latestStories){
         document.querySelector('#latest-stories ul').innerHTML = '';
@@ -256,4 +245,17 @@ const removeBookmark = (id) => {
         bookmarked.splice(index,1);
     }
     localStorage.setItem("bookmarked",JSON.stringify(bookmarked))
+}
+const displayCarouselArticles = (data) => {
+    if(data){
+        for(let i = 1;i <= 5;i++){
+            if(document.querySelector(`#carousel #item-${i}`)){
+                document.querySelector(`#carousel #item-${i}`).remove()
+            }
+        }
+        const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content);        
+        for(let i = 1;i <= 5;i++){
+            document.querySelector('#carousel').appendChild(createCarouselItem(articles[i],i))
+        }
+    }
 }
