@@ -205,6 +205,14 @@ ul#results li:nth-of-type(odd):hover{
     }
     
 }
+@media (max-width : 800px){
+    nav ul#largenav {
+        padding: 0;
+    }
+    nav li{
+        padding: 0px 8px;
+    }
+}
 @media(max-width : 700px){
     #search-lg button{
         font-size: 0;
