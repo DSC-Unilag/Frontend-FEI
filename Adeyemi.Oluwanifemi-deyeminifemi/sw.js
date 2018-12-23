@@ -8,7 +8,7 @@ self.addEventListener('install',(e) => {
             cache.addAll([
                 '/Adeyemi.Oluwanifemi-deyeminifemi/',
                 '/Adeyemi.Oluwanifemi-deyeminifemi/index.html',
-                'css/index.css',
+                'css/index.css',    
                 'images/svg/search.svg',
                 'images/svg/navsmall.svg',
                 'js/functions.js',
@@ -69,7 +69,7 @@ self.addEventListener('fetch',(event) => {
                     })
                     .catch((err) => {
                         console.log(event.request.headers.get('accept').includes('image'))
-                        caches.open(CURRENT_STATIC_CACHE)
+                        return caches.open(CURRENT_STATIC_CACHE)
                         .then((cache) => {
                             if(event.request.headers.get('accept').includes('image')){
                                 return cache.match('/Adeyemi.Oluwanifemi-deyeminifemi/images/default.jpg')
