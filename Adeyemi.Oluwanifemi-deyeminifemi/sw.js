@@ -1,5 +1,5 @@
-const CURRENT_STATIC_CACHE = 'static-v1';
-const CURRENT_DYNAMIC_CACHE = 'dynamic-v3'
+const CURRENT_STATIC_CACHE = 'static-v6';
+const CURRENT_DYNAMIC_CACHE = 'dynamic-v9'
 self.addEventListener('install',(e) => {
     e.waitUntil(
         caches.open(CURRENT_STATIC_CACHE)
@@ -68,7 +68,7 @@ self.addEventListener('fetch',(event) => {
                         })
                     })
                     .catch((err) => {
-                        console.log(event.request.headers.get('accept').includes('image'),event.request.url)
+                        console.log(event.request.headers.get('accept').includes('image'))
                         caches.open(CURRENT_STATIC_CACHE)
                         .then((cache) => {
                             if(event.request.headers.get('accept').includes('image')){
