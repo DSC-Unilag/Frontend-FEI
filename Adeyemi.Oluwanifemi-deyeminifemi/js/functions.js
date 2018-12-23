@@ -1,5 +1,41 @@
 const CURRENT_DYNAMIC_CACHE = 'dynamic-v9'
 
+const toggleClass = (elem,classs) => {
+    if(elem.classList.contains(classs)){
+        elem.classList.remove(classs)
+        return false;
+    }else{
+        elem.classList.add(classs)
+        return true;
+    }
+}
+const addBookmark = (id) => {
+    const bookmarked = localStorage.getItem('bookmarked') ? JSON.parse(localStorage.getItem('bookmarked')) : [];
+    const currentArticles = JSON.parse(localStorage.getItem('current-articles'));
+    let article;
+    Object.keys(currentArticles).forEach((key) => {
+        const block = currentArticles[key];
+        Object.keys(block).forEach((key) => {
+           if(block[key].id === id){
+               article = block[key];
+           }
+           return; 
+        })
+        if(article)return;
+    })
+    document.getElementById(id).children[0].innerText = 'Remove Bookmark';
+    bookmarked.push(article);
+    localStorage.setItem("bookmarked",JSON.stringify(bookmarked))
+}
+const removeBookmark = (id) => {
+    const bookmarked = JSON.parse(localStorage.getItem('bookmarked'));
+    const index = bookmarked.findIndex((e) => e.id == id)
+    if(index >= 0){
+        bookmarked.splice(index,1);
+    }
+    document.getElementById(id).children[0].innerText = 'Add Bookmark';
+    localStorage.setItem("bookmarked",JSON.stringify(bookmarked))
+}
 const getStories = async (args) => {
     let request;
     // if(args.category){
@@ -102,7 +138,7 @@ const displayLatestStories = async (args = {}) => {
         }
     }
 }
-const createCard = (data,id,page = "index") => {
+const createCard = (data) => {
     const card = document.createElement('div');
     card.classList.add('card');
     const img = document.createElement('img');
@@ -123,9 +159,9 @@ const createCard = (data,id,page = "index") => {
     const content = contentArr.splice(0,10).join(" ");
     desc.innerText = content + '...';
     const bookmark = document.createElement('button');
-    bookmark.id = id;
+    bookmark.id = data.url;
     bookmark.classList.add('bookmark');
-    bookmark.innerHTML += "<span>Bookmark</span>"
+    bookmark.innerHTML += "<span>Add Bookmark</span>"
     span.appendChild(title);
     span.appendChild(desc);
     card.appendChild(imgdiv);
@@ -135,18 +171,16 @@ const createCard = (data,id,page = "index") => {
     return card;    
 }
 
-const fillBlock = (data,block,numOfArticles = 4,mode = 1) => {
-    // if(mode){ 
-    //     const news = localStorage.getItem("home-news") ?  JSON.parse(localStorage.getItem("home-news")) : {};
-    //     news[block] = data;
-    //     news[block].articles.forEach((e,index) => {
-    //         e.id = `${block}-${index+1}`
-    //     })
-    //     localStorage.setItem("home-news",JSON.stringify(news));  
-    // }  
+const fillBlock = (data,block,numOfArticles = 4,mode = 1) => {  
     if(data){
         const articles = data.articles.filter((elem) => elem.title && elem.url && elem.urlToImage && elem.content)
         let created = 0;
+        articles.forEach((e) => {
+            e.id = e.url;
+        })
+        const currentArticles = localStorage.getItem('current-articles') ? JSON.parse(localStorage.getItem('current-articles')) : {};
+        currentArticles[block] = articles;
+        localStorage.setItem('current-articles',JSON.stringify(currentArticles));
         for(let i = 0;created < numOfArticles && i < data.totalResults;i++){
             const article = articles[created];
             if(article.title && article.url && article.urlToImage && article.content){
@@ -155,7 +189,17 @@ const fillBlock = (data,block,numOfArticles = 4,mode = 1) => {
                 }
                 const card = document.querySelector(`#${block}-card-${created+1}`);
                 card.innerHTML = ''
-                card.appendChild(createCard(article,`${block}-${created+1}`));
+                card.appendChild(createCard(article));
+                const bookmark = document.querySelector(`#${block}-card-${created+1} .bookmark`);
+                const bookmarked = localStorage.getItem('bookmarked') ? JSON.parse(localStorage.getItem('bookmarked')) : [];
+                if(bookmarked.findIndex((e) => e.id === bookmark.id) !== -1){
+                    bookmark.classList.add('active');
+                    bookmark.children[0].innerText = "Remove Bookmark"
+                }
+                bookmark.addEventListener('click',() => {
+                    const state = toggleClass(bookmark,'active');
+                    state ? addBookmark(bookmark.id) : removeBookmark(bookmark.id);
+                })
                 created++;
             } 
         }
@@ -213,39 +257,7 @@ const processData = (data) => {
         document.querySelector('#errors').innerHTML = data ?  "There were no results related to your search" : "You seem to be offline. Please connect to the internet and try again";
     }
 }
-const toggleClass = (elem,classs) => {
-    if(elem.classList.contains(classs)){
-        elem.classList.remove(classs)
-        return false;
-    }else{
-        elem.classList.add(classs)
-        return true;
-    }
-}
-const addBookmark = (id,page = "") => {
-    const bookmarked = localStorage.getItem('bookmarked') ? JSON.parse(localStorage.getItem('bookmarked')) : [];
-    const saved = JSON.parse(localStorage.getItem(`${page ? page : 'home'}-news`));
-    let article;
-    if(page){
-        const articleIndex = saved.articles.findIndex((e) => e.id === id)
-        article = saved.articles[articleIndex];
-    }else{
-        const part = id.split('-')[0];
-        const articleIndex = saved[part].articles.findIndex((e) => e.id === id)
-        article = saved[part].articles[articleIndex];
-    } 
-    article.id = id;
-    bookmarked.push(article);
-    localStorage.setItem("bookmarked",JSON.stringify(bookmarked))
-}
-const removeBookmark = (id) => {
-    const bookmarked = JSON.parse(localStorage.getItem('bookmarked'));
-    const index = bookmarked.findIndex((e) => e.id == id)
-    if(index >= 0){
-        bookmarked.splice(index,1);
-    }
-    localStorage.setItem("bookmarked",JSON.stringify(bookmarked))
-}
+
 const displayCarouselArticles = (data) => {
     if(data){
         for(let i = 1;i <= 5;i++){

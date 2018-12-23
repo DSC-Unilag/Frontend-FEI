@@ -92,7 +92,7 @@ sections.forEach((section) => {
             })
         }
     }
-})
+})  
 // Code for responsive navbar
 window.addEventListener('resize',(e) => {    
     if(window.innerWidth > 700){
@@ -110,17 +110,9 @@ document.querySelector('#navsmallbtn').addEventListener('click', () => {
     }
 })
 
-document.querySelectorAll('.bookmark').forEach((e) => {
-    e.addEventListener('click',() => {
-        const active = toggleClass(e,'active');
-        active ? addBookmark(e.id) : removeBookmark(e.id);
-    })
-})
-const bookmarked = localStorage.getItem("bookmarked") ? JSON.parse(localStorage.getItem("bookmarked")) : [];
-if(bookmarked.length > 0){
-    bookmarked.forEach((e) => {
-        if(document.querySelector(`#${e.id}`)){
-            document.querySelector(`#${e.id}`).classList.add('active')
-        }
-    })
-}
+// document.querySelectorAll('.bookmark').forEach((e) => {
+//     e.addEventListener('click',() => {
+//         const active = toggleClass(e,'active');
+//         active ? addBookmark(e.id) : removeBookmark(e.id);
+//     })
+// })
