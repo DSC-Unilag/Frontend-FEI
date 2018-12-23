@@ -1,4 +1,4 @@
-const CURRENT_STATIC_CACHE = 'static-v6';
+const CURRENT_STATIC_CACHE = 'static-v1';
 const CURRENT_DYNAMIC_CACHE = 'dynamic-v9'
 self.addEventListener('install',(e) => {
     e.waitUntil(
