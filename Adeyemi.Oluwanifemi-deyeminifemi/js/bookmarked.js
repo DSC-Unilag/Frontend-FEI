@@ -6,9 +6,6 @@ if(articles.length){
 }else{
     document.querySelector('div.no_bookmark').style.display = "block"
 }
-if(!(navigator.onLine)){
-    document.querySelector('div.offline').style.display = "block";
-}
 // Code for responsive navbar
 window.addEventListener('resize',(e) => {    
     if(window.innerWidth > 700){
