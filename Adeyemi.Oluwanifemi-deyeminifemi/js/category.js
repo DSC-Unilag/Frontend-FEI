@@ -37,7 +37,9 @@ if(location.search && sections.filter(elem => location.search.includes(elem)).le
             }
             for(let i = 1;i <= 20;i++){
                 article = articles[i-1];
-                document.querySelector(`#story-item-${i} .loader`).style.display = "none";
+                if(document.querySelector(`#story-item-${i} .loader`)){
+                    document.querySelector(`#story-item-${i} .loader`).style.display = "none";
+                }
                 document.querySelector(`#story-item-${i}`).innerHTML = '';
                 document.querySelector(`#story-item-${i}`).appendChild(createCard(article,`${category}-${i}`,category));
             } 
@@ -51,8 +53,10 @@ if(location.search && sections.filter(elem => location.search.includes(elem)).le
             const bookmarked = localStorage.getItem("bookmarked") ? JSON.parse(localStorage.getItem("bookmarked")) : [];
             if(bookmarked.length > 0){
                 bookmarked.forEach((e) => {
-                    if(document.querySelector(`#${e.id}`)){
-                        document.querySelector(`#${e.id}`).classList.add('active')
+                    const bookmark = document.getElementById(`${e.id}`);
+                    if(bookmark){
+                        bookmark.classList.add('active')
+                        bookmark.children[0].innerText = "Remove Bookmark"
                     }
                 })
             }

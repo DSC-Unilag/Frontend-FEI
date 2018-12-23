@@ -1,6 +1,8 @@
 body{
     margin: 0;
     padding: 0;
+    width: 100%;
+    overflow-x: hidden;
 }
 button,a{
     cursor: pointer;
@@ -68,7 +70,9 @@ form#nav-search button img{
     height: 20px;
     text-align: center;
 }
-
+#stories-preview{
+    width: 100%;
+}
 #top-stories{
     display: grid;
     grid-template-columns: repeat(3,1fr);
