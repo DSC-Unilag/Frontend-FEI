@@ -67,7 +67,7 @@ const getlastestStories = async (args) => {
     let from = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
     const hours = now.getMinutes() - 30 < 0 ? now.getHours() - 1 : now.getHours();
     const minutes = now.getMinutes() - 30 < 0 ? now.getMinutes() : now.getMinutes() - 30;
-    from += `${hours}:${minutes}:00`
+    from += args.cache ? localStorage.getItem('from') : `${hours}:${minutes}:00`
     let request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&language=en&from=${from}&domains=washingtontimes.com,domain=bbc.co.uk,bleacherreport.com,businessinsider.com,dailymail.co.uk,espn.com,mashable.com,mtv.com,talksport.com,techradar.com,nytimes.com&sortBy=publishedAt`;
     request += args.category ? `&query=${args.category}` : "";
     if(args.cache){
@@ -76,6 +76,7 @@ const getlastestStories = async (args) => {
         .then((response) => response.json())
     }else{
         try{
+            localStorage.setItem('from',from);
             const response = await fetch(request);
             return await response.json();   
         }catch{
@@ -83,7 +84,27 @@ const getlastestStories = async (args) => {
         }
     }
 }
-
+const displayLatestStories = async (args = {}) => {
+    category = args.category ? args.category : undefined;
+    let latestStories = await getlastestStories(args);
+    if(await latestStories){
+        document.querySelector('#latest-stories ul').innerHTML = '';
+        for(let i = 0;i < latestStories.articles.length && i < 20;i++){
+            const article = latestStories.articles[i];
+            const li = document.createElement('li');
+            const span = document.createElement('span');
+            const link = document.createElement('a');
+            link.href = article.url;
+            span.classList.add('text-muted');
+            const date = new Date(article.publishedAt);
+            span.textContent = `${date.getHours() % 12}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`;
+            link.appendChild(span);
+            link.innerHTML += article.title;
+            li.appendChild(link)
+            document.querySelector('#latest-stories ul').appendChild(li);
+        }
+    }
+}
 const createCarouselItem = (article,articleNum,mode = 1) => {
     const item = document.createElement('div');
     item.classList.add('item');
@@ -111,33 +132,7 @@ const createCarouselItem = (article,articleNum,mode = 1) => {
     return item;
 }
 
-const displayLatestStories = async (args = {}) => {
-    category = args.category ? args.category : undefined;
-    if(!args.cache){
-        displayLatestStories({
-            cache : true,
-            category
-        })
-    }
-    let latestStories = await getlastestStories(args);
-    if(await latestStories){
-        document.querySelector('#latest-stories ul').innerHTML = '';
-        for(let i = 0;i < latestStories.articles.length && i < 20;i++){
-            const article = latestStories.articles[i];
-            const li = document.createElement('li');
-            const span = document.createElement('span');
-            const link = document.createElement('a');
-            link.href = article.url;
-            span.classList.add('text-muted');
-            const date = new Date(article.publishedAt);
-            span.textContent = `${date.getHours() % 12}:${date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()}`;
-            link.appendChild(span);
-            link.innerHTML += article.title;
-            li.appendChild(link)
-            document.querySelector('#latest-stories ul').appendChild(li);
-        }
-    }
-}
+
 const createCard = (data) => {
     const card = document.createElement('div');
     card.classList.add('card');

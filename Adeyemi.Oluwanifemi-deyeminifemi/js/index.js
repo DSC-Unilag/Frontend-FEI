@@ -68,6 +68,9 @@ displayhealth.then((data) =>  {
     }
     fillBlock(data,"health");
 })
+displayLatestStories({
+    cache : true
+})
 displayLatestStories();
 setInterval(displayLatestStories,600000);
 const sections =  ["top" ,"politics" ,"business" ,"sports" ,"technology" ,"entertainment","health"]
@@ -109,10 +112,3 @@ document.querySelector('#navsmallbtn').addEventListener('click', () => {
         display++;
     }
 })
-
-// document.querySelectorAll('.bookmark').forEach((e) => {
-//     e.addEventListener('click',() => {
-//         const active = toggleClass(e,'active');
-//         active ? addBookmark(e.id) : removeBookmark(e.id);
-//     })
-// })
