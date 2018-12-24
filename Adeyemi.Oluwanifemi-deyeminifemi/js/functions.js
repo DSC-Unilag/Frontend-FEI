@@ -64,10 +64,9 @@ const getStories = async (args) => {
 
 const getlastestStories = async (args) => {
     const now = new Date();
-    let from = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
     const hours = now.getMinutes() - 30 < 0 ? now.getHours() - 1 : now.getHours();
     const minutes = now.getMinutes() - 30 < 0 ? now.getMinutes() : now.getMinutes() - 30;
-    from += args.cache ? localStorage.getItem('from') : `${hours}:${minutes}:00`
+    const from = args.cache ? localStorage.getItem(`${args.category ? args.category : 'index'}-from`) : `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}${hours}:${minutes}:00`
     let request = `https://newsapi.org/v2/everything?apiKey=9ac2b559698d40bc9757fb14d7a6925c&language=en&from=${from}&domains=washingtontimes.com,domain=bbc.co.uk,bleacherreport.com,businessinsider.com,dailymail.co.uk,espn.com,mashable.com,mtv.com,talksport.com,techradar.com,nytimes.com&sortBy=publishedAt`;
     request += args.category ? `&query=${args.category}` : "";
     if(args.cache){
@@ -76,7 +75,7 @@ const getlastestStories = async (args) => {
         .then((response) => response.json())
     }else{
         try{
-            localStorage.setItem('from',from);
+            localStorage.setItem(`${args.category ? args.category : 'index'}-from`,from);
             const response = await fetch(request);
             return await response.json();   
         }catch{

@@ -1,4 +1,4 @@
-const CURRENT_STATIC_CACHE = 'static-v1';
+const CURRENT_STATIC_CACHE = 'static-v4';
 const CURRENT_DYNAMIC_CACHE = 'dynamic-v9'
 self.addEventListener('install',(e) => {
     e.waitUntil(
@@ -8,14 +8,16 @@ self.addEventListener('install',(e) => {
             cache.addAll([
                 '/Adeyemi.Oluwanifemi-deyeminifemi/',
                 '/Adeyemi.Oluwanifemi-deyeminifemi/index.html',
-                'css/index.css',    
+                '/Adeyemi.Oluwanifemi-deyeminifemi/offline.html',
+                'css/index.css',      
                 'images/svg/search.svg',
                 'images/svg/navsmall.svg',
                 'js/functions.js',
                 'js/index.js',
                 'manifest.json',
                 '/Adeyemi.Oluwanifemi-deyeminifemi/images/default.jpg',
-                'images/svg/bookmark.svg'
+                'images/svg/bookmark.svg',
+                '/Adeyemi.Oluwanifemi-deyeminifemi/favicon.ico'
             ])
         })
     )
@@ -68,10 +70,13 @@ self.addEventListener('fetch',(event) => {
                         })
                     })
                     .catch((err) => {
-                        console.log(event.request.headers.get('accept').includes('image'))
                         return caches.open(CURRENT_STATIC_CACHE)
                         .then((cache) => {
-                            if(event.request.headers.get('accept').includes('image')){
+                            console.log(event.request.url.includes('category'));
+                            if(event.request.url.includes('category') || event.request.url.includes('bookmark')){
+                                return cache.match('/Adeyemi.Oluwanifemi-deyeminifemi/offline.html')
+                            }                            
+                            else if(event.request.headers.get('accept').includes('image')){
                                 return cache.match('/Adeyemi.Oluwanifemi-deyeminifemi/images/default.jpg')
                             }
                         })
@@ -80,6 +85,5 @@ self.addEventListener('fetch',(event) => {
             })
         )
     }
-    // event.respondWith(fetch(event.request))
 })
 

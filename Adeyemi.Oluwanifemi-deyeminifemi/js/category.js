@@ -80,6 +80,10 @@ if(location.search && sections.filter(elem => location.search.includes(elem)).le
         currentCarouselArticle === 5 ? currentCarouselArticle = 1 : currentCarouselArticle++;
         document.querySelector(`#item-${currentCarouselArticle}`).classList.add('active');
     })
+    displayLatestStories({
+        cache : true,
+        category
+    })
     displayLatestStories({category});
     setInterval(() => {
         displayLatestStories({category})
