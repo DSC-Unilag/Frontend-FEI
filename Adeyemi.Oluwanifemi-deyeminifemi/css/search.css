@@ -10,6 +10,9 @@ button,a{
 .text-muted{
     color: rgba(0, 0, 0, 0.6);
 }
+*{
+    font-family: 'Montserrat', sans-serif;
+}
 nav{
     box-shadow: 0 0 10px grey;
     display: flex;
@@ -226,8 +229,7 @@ ul#results li:nth-of-type(odd):hover{
     }
     #navsmall{
         width: 100%;
-        margin-top: 20px;
-        border-top: 1px solid rgba(0,0,0,.15);
+        margin-top: 5px;
         display: none;        
     }
     #navsmallbtn{
@@ -253,6 +255,17 @@ ul#results li:nth-of-type(odd):hover{
     #navsmall ul li a:hover{
         color: black;
     }
+    #navsmall ul{
+        padding: 0;
+    }           
+    #navsmall ul li{
+        display: block;
+        padding: 10px 57px;
+        border-top: 1px solid rgba(0,0,0,.15);
+    }
+    #navsmall ul li:nth-of-type(6){
+        margin-bottom: 10px;
+    }
     nav{
         height: 40px;
         padding: 10px 0;
@@ -260,7 +273,7 @@ ul#results li:nth-of-type(odd):hover{
         display: block;
     }
     nav.active{
-        height: 200px;        
+        height: 310px;        
     }
     ul#results li span.date {
         font-size: 1em;

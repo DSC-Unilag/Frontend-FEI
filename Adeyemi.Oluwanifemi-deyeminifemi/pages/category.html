@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
     <link rel="stylesheet" href="../css/category.css">
+    <link rel="icon" href="../favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 <body>
     <nav>
@@ -39,15 +41,15 @@
             </form>
         </div>
     </nav>
-    <div class="error">
-        You are viewing offline
-    </div>
     <div id="top-wrap">
         <div id="carousel">
             <button id="prevbtn" class="carouselcontrol"><img src="../images/svg/back.svg" alt=""></button>
             <button id="nextbtn" class="carouselcontrol"><img src="../images/svg/next.svg" alt=""></button>
         </div>
         <div id="latest-stories">
+            <h2 class="header">
+                Latest Stories
+            </h2>
             <ul>
                 <div class="loader"></div>
             </ul>
@@ -55,7 +57,7 @@
         </div>
     </div>
     <div id="stories">
-        <h2>Top Stories about <span id="category_name"></span></h2>
+        <h2 class="header">Top Stories about <span id="category_name"></span></h2>
         <div id="story-item-1" class="card-wrap">
             <div class = "loader"></div>
         </div>
@@ -132,6 +134,9 @@
         <button id = "page-10" value="10" name="page">10</button>
         <button id = "next-page" name="page">&#8250;</button>
     </form>
+    <div id="copyright">
+        <p>Copyright 2018 &copy; Nifemi Adeyemi News Web App</p>
+    </div>
     <script src="../js/functions.js"></script>
     <script src="../js/category.js"></script>
 </body>

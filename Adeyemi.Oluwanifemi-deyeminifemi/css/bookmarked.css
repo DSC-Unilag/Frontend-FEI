@@ -10,6 +10,15 @@ button,a{
 .text-muted{
     color: rgba(0, 0, 0, 0.6);
 }
+#copyright{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+.header{
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
 /* navbar css start */
 nav{
     box-shadow: 0 0 10px grey;
@@ -26,6 +35,7 @@ nav li{
     align-items: center;
     align-content: center;
     padding: 0px 15px;
+    font-family: 'Montserrat',sans-serif;
 }
 nav li a{
     color: black;
@@ -191,7 +201,7 @@ div.error{
     visibility: visible;
 }
 
-@media(max-width : 900px){
+@media(max-width : 950px){
 	#stories h2{
 		grid-column : 1/4;
 	}
@@ -207,21 +217,27 @@ div.error{
 		grid-column : 1/3;
 	}
 	.card{
-		width : 80%;
+		width : 100%;
 		margin : auto;
     }
     .card  .text-muted{
         margin: 0;
     }
-	.card button{
-		position  :relative;
-		left : 100px;
-	}
     #navsmall{
         width: 100%;
-        margin-top: 20px;
-        border-top: 1px solid rgba(0,0,0,.15);
+        margin-top: 10px;
         display: none;        
+    }
+    #navsmall ul{
+        padding: 0;
+    }           
+    #navsmall ul li{
+        display: block;
+        padding: 10px 57px;
+        border-top: 1px solid rgba(0,0,0,.15);
+    }
+    #navsmall ul li:nth-of-type(6){
+        margin-bottom: 10px;
     }
     #navsmallbtn{
         float: right;
@@ -233,7 +249,6 @@ div.error{
     nav ul#largenav li.nav-link{
         display: none;
     }
-    
     nav.active #navsmall{
         display: block;
     }           
@@ -256,7 +271,8 @@ div.error{
         display: block;
     }
     nav.active{
-        height: 240px;        
+        height: 300px;        
+        overflow-y: hidden;
     }
     #nav-search-small{
         padding-left: 57px;
@@ -285,15 +301,21 @@ div.error{
         display: none;
     }
 }
-@media(max-width : 500px){
-	#stories{
+@media(max-width : 600px){
+    #stories{
 		grid-template-columns : 1fr;
     }
     .card{
 		width : 60%;
-	}
+    }
+    .card button.read-more{
+        position: absolute;
+        right: 0;
+        left: auto;
+    }
+
 }
-@media(max-width : 400px){
+@media(max-width : 500px){
 	.card{
 		width : 80%;
 	}
