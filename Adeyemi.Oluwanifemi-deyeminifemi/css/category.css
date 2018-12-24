@@ -462,10 +462,6 @@ div.error{
     .card  .text-muted{
         margin: 0;
     }
-	.card button{
-		position  :relative;
-		left : 100px;
-	}
     ul#results li span.date {
         font-size: 1em;
     }
@@ -484,7 +480,7 @@ div.error{
 		grid-column : 1/2;
 	}
 	.card{
-		width : 60%;
+		width : 80%;
 	}
 }
 @media(max-width : 400px){
