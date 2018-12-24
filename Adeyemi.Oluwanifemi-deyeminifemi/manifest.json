@@ -43,7 +43,6 @@
     "display": "standalone",
     "orientation": "any",
     "background_color": "#fff",
-    "theme_color": "#3f51b5",
     "description": "A news web app with a little bit of PWA love.",
     "dir": "ltr",
     "lang": "en-US"
