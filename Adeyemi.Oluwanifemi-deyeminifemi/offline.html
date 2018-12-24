@@ -6,8 +6,11 @@
         <title>The Moon</title>
         <link rel="icon" href="favicon.ico">    
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link rel="stylesheet" href="css/index.css">
         <style>
+            #copyright{
+                text-align: center;
+                font-family: 'Montserrat', sans-serif;
+            }
             #info{
                 font-size: 28px;
                 text-align: center;
@@ -17,15 +20,189 @@
             #info p{
                 margin: 10px;
             }
-            #info a,#info a:visited{
+            body{
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                overflow-x: hidden;
+            }
+            button,a{
+                cursor: pointer;
+            }
+            :focus{
+                outline: none;
+            }
+            .text-muted{
+                color: rgba(0, 0, 0, 0.6);
+            }
+            .header{
+                text-transform: uppercase;
+                font-family: 'Montserrat', sans-serif;
+                text-align: center;
+                font-size: 20px;
+            }
+            #stories-preview .header{
+                font-size: 35px;
+                margin: 35px 0 50px;
+            }
+            /* navbar css start */
+            nav{
+                box-shadow: 0 0 10px grey;
+                display: flex;
+                color: white;
+                height: 60px;
+                align-items: center;  
+            }
+            nav ul{
+                margin: 0;
+            }
+            nav li{
+                display: inline-flex;
+                align-items: center;
+                align-content: center;
+                padding: 0px 15px;
+                font-family: 'Montserrat', sans-serif;
+            }
+            nav li a{
                 color: black;
+                text-decoration: none;    
+            }
+            nav li.nav-brand{
+                font-size: 25px;
+            }
+            nav li.nav-link{
+                font-size: 20px;
+            }
+            form#nav-search{
+                display: flex;
+                margin: 0 20px 0 auto;
+                height: 27px;
+                border: 1px solid black;
+            }
+            form#nav-search input{
+                font-size: 16px;   
+                width: 170px;   
+                padding: 0 3px;
+            }
+            form#nav-search button{
+                background-color: transparent;
+            }
+            form#nav-search *{
+                border: none;
+            }
+            form#nav-search button img{
+                height: 16px;
+            }
+            /* navbar css end */
+            /* responsive nav css */
+            #navsmallbtn{
+                background: transparent;
+                height: 30px;
+                margin: 0 10px 0 auto;
+                border: 1px solid #0000003b;
+                box-shadow: 0 0 3px grey;
+                border-radius: 4px;
+                display: none;
+            }
+            #navsmallbtn img{
+                width: 20px;
+            }
+            #navsmall{
+                display: none;
+            }
+            @media(max-width : 1060px){
+                nav ul#largenav{
+                    padding-left: 5px;
+                }
+                nav li{
+                    padding: 0px 10px;
+                }
+            }
+            @media(max-width :  950px){
+                /* responsive nav */
+                #navsmall{
+                    width: 100%;
+                    margin-top: 10px;
+                    display: none;        
+                }
+                #navsmallbtn{
+                    float: right;
+                    display: inline;
+                }
+                nav ul#largenav{
+                    display: inline;
+                }
+                nav ul#largenav li.nav-link{
+                    display: none;
+                }
+                nav.active #navsmall{
+                    display: block;
+                    padding-top: 5px;
+                }
+                #navsmall ul{
+                    padding: 0;
+                }           
+                #navsmall ul li{
+                    display: block;
+                    padding: 10px 57px;
+                    border-top: 1px solid rgba(0,0,0,.15);
+                }
+                #navsmall ul li:nth-of-type(6){
+                    border-bottom: 1px solid rgba(0,0,0,.15);
+                    margin-bottom: 10px;
+                }
+                #navsmall ul li {
+                    display: block;        
+                }
+                #navsmall ul li a{
+                    color: rgba(0, 0, 0, 0.6);
+                }
+                #navsmall ul li a:hover{
+                    color: black;
+                }
+                nav{
+                    height: 40px;
+                    padding: 10px 0;
+                    transition: 0.5s;
+                    display: block;
+                }
+                nav.active{
+                    height: 360px;    
+                    overflow-y: hidden;    
+                }
+                form#nav-search{
+                    display: none;
+                }
+                #nav-search-small{
+                    padding-left: 57px;
+                    display: flex;
+                }
+                #nav-search-small input{
+                    width: 400px;
+                    border-radius: 5px 0 0 5px;
+                    border: 1px solid grey;
+                    border-right: 0;
+                }
+                #nav-search-small button{
+                    height: 30px;
+                    width: 30px;
+                    border-left: 0;
+                    border: 1px solid grey;
+                    border-radius: 0 5px 5px 0;
+                }
+            }
+            
+            @media(max-width : 450px){
+                #nav-search-small input {
+                    width: 300px;
+                }
             }
         </style>
     </head>
     <body>
         <nav>
             <ul id="largenav">
-                <li class="nav-brand"><a href="./index.html">The Moon</a></li>
+                <li class="nav-brand"><a href="../index.html">The Moon</a></li>
                 <li class="nav-link"><a href="pages/category.html?s=business">Business</a></li>
                 <li class="nav-link"><a href="pages/category.html?s=sports">Sports</a></li>
                 <li class="nav-link"><a href="pages/category.html?s=technology">Tech</a></li>
@@ -56,7 +233,7 @@
         <div id="info">
             <p>Good day the page you're trying to access has not been cached and you're currently offline :-(</p>
             <p>Please come back when you're online</p>
-            <p>You can try one of our <a href="index.html">other pages</a></p>
+            <p>You can try one of our <a href="../index.html">other pages</a></p>
         </div>
         <script>
         // Code for responsive navbar
