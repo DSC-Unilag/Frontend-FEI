@@ -40,6 +40,12 @@ function validateAndReturnResponse(res) {
     return res.json();
 }
 
+//TOset local storage for top news
+function storeTopNewsLocally(output) {
+    localStorage.setItem('topNews', JSON.stringify(output));
+    return;
+}
+
 function displaySportsOutput(output) {
     for (let i = 0; i <= sportsNews.length-1; i++) {
         sportsNews[i].textContent = output.articles[i].title;
@@ -57,6 +63,7 @@ function displayOutput(output) {
         topNewsImages[i].src = output.articles[i].urlToImage;
         //console.log(output.articles[i]);
     }
+    storeTopNewsLocally(output.articles);
     return;
 }
 

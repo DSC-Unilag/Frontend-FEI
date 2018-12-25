@@ -12,6 +12,12 @@
 		padding: 0px;
 		flex-direction: column;
 	}
+	.mobile-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 1.5rem;
+	}
 	footer {
         display: flex;
         margin: 0px;
@@ -20,6 +26,9 @@
     nav {
 		display: flex;
 		flex-direction: column;
+	}
+	span {
+		display: flex;
 	}
 	.news-container {
 		display: none;
@@ -72,11 +81,20 @@
 	.mobile__font-size {
 		font-size: 1.1em;
 	}
+	.hamburger-icon>i {
+		font-size: 1.5rem;
+		margin-top: 1rem;
+		margin-right: 1rem;
+	}
 }
 /*Desktop layout*/
 @media screen and (min-width: 800px) {
 	header, footer, ul {
 		display: flex;
+	}
+	header {
+		justify-content: space-between;
+		align-items: center;
 	}
 	body {
 		min-height: 100vh;
@@ -171,6 +189,9 @@
 	}	
 	figure {
 		margin: 0px;
+	}
+	.hamburger-icon {
+		display: none;
 	}
 }
 
