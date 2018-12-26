@@ -31,7 +31,7 @@
 		display: flex;
 	}
 	.news-container {
-		display: none;
+		display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 800px));
         grid-template-rows: auto auto auto;
         grid-row-gap: 1rem;
@@ -102,7 +102,7 @@
 		padding: 0px;
 	}
 	.news-container {
-		display: none;
+		display: grid;
 		grid-template-rows: auto auto auto;
 		grid-template-columns: auto;
 		grid-gap: 0rem;
@@ -247,6 +247,7 @@ h2 {
 
 
 .lds-ellipsis {
+	display: none;
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -261,33 +262,33 @@ h2 {
 	height: 120px;
 	-webkit-animation: spin 2s linear infinite;
 	animation: spin 2s linear infinite;
-  }
-  
-  @-webkit-keyframes spin {
+}
+
+	@-webkit-keyframes spin {
 	0% { -webkit-transform: rotate(0deg); }
 	100% { -webkit-transform: rotate(360deg); }
-  }
-  
-  @keyframes spin {
+}
+
+@keyframes spin {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
-  }
-  
-  /* Add animation to "page content" */
-  .animate-bottom {
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
 	position: relative;
 	-webkit-animation-name: animatebottom;
 	-webkit-animation-duration: 3s;
 	animation-name: animatebottom;
 	animation-duration: 3s
-  }
-  
-  @-webkit-keyframes animatebottom {
+}
+
+@-webkit-keyframes animatebottom {
 	from { bottom:-100px; opacity:0 } 
 	to { bottom:0px; opacity:1 }
-  }
-  
-  @keyframes animatebottom { 
+}
+
+@keyframes animatebottom { 
 	from{ bottom:-100px; opacity:0 } 
 	to{ bottom:0; opacity:1 }
-  }
+}

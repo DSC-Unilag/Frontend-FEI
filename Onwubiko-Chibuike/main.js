@@ -40,12 +40,28 @@ function validateAndReturnResponse(res) {
     return res.json();
 }
 
-//TOset local storage for top news
-function storeTopNewsLocally(output) {
-    localStorage.setItem('topNews', JSON.stringify(output));
+//TO set local storage for top news
+function storeNewsLocally(news, output) {
+    localStorage.setItem(news, JSON.stringify(output));
     return;
 }
 
+//To get news from local storage
+function getNewsFromLocalStorage(news,show) {
+    let getItem = JSON.parse(localStorage.getItem(news));
+    if(typeof getItem !== 'undefined' && getItem !== null) {
+        show(getItem);
+    }
+    return;
+}
+
+//if(/*typeof getItem !== 'undefined' &&*/ getItem !== null) {
+    window.addEventListener('load', getNewsFromLocalStorage('topNews',displayOutput));
+    window.addEventListener('load', getNewsFromLocalStorage('sportsNews', displaySportsOutput));
+    window.addEventListener('load', getNewsFromLocalStorage('techNews', displayTechnologyOutput));
+//}
+
+//To display sports news
 function displaySportsOutput(output) {
     for (let i = 0; i <= sportsNews.length-1; i++) {
         sportsNews[i].textContent = output.articles[i].title;
@@ -53,9 +69,11 @@ function displaySportsOutput(output) {
         sportsNewsImages[i].src = output.articles[i].urlToImage;
         //console.log(output.articles[i]);
     }
+    storeNewsLocally('sportsNews', output);
     return;
 }
 
+//To display top news
 function displayOutput(output) {
     for (let i = 0; i <= input.length-1; i++) {
         input[i].textContent = output.articles[i].title;
@@ -63,7 +81,7 @@ function displayOutput(output) {
         topNewsImages[i].src = output.articles[i].urlToImage;
         //console.log(output.articles[i]);
     }
-    storeTopNewsLocally(output.articles);
+    storeNewsLocally('topNews', output);
     return;
 }
 
@@ -74,11 +92,12 @@ function displayTechnologyOutput(output) {
         techNewsImages[i].src = output.articles[i].urlToImage;
         //console.log(output.articles[i]);
     }
+    storeNewsLocally('techNews', output);
     return;
 }
 
 function displaySearchOutput(output) {
-    newsContainer.style.display = 'none';
+    //newsContainer.style.display = 'none';
     if(output.totalResults > 1) {
          wordings = " Search results for ";
     } else {
@@ -105,9 +124,12 @@ function displaySearchOutput(output) {
 }
 
 function catchError(error) {
+    if(error )
     console.log('looks like there was a problem: \n' + error );
-    main.textContent = "Kindly Check your internet connection";
-    main.setAttribute('class', 'all__font-size');
+    let errorParagraph = document.createElement('p');
+    errorParagraph.textContent = "Kindly Check your internet connection";
+    //main.insertBefore(errorParagraph, newsContainer);
+    //errorParagraph.setAttribute('class', 'all__font-size');
 }
 
 function makeRequest(req,displayOutput) {
@@ -121,16 +143,13 @@ makeRequest(req, displayOutput);
 makeRequest(sportsRequest, displaySportsOutput);
 makeRequest(technologyRequest, displayTechnologyOutput);
 
-//Search scipt
-
+//Making a search request for news
 window.addEventListener('DOMContentLoaded', getSearch);
-
 function getSearch() {
     let getSearchResult = document.getElementById('form');
     getSearchResult.addEventListener('submit', makeSearchRequest, false);
     return;
 }
-
 function removePreviousSearchResult() {
     let query = document.querySelectorAll('.search-results');
     query.forEach( (q) => {q.remove();});
@@ -138,12 +157,16 @@ function removePreviousSearchResult() {
     return;
 }
 
-
+//Searching for news 
 function makeSearchRequest(e) {
     e.preventDefault();
 
     removePreviousSearchResult();
     
+    timing();
+
+    newsContainer.style.display = 'none';
+
     let formData = new FormData(document.getElementById('form')); 
 
     var data = new URLSearchParams();
@@ -178,14 +201,13 @@ function fixNavbar() {
 
 
 //Setting a preloader icon
-
-window.addEventListener('load', timing);
 function timing() {
+    preLoader.style.display = 'block';
     let timeOut = setTimeout(loadPage, 3000);
 }
 function loadPage() {
     preLoader.style.display = 'none';
-    newsContainer.style.display = 'grid';
+    return;
 }
 
 //Collapsible mobile navbar
