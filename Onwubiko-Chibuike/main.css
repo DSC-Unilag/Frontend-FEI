@@ -186,6 +186,9 @@
 	}
 	ul>li:first-child {
 		margin: 0 1rem;
+	}
+	ul>li:nth-child(2) {
+		margin: 0 1rem 0 0;
 	}	
 	figure {
 		margin: 0px;

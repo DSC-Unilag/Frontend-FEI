@@ -33,6 +33,8 @@ let newsContainer = document.querySelector('.news-container');
 
 let header = document.querySelector('#header');
 
+let bookmarksArray = [];
+
 function validateAndReturnResponse(res) {
     if(!res.ok) {
         throw error(res.statusText);
@@ -41,7 +43,7 @@ function validateAndReturnResponse(res) {
 }
 
 //TO set local storage for top news
-function storeNewsLocally(news, output) {
+function storeLocally(news, output) {
     localStorage.setItem(news, JSON.stringify(output));
     return;
 }
@@ -67,7 +69,7 @@ function displaySportsOutput(output) {
         sportsNewsImages[i].src = output.articles[i].urlToImage;
         //console.log(output.articles[i]);
     }
-    window.addEventListener('DOMContentLoaded',storeNewsLocally('sportsNews', output));
+    window.addEventListener('DOMContentLoaded',storeLocally('sportsNews', output));
     return;
 }
 
@@ -79,7 +81,7 @@ function displayOutput(output) {
         topNewsImages[i].src = output.articles[i].urlToImage;
         //console.log(output.articles[i]);
     }
-    window.addEventListener('DOMContentLoaded',storeNewsLocally('topNews', output));
+    window.addEventListener('DOMContentLoaded',storeLocally('topNews', output));
     return;
 }
 
@@ -90,21 +92,23 @@ function displayTechnologyOutput(output) {
         techNewsImages[i].src = output.articles[i].urlToImage;
         //console.log(output.articles[i]);
     }
-    window.addEventListener('DOMContentLoaded',storeNewsLocally('techNews', output));
+    window.addEventListener('DOMContentLoaded',storeLocally('techNews', output));
     return;
 }
 
 function displaySearchOutput(output) {
     //newsContainer.style.display = 'none';
     if(output.totalResults > 1) {
-         wordings = " Search results for ";
+        wordings = " Search results for ";
+    } else if(output.totalResults == 1 ) {
+        wordings = " Search result for ";
     } else {
-         wordings = " Search result for "
+        wordings = "0 Search result for";
     }
-    searchHeader.textContent = output.totalResults + wordings + search.value;
+    searchHeader.textContent = wordings + search.value;
     main.appendChild(searchHeader);
     for (let i = 0; i < output.articles.length; i++) {
-        if(i != 10 || i <= output.articles.length) {
+        //if(i != 10 || i <= output.articles.length) {
             let searchResult = document.createElement('div');
             let a = document.createElement('a');
             let p = document.createElement('p');
@@ -116,13 +120,13 @@ function displaySearchOutput(output) {
             searchResultContent.textContent = output.articles[i].description;
             //console.log(output.articles[i]);
             main.appendChild(searchResult);
-        }
+        //}
     }
     return;
 }
 
 function catchError(error) {
-    if(error )
+    //if(error )
     console.log('looks like there was a problem: \n' + error );
     let errorParagraph = document.createElement('p');
     errorParagraph.textContent = "Kindly Check your internet connection";
@@ -216,6 +220,37 @@ likeIcon.forEach((like) => like.addEventListener('click', getBookmarked, false))
 
 function getBookmarked() {
     this.style.color = "rgba(255,255,0,1)";
+    let figureObject = this.parentNode.parentNode;
+    bookmarksArray.push(figureObject);
+    storeLocally('bookmarksArray',bookmarksArray);
+    console.log(figureObject.firstElementChild.innerHTML);
+    console.log(figureObject);
+    console.log(bookmarksArray);
     return;
 }
 
+//create Bookmark page
+document.querySelector('.liked-news').addEventListener('click', createBookmarkPage);
+function createBookmarkPage(bookmarksArray) {
+    newsContainer.style.display = 'none';
+    if(bookmarksArray.length > 1) {
+         wordings = " bookmarks ";
+         advice = "";
+    } else {
+         wordings = " bookmark "
+         advice = " click the like button to add bookmarks";
+    }
+    searchHeader.textContent = bookmarksArray.length + wordings + advice;
+    main.appendChild(searchHeader);
+    for (let i = 0; i < bookmarksArray.length; i++) {
+        let searchResult = document.createElement('div');
+        let a = document.createElement('a');
+        let searchResultLink = searchResult.appendChild(a);
+        searchResult.setAttribute('class', 'search-results');
+        searchResultLink.textContent = output.articles[i].title;
+        searchResultLink.href = output.articles[i].url;
+        //console.log(output.articles[i]);
+        main.appendChild(searchResult);
+    }
+    return;
+}
