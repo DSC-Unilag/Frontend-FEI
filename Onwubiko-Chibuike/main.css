@@ -292,3 +292,19 @@ h2 {
 	from{ bottom:-100px; opacity:0 } 
 	to{ bottom:0; opacity:1 }
 }
+.like-icon {
+	font-size: 1.5rem;
+	align-self: center;
+	justify-self: center;
+}
+.like-icon>i {
+	color: rgba(0,0,0,1);
+	background-color: rgba(255,255,255,1);
+}
+figcaption {
+	display: grid;
+	grid-template-columns: 5fr 1fr;
+}
+figcaption>a {
+	text-align: justify;
+}

@@ -55,11 +55,9 @@ function getNewsFromLocalStorage(news,show) {
     return;
 }
 
-//if(/*typeof getItem !== 'undefined' &&*/ getItem !== null) {
-    window.addEventListener('load', getNewsFromLocalStorage('topNews',displayOutput));
-    window.addEventListener('load', getNewsFromLocalStorage('sportsNews', displaySportsOutput));
-    window.addEventListener('load', getNewsFromLocalStorage('techNews', displayTechnologyOutput));
-//}
+window.addEventListener('load', getNewsFromLocalStorage('topNews',displayOutput));
+window.addEventListener('load', getNewsFromLocalStorage('sportsNews', displaySportsOutput));
+window.addEventListener('load', getNewsFromLocalStorage('techNews', displayTechnologyOutput));
 
 //To display sports news
 function displaySportsOutput(output) {
@@ -69,7 +67,7 @@ function displaySportsOutput(output) {
         sportsNewsImages[i].src = output.articles[i].urlToImage;
         //console.log(output.articles[i]);
     }
-    storeNewsLocally('sportsNews', output);
+    window.addEventListener('DOMContentLoaded',storeNewsLocally('sportsNews', output));
     return;
 }
 
@@ -81,7 +79,7 @@ function displayOutput(output) {
         topNewsImages[i].src = output.articles[i].urlToImage;
         //console.log(output.articles[i]);
     }
-    storeNewsLocally('topNews', output);
+    window.addEventListener('DOMContentLoaded',storeNewsLocally('topNews', output));
     return;
 }
 
@@ -92,7 +90,7 @@ function displayTechnologyOutput(output) {
         techNewsImages[i].src = output.articles[i].urlToImage;
         //console.log(output.articles[i]);
     }
-    storeNewsLocally('techNews', output);
+    window.addEventListener('DOMContentLoaded',storeNewsLocally('techNews', output));
     return;
 }
 
@@ -211,4 +209,13 @@ function loadPage() {
 }
 
 //Collapsible mobile navbar
+
+//Create a bookmark functionality
+let likeIcon = document.querySelectorAll('.like-icon>i');
+likeIcon.forEach((like) => like.addEventListener('click', getBookmarked, false));
+
+function getBookmarked() {
+    this.style.color = "rgba(255,255,0,1)";
+    return;
+}
 
