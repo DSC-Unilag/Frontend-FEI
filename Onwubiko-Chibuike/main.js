@@ -23,17 +23,26 @@ let techNews = document.querySelectorAll('.tech-news');
 let techNewsImages = document.querySelectorAll('.technology-news-image');
 let searchHeader = document.createElement('h3');
 
+let displayTech = document.querySelector('.displayTech');
+let displaySport = document.querySelector('.displaySport');
 
-let search = document.getElementById("search");
+//const searchResult = document.createElement('div');
+//const a = document.createElement('a');
+/*const icon = document.createElement('i');
+const span = document.createElement('span');*/
+
+let form = document.getElementById("form");
 
 let body = document.querySelector('body');
 let main = document.querySelector('main');
 let preLoader = document.querySelector('.lds-ellipsis');
 let newsContainer = document.querySelector('.news-container');
 
-let header = document.querySelector('#header');
 
-let bookmarksArray = [];
+let header = document.querySelector('#header');
+let nav = document.querySelector('nav');
+
+let noOfNewsCategory = 3;
 
 function validateAndReturnResponse(res) {
     if(!res.ok) {
@@ -49,17 +58,13 @@ function storeLocally(news, output) {
 }
 
 //To get news from local storage
-function getNewsFromLocalStorage(news,show) {
+function getFromLocalStorage(news,show) {
     let getItem = JSON.parse(localStorage.getItem(news));
     if(typeof getItem !== 'undefined' && getItem !== null) {
         show(getItem);
     }
     return;
 }
-
-window.addEventListener('load', getNewsFromLocalStorage('topNews',displayOutput));
-window.addEventListener('load', getNewsFromLocalStorage('sportsNews', displaySportsOutput));
-window.addEventListener('load', getNewsFromLocalStorage('techNews', displayTechnologyOutput));
 
 //To display sports news
 function displaySportsOutput(output) {
@@ -97,7 +102,6 @@ function displayTechnologyOutput(output) {
 }
 
 function displaySearchOutput(output) {
-    //newsContainer.style.display = 'none';
     if(output.totalResults > 1) {
         wordings = " Search results for ";
     } else if(output.totalResults == 1 ) {
@@ -108,19 +112,17 @@ function displaySearchOutput(output) {
     searchHeader.textContent = wordings + search.value;
     main.appendChild(searchHeader);
     for (let i = 0; i < output.articles.length; i++) {
-        //if(i != 10 || i <= output.articles.length) {
-            let searchResult = document.createElement('div');
-            let a = document.createElement('a');
-            let p = document.createElement('p');
-            let searchResultLink = searchResult.appendChild(a);
-            let searchResultContent = searchResult.appendChild(p);
-            searchResult.setAttribute('class', 'search-results');
-            searchResultLink.textContent = output.articles[i].title;
-            searchResultLink.href = output.articles[i].url;
-            searchResultContent.textContent = output.articles[i].description;
-            //console.log(output.articles[i]);
-            main.appendChild(searchResult);
-        //}
+        let searchResult = document.createElement('div');
+        let a = document.createElement('a');
+        let p = document.createElement('p');
+        let searchResultLink = searchResult.appendChild(a);
+        let searchResultContent = searchResult.appendChild(p);
+        a.setAttribute('target', 'blank');
+        searchResult.setAttribute('class', 'search-results');
+        searchResultLink.textContent = output.articles[i].title;
+        searchResultLink.href = output.articles[i].url;
+        searchResultContent.textContent = output.articles[i].description;
+        main.appendChild(searchResult);
     }
     return;
 }
@@ -145,6 +147,11 @@ makeRequest(req, displayOutput);
 makeRequest(sportsRequest, displaySportsOutput);
 makeRequest(technologyRequest, displayTechnologyOutput);
 
+
+window.addEventListener('load', getFromLocalStorage('topNews',displayOutput));
+window.addEventListener('load', getFromLocalStorage('sportsNews', displaySportsOutput));
+window.addEventListener('load', getFromLocalStorage('techNews', displayTechnologyOutput));
+
 //Making a search request for news
 window.addEventListener('DOMContentLoaded', getSearch);
 function getSearch() {
@@ -168,6 +175,8 @@ function makeSearchRequest(e) {
     timing();
 
     newsContainer.style.display = 'none';
+    displayTech.style.display = 'none';
+    displaySport.style.display = 'none';
 
     let formData = new FormData(document.getElementById('form')); 
 
@@ -192,16 +201,6 @@ function makeSearchRequest(e) {
     return;
 }
 
-//Setting Navbar
-//window.addEventListener('scroll', fixNavbar);
-function fixNavbar() {
-    header.style.width = '100%';
-    header.style.position = 'fixed';
-    header.style.top = '0';
-    header.style.left = '0';
-}
-
-
 //Setting a preloader icon
 function timing() {
     preLoader.style.display = 'block';
@@ -213,44 +212,163 @@ function loadPage() {
 }
 
 //Collapsible mobile navbar
+let openIcon = document.querySelector('.fa-bars');
+let closeIcon = document.querySelector('.fa-times');
+openIcon.addEventListener('click', openNavbar, false);
+closeIcon.addEventListener('click', closeNavbar, false);
+function openNavbar() {
+    nav.style.display = 'flex';
+    openIcon.style.display = 'none';
+    closeIcon.style.display = 'inline-flex';
+    return;
+}
+function closeNavbar() {
+    nav.style.display = 'none';
+    openIcon.style.display = 'inline-flex';
+    closeIcon.style.display = 'none';
+    return;
+}
 
 //Create a bookmark functionality
 let likeIcon = document.querySelectorAll('.like-icon>i');
 likeIcon.forEach((like) => like.addEventListener('click', getBookmarked, false));
+window.addEventListener('load', checkAlreadyBookmarked, false);
+function checkAlreadyBookmarked() {
+    for(let j = 0; j < likeIcon.length; j++) {
+        let liked = likeIcon[j].parentNode.parentNode;
+        let myFigureObject = {
+            url : liked.firstElementChild.href,
+            title : liked.firstElementChild.innerHTML,
+        }
+        for (let i = 0; i < localStorage.length; i++) {
+            let checkBookmarked = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            if(localStorage.key(i) != 'topNews') {
+                if(localStorage.key(i) != 'techNews') {
+                    if(localStorage.key(i) != 'sportsNews') {
+                        if(checkBookmarked.url == myFigureObject.url) {
+                            likeIcon[j].style.color = "rgba(255,255,0,1)";
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return;
+}
 
+function checkBookmark(myFigureObject){
+    for (let i = 0; i < localStorage.length; i++) {
+        let checkBookmarked = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        if(localStorage.key(i) != 'topNews') {
+            if(localStorage.key(i) != 'techNews') {
+                if(localStorage.key(i) !=  'sportsNews') {
+                    if(checkBookmarked.url == myFigureObject.url) {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    storeLocally(Date(), myFigureObject);
+    return;
+}
 function getBookmarked() {
     this.style.color = "rgba(255,255,0,1)";
     let figureObject = this.parentNode.parentNode;
-    bookmarksArray.push(figureObject);
-    storeLocally('bookmarksArray',bookmarksArray);
-    console.log(figureObject.firstElementChild.innerHTML);
-    console.log(figureObject);
-    console.log(bookmarksArray);
+    let myFigureObject = {
+        url : figureObject.firstElementChild.href,
+        title : figureObject.firstElementChild.innerHTML,
+    }
+    checkBookmark(myFigureObject);
     return;
 }
 
 //create Bookmark page
-document.querySelector('.liked-news').addEventListener('click', createBookmarkPage);
-function createBookmarkPage(bookmarksArray) {
+let likedNews = document.querySelector('.liked-news');
+likedNews.addEventListener('click', activateClick, false);
+function activateClick() {
+    removePreviousSearchResult();
+    for (let i = 0; i < localStorage.length; i++) {
+        if(localStorage.key(i) != 'topNews') {
+            if(localStorage.key(i) != 'techNews') {
+                if(localStorage.key(i) !=  'sportsNews') {
+                    getFromLocalStorage(localStorage.key(i), createBookmarkPage);
+                }
+            }
+        }
+    }
+    return createBookmarkPage();
+}
+function createBookmarkPage(locallyStoredBookmarks) {
+    //console.log(locallyStoredBookmarks);
+    let bookmarkLength = localStorage.length - noOfNewsCategory;
     newsContainer.style.display = 'none';
-    if(bookmarksArray.length > 1) {
+    displayTech.style.display = 'none';
+    displaySport.style.display = 'none';
+    if((bookmarkLength) > 1) {
          wordings = " bookmarks ";
          advice = "";
     } else {
          wordings = " bookmark "
          advice = " click the like button to add bookmarks";
     }
-    searchHeader.textContent = bookmarksArray.length + wordings + advice;
-    main.appendChild(searchHeader);
-    for (let i = 0; i < bookmarksArray.length; i++) {
-        let searchResult = document.createElement('div');
-        let a = document.createElement('a');
+    searchHeader.textContent = bookmarkLength + wordings + advice;
+    main.insertBefore(searchHeader, newsContainer);
+    if(locallyStoredBookmarks){
+        const searchResult = document.createElement('div');
+        const a = document.createElement('a');
+        const icon = document.createElement('i');
+        const span = document.createElement('span');
         let searchResultLink = searchResult.appendChild(a);
+        span.appendChild(icon);
+        searchResult.appendChild(span);
+        span.setAttribute('class', 'span')
+        a.setAttribute('target', 'blank');
+        icon.setAttribute('class', 'icon fas fa-times');
         searchResult.setAttribute('class', 'search-results');
-        searchResultLink.textContent = output.articles[i].title;
-        searchResultLink.href = output.articles[i].url;
-        //console.log(output.articles[i]);
+        searchResultLink.textContent = locallyStoredBookmarks.title;
+        searchResultLink.href = locallyStoredBookmarks.url;
         main.appendChild(searchResult);
     }
     return;
+}
+//Delete bookmarks
+document.addEventListener('click', (event) => {
+    if(event.target.matches('.span>.fa-times')) {
+        let searchResult = document.querySelector(".span>.fa-times").parentNode.parentNode;
+        deleteBookmarked(searchResult);
+    }
+}, false);
+function deleteBookmarked(searchResult) {
+    let myFigureObject = {
+        url : searchResult.firstElementChild.href,
+        title : searchResult.firstElementChild.innerHTML,
+    }
+    for (let i = 0; i < localStorage.length; i++) {
+        let checkBookmarked = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        if(localStorage.key(i) != 'topNews') {
+            if(localStorage.key(i) != 'techNews') {
+                if(localStorage.key(i) != 'sportsNews') {
+                    if(checkBookmarked.url == myFigureObject.url) {
+                        searchResult.remove();
+                        localStorage.removeItem(localStorage.key(i));
+                        activateClick();
+                    }
+                }
+            }
+        }
+    }
+    return;
+}
+
+
+//properly displaying navbar when width changes
+window.addEventListener('resize',navDisplay);
+function navDisplay() {
+    if(window.screen.availWidth >= 800 ) {
+        return nav.style.display = "flex";
+    } else {
+        openIcon.style.display = 'inline-flex';
+        return nav.style.display = 'none';    
+    }
 }
