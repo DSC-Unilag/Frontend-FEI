@@ -26,11 +26,6 @@ let searchHeader = document.createElement('h3');
 let displayTech = document.querySelector('.displayTech');
 let displaySport = document.querySelector('.displaySport');
 
-//const searchResult = document.createElement('div');
-//const a = document.createElement('a');
-/*const icon = document.createElement('i');
-const span = document.createElement('span');*/
-
 let form = document.getElementById("form");
 
 let body = document.querySelector('body');
@@ -128,7 +123,6 @@ function displaySearchOutput(output) {
 }
 
 function catchError(error) {
-    //if(error )
     console.log('looks like there was a problem: \n' + error );
     let errorParagraph = document.createElement('p');
     errorParagraph.textContent = "Kindly Check your internet connection";
@@ -360,7 +354,6 @@ function deleteBookmarked(searchResult) {
     }
     return;
 }
-
 
 //properly displaying navbar when width changes
 window.addEventListener('resize',navDisplay);
