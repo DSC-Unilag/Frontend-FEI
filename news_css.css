@@ -10,6 +10,7 @@
 
 body{
     margin: 0;
+    padding: 0;
     font-family: "Gill Sans", sans-serif;
 }
 .main-container{
@@ -25,15 +26,18 @@ a{
     width: 100%;
     box-shadow: 0px 2px 4px #a8a4a4;
 }
-.top__flex{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
 .news__header{
     margin: 0;
     background-color: #2a5ec5;
     width: 100%;
+}
+.news__header #logo{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    width: 20%;
+    font-size: 28px;
+    padding-left: 15px;
 }
 .news__header .fa{
     font-size: 30px;
@@ -229,6 +233,7 @@ a{
 #other__news__1, #other__news__2{
     display: inline-block;
     width: 100%;
+    margin: 0;
 }
 .tech_news{
     width: 100%;
@@ -317,26 +322,31 @@ a{
     } 
     .news__header #news__links{
         display: inline-block;
-        width: 75%;
+        width: 60%;
+        text-align: center;
         padding: 0;
     } 
     .news__header #news__links li{
         width: auto;
         margin: 0px 13px;
+        font-size: 17px;
     }
     .news__header .search_bar{
         position: static;
-        width: 20%;
-        padding: 30px 0px;
+        width: 19%;
+        padding: 43px 0px;
     }
     .sports__news__container{
         width: 20%;
+        /* padding: 12px 15px; */
     }
     .other__news__container_1{
         width: 55%;
-        margin: 0px 30px;
+        /* margin: 0px 10px; */
     }
     .other__news__container_2{
         width: 20%;
+        margin-left: 15px;
+        display: inline-block;
     }  
 }
