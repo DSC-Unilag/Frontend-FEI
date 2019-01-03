@@ -24,10 +24,12 @@ a{
 }
 .news__header__container{
     width: 100%;
+    display: inline-block;
     box-shadow: 0px 2px 4px #a8a4a4;
 }
 .news__header{
-    margin: 0;
+    margin: 0px;
+    display: inline-block;
     background-color: #2a5ec5;
     width: 100%;
 }
@@ -93,6 +95,22 @@ a{
     box-shadow: 1px 0px 5px #ccc;
     border-radius: 25px;
     outline: none;
+}
+#just_in{
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+#just_in h5{
+    background-color: red;
+    margin: auto;
+    height: 42px;
+    padding: 12px;
+    color: white;
+    -webkit-clip-path: polygon(0 0, 100% 0, 77% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 86% 100%, 0% 100%);
+    width: 22%;
+    display: inline-block;
 }
 .body_container{
     margin-top: 40px;
