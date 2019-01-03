@@ -202,6 +202,11 @@
 		height: 7rem;
 		object-fit: fill;
 	}
+	.bottomnews>figure>img {
+		object-fit: fill;
+		height: 10rem;
+		width: 100%;
+	}
 	.sports, .technology {
 		display: grid;
 		grid-template-rows: auto auto auto;
@@ -368,4 +373,27 @@ figure {
 	display: grid;
 	border: rgb(56, 1, 255) 0.1rem solid;
 	grid-template-rows: max-content;
+}
+img:after {
+    content: "Sorry Image Not Found";
+    display: grid;
+    justify-content: space-evenly;
+    font-size: 1.5rem;
+}
+img:before {    
+	display: grid;
+    height: 70%;
+    content: "\1F647";
+    justify-content: space-evenly;
+    align-content: end;
+    font-size: 10rem;
+}
+.bottomnews>figure>img:before {
+	font-size: 5rem;
+}
+.asidetopNews>figure>img:before {
+	font-size: 4rem;
+} 
+.bottomnews>figure>img:after, .asidetopNews>figure>img:after {
+	font-size: 1rem;
 }
