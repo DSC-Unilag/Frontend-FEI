@@ -53,10 +53,14 @@ function getText_tech(){
             '<div class="tech_news">' +
             '<div class="tech__news__api">' +
             '<a href="' + name.articles[i].url + '">' +
+            '<div class="mask">' +
             '<img src="' + name.articles[i].urlToImage +'" />' +
+            '<p>See more</p>' +
+            '<h3>Author ' + name.articles[i].author + '</h3>' +
+            '</div>' +
+            '</a>' +
             '<ul>' +
             '<li>Author ' + name.articles[i].author + '</li>' +
-            '</a>' +
             '<li>' + name.articles[i].title + '</li>' +
             '<li>' + name.articles[i].description + '</li>' +
             '<li>' + name.articles[i].publishedAt + '</li>' +

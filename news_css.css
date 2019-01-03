@@ -23,6 +23,7 @@ a{
 }
 .news__header__container{
     width: 100%;
+    box-shadow: 0px 2px 4px #a8a4a4;
 }
 .top__flex{
     display: flex;
@@ -71,10 +72,27 @@ a{
 .news__header .search_bar{
     width: 50%;
     float: right;
-    height: 25px;
+    height: auto;
     position: relative;
     bottom: 350px;
     display: inline-block;
+}
+.search_bar form{
+    display: inline-block;
+    height: auto;
+}
+.search_bar input[type=search]{
+    display: inline-block;
+    padding: 10px 0px 10px 19px;
+    border: none;
+    height: 32px;
+    box-shadow: 1px 0px 5px #ccc;
+    border-radius: 25px;
+    outline: none;
+}
+.body_container{
+    margin-top: 40px;
+    display: flex;
 }
 .sports__news__container{
     width: 100%;
@@ -93,6 +111,7 @@ a{
 .sports_news .sports__news__api img{
     width: 100%;
     height: auto;
+    box-shadow: 0px 3px 10px #615c5c;
     margin: 5px 0px;
     display: inline-block;
 }
@@ -100,7 +119,7 @@ a{
     color: white;
     display: inline-block;
     position: relative;
-    bottom: 130px;
+    bottom: 128px;
     padding: 12px;
     width: 100%;
     font-size: 16px;
@@ -158,7 +177,7 @@ a{
     color: white;
     display: inline-block;
     position: relative;
-    bottom: 130px;
+    bottom: 129px;
     padding: 12px;
     width: 100%;
     min-height: 107px;
@@ -181,6 +200,7 @@ a{
 .main_news .main__news__api img{
     width: 100%;
     height: auto;
+    box-shadow: 0px 3px 14px #716f6f;
 }
 .main_news .main__news__api img:hover{
     box-shadow: 0px 1px 3px rgba(10, 10, 10, 0.7);;
@@ -219,20 +239,39 @@ a{
     height: 190px;
     overflow: hidden;
 }
+.tech_news .tech__news__api .mask{
+    display: inline-block;
+    height: auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    transition: all 300ms ease-in-out 120ms;
+}
+.tech_news .tech__news__api .mask:hover{
+    background-color: rgba(20, 20, 20, 0.6);
+}
+.tech_news .tech__news__api .mask p{
+    color: white;
+    display: inline-block;
+} 
 .tech_news .tech__news__api img{
     width: 100%;
     position: relative;
     height: auto;
+    z-index: 1;
     margin: 5px 0px;
     display: inline-block;
+    background-color: rgba(20, 20, 20, 0.6);
 }
-.tech_news .tech__news__api ul{
+.tech_news .tech__news__api .mask h3{
     position: relative;
     z-index: 1;
     list-style: none;
     display: inline-block;
-    bottom: 105px;
+    bottom: 159px;
     min-height: 80px;
+    text-align: left;
     padding: 10px 11px;
     width: 100%;
     color: white;
@@ -287,8 +326,8 @@ a{
     }
     .news__header .search_bar{
         position: static;
-        width: 15%;
-        padding: 48px 0px;
+        width: 20%;
+        padding: 30px 0px;
     }
     .sports__news__container{
         width: 20%;
