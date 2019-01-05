@@ -1,6 +1,7 @@
 let hamburger_icon = document.getElementById('news__burger__icon');
 let close_button = document.getElementById('news__close__icon');
 let news_ul_links = document.getElementById('news__links');
+let sports_loader_icon = document.getElementById('loader-icon-sports');
 
 hamburger_icon.addEventListener('click', function () {
     news_ul_links.style.display = 'inline-block';
@@ -35,13 +36,18 @@ function getText_tech(){
     //OPTIONAL - used for loaders (yes, loaders are optional)
 
     xhr.onprogress = function(){
-        console.log('READYSTATE: ', xhr.readyState);
-    }
+        sports_loader_icon.addEventListener('progress', function(){
+            sports_loader_icon.style.display = "inline-block";
+        });
+    };
 
     //.onload is not going to run only if it's ready that is, it is on 4
 
     xhr.onload = function(){
         console.log('READYSTATE: ', xhr.readyState);
+        sports_loader_icon.addEventListener('progress', function(){
+            sports_loader_icon.style.display = "none";
+        });
         if(this.status == 200){
             // console.log(this.responseText);
             let name = JSON.parse(this.responseText);

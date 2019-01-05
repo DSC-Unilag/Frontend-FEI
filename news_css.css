@@ -22,24 +22,23 @@ a{
     color: white;
     display: inline-block;
 }
-.news__header__container{
-    width: 100%;
-    display: inline-block;
-    box-shadow: 0px 2px 4px #a8a4a4;
-}
 .news__header{
     margin: 0px;
     display: inline-block;
     background-color: #2a5ec5;
     width: 100%;
+    box-shadow: 0px 2px 4px #a8a4a4;
 }
 .news__header #logo{
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     display: inline-block;
-    width: 20%;
-    font-size: 28px;
+    width: 50%;
+    font-size: 23px;
     padding-left: 15px;
+}
+.news__header #logo h4{
+    display: inline-block;
 }
 .news__header .fa{
     font-size: 30px;
@@ -71,16 +70,15 @@ a{
     border-bottom: 1px solid white;
     margin: 17px 0px;
     display: inline-block;
+    transition: all 130ms ease-out 20ms;
 }
 .news__header #news__links li a:hover{
     color: darkgray;
 }
 .news__header .search_bar{
-    width: 50%;
+    width: 55%;
     float: right;
     height: auto;
-    position: relative;
-    bottom: 350px;
     display: inline-block;
 }
 .search_bar form{
@@ -115,6 +113,27 @@ a{
 .body_container{
     margin-top: 40px;
     display: flex;
+    flex-wrap: wrap;
+}
+#loader-icon-sports, #loader-icon-headlines, #loader-icon-tech{
+    border: 5px solid #e7e7e7;
+    border-radius: 50%;
+    border-top: 5px solid royalblue;
+    width: 37px;
+    height: 37px;
+    margin: 30px 20px;
+    -webkit-animation: my-spin 0.53s linear infinite; 
+    animation: my-spin 0.53s linear infinite;
+}
+
+@-webkit-keyframes my-spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes my-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 .sports__news__container{
     width: 100%;
@@ -328,13 +347,17 @@ a{
 }
 .my_footer footer{
     display: inline-block;
-    width: 100%;
-    margin: 53px 0px;
+    width: 91%;
+    margin: 46px 0px;
 }
 @media only screen and (min-width: 600px){
     /*
     This is for later
     */
+    .news__header #logo{
+        width: 20%;
+        font-size: 28px;
+    }
     .news__header .fa-bars {
         display: none;
     } 
@@ -353,6 +376,10 @@ a{
         position: static;
         width: 19%;
         padding: 43px 0px;
+    }
+    #loader-icon-sports{
+        width: 37px;
+        height: 37px;
     }
     .sports__news__container{
         width: 20%;

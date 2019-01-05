@@ -9,22 +9,20 @@
 </head>
 <body>
     <div class = "main-container">
-        <div class="news__header__container">
-            <div class = "news__header">
-                <div id="logo"><h4>NewsRightNow</h4></div>
-                <a class="fa fa-bars" id="news__burger__icon"></a>
-                <a class="fa fa-close" id="news__close__icon"></a>
-                <ul id="news__links">
-		    		<li><a href ="index.html" title="index.html">Home</a></li>
-		    		<li><a href ="Nigerian_politics.html" title="">Nigerian Politics</a></li>
-                    <li><a href ="Tech.html" title="">Tech</a></li>
-                    <li><a href ="Sports.html" title="">Sports</a></li>
-                </ul>
-                <div class = "search_bar">
-                    <form>
-                        <input type="search" placeholder="Search">
-                    </form>
-                </div>
+        <div class = "news__header">
+            <div id="logo"><h4>NewsRightNow</h4></div>
+            <a class="fa fa-bars" id="news__burger__icon"></a>
+            <a class="fa fa-close" id="news__close__icon"></a>
+            <ul id="news__links">
+				<li><a href ="index.html" title="index.html">Home</a></li>
+				<li><a href ="Nigerian_politics.html" title="">Nigerian Politics</a></li>
+                <li><a href ="Tech.html" title="">Tech</a></li>
+                <li><a href ="Sports.html" title="">Sports</a></li>
+            </ul>
+            <div class ="search_bar" id="my_search_bar">
+                <form>
+                    <input type="search" placeholder="Search">
+                </form>
             </div>
         </div>
         <div id="just_in">
@@ -33,16 +31,19 @@
         <div class="body_container">
             <div class = "sports__news__container">
                 <h2>Sports News</h2>
+                <div id="loader-icon-sports"></div>
                 <div id ="sports__news">
                 </div>
             </div>
             <div class = "other__news__container_1">
                 <h2>Headlines</h2>
+                <div id="loader-icon-headlines"></div>
                 <div id="other__news__1">
                 </div>
             </div>    
             <div class = "other__news__container_2">
                 <h2>Tech News</h2>
+                <div id="loader-icon-tech"></div>
                 <div id="other__news__2">
                 </div>    
             </div>
