@@ -97,7 +97,7 @@ a{
 #just_in{
     display: inline-block;
     width: 100%;
-    height: auto;
+    height: 42px;
 }
 #just_in h5{
     background-color: red;
@@ -105,10 +105,19 @@ a{
     height: 42px;
     padding: 12px;
     color: white;
+    position: absolute;
+    z-index: 1;
     -webkit-clip-path: polygon(0 0, 100% 0, 77% 100%, 0% 100%);
     clip-path: polygon(0 0, 100% 0, 86% 100%, 0% 100%);
     width: 22%;
+    box-shadow: 0px 2px 4px #a8a4a4;
     display: inline-block;
+}
+#just_in #news_latest{
+    background-color: rgba(0, 0, 0, 0.69);
+    position: relative;
+    height: 42px;
+    width: 100%;
 }
 .body_container{
     margin-top: 40px;
