@@ -488,6 +488,22 @@ div.error{
 		width : 80%;
 	}
 }
+@media (max-height : 1300px){
+	#latest-stories h2{
+		height: 15%;
+	}
+	#latest-stories ul{
+		height: 85%;
+	}	
+    .card-wrap{
+        height: 420px;
+        max-height : 420px;
+    }
+	.card{
+		padding-bottom: 40px;
+		box-sizing: border-box;
+	}
+}
 @keyframes rotating{
 	from{
 		transform: rotate(0deg);
