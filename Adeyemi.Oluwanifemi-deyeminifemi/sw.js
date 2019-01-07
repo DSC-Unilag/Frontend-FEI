@@ -1,5 +1,5 @@
-const CURRENT_STATIC_CACHE = 'static-v6';
-const CURRENT_DYNAMIC_CACHE = 'dynamic-v9'
+const CURRENT_STATIC_CACHE = 'static-v7';
+const CURRENT_DYNAMIC_CACHE = 'dynamic-v1'
 self.addEventListener('install',(e) => {
     e.waitUntil(
         caches.open(CURRENT_STATIC_CACHE)
