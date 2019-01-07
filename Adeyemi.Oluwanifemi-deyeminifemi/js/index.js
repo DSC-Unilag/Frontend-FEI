@@ -98,7 +98,7 @@ sections.forEach((section) => {
 })  
 // Code for responsive navbar
 window.addEventListener('resize',(e) => {    
-    if(window.innerWidth > 700){
+    if(window.innerWidth > 950){
         document.querySelector('nav').classList.remove('active');
     }
 })
