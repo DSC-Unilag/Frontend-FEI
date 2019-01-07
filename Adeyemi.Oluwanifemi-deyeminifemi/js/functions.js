@@ -1,4 +1,4 @@
-const CURRENT_DYNAMIC_CACHE = 'dynamic-v9'
+const CURRENT_DYNAMIC_CACHE = 'dynamic-v1'
 
 const toggleClass = (elem,classs) => {
     if(elem.classList.contains(classs)){
