@@ -120,7 +120,7 @@ if(location.search && sections.filter(elem => location.search.includes(elem)).le
 
 // Code for responsive navbar
 window.addEventListener('resize',(e) => {    
-    if(window.innerWidth > 700){
+    if(window.innerWidth > 1000){
         document.querySelector('nav').classList.remove('active');
     }
 })
