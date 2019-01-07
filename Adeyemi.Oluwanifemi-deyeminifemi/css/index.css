@@ -106,6 +106,8 @@ form#nav-search button img{
     box-shadow: 0 0 10px grey;
     border-radius: 25px;
     transition: all 0.2s;
+    padding-bottom: 40px;
+    box-sizing: border-box;
 }
 .card:hover{
     box-shadow: 0 0 2rem #000000;
