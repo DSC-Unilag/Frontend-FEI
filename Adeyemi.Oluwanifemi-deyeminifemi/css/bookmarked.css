@@ -320,3 +320,10 @@ div.error{
 		width : 80%;
 	}
 }
+@media (max-height : 1300px){
+	.card{
+		padding-bottom: 40px;
+		box-sizing: border-box;
+		height : 420px;
+	}
+}
