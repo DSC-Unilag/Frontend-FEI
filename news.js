@@ -2,6 +2,8 @@ let hamburger_icon = document.getElementById('news__burger__icon');
 let close_button = document.getElementById('news__close__icon');
 let news_ul_links = document.getElementById('news__links');
 let sports_loader_icon = document.getElementById('loader-icon-sports');
+let headlines_loader_icon = document.getElementById('loader-icon-headlines');
+let tech_loader_icon = document.getElementById('loader-icon-tech');
 
 hamburger_icon.addEventListener('click', function () {
     news_ul_links.style.display = 'inline-block';
@@ -15,6 +17,11 @@ close_button.addEventListener('click', function(){
     close_button.style.display = 'none';
 })
 
+let load_icon = function(){
+    sports_loader_icon.style.visibility = "hidden";
+    headlines_loader_icon.style.visibility = "hidden";
+    tech_loader_icon.style.visibility = "hidden";
+}
 // function setUp(){
 //     nocanvas(); 
 //     loadJSON('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec', getData, 'jsonp');
@@ -45,14 +52,13 @@ function getText_tech(){
 
     xhr.onload = function(){
         console.log('READYSTATE: ', xhr.readyState);
-        sports_loader_icon.addEventListener('progress', function(){
-            sports_loader_icon.style.display = "none";
-        });
-        if(this.status == 200){
+
+        if(this.readyState == 4 && this.status == 200){
             // console.log(this.responseText);
             let name = JSON.parse(this.responseText);
             /*This tranforms the JSON data into a much readable form e.g 
             name - sunkanmi*/
+            load_icon();
             let output = "";
             for(let i=0; i < name.totalResults - 1; i++){
             output += 
@@ -61,16 +67,10 @@ function getText_tech(){
             '<a href="' + name.articles[i].url + '">' +
             '<div class="mask">' +
             '<img src="' + name.articles[i].urlToImage +'" />' +
-            '<p>See more</p>' +
-            '<h3>Author ' + name.articles[i].author + '</h3>' +
             '</div>' +
             '</a>' +
-            '<ul>' +
-            '<li>Author ' + name.articles[i].author + '</li>' +
-            '<li>' + name.articles[i].title + '</li>' +
-            '<li>' + name.articles[i].description + '</li>' +
-            '<li>' + name.articles[i].publishedAt + '</li>' +
-            '</ul>' +
+            '<h3>Author ' + name.articles[i].author + '</>' +
+            '<p>' + name.articles[i].publishedAt + '</p>' +
             '</div>' +
             '</div>';
             }

@@ -114,7 +114,7 @@ a{
     display: inline-block;
 }
 #just_in #news_latest{
-    background-color: rgba(0, 0, 0, 0.69);
+    background-color: rgba(36, 33, 33, 0.69);
     position: relative;
     height: 42px;
     width: 100%;
@@ -131,18 +131,20 @@ a{
     width: 37px;
     height: 37px;
     margin: 30px 20px;
-    -webkit-animation: my-spin 0.53s linear infinite; 
+    -webkit-animation: my-spin 0.53s linear 36s;
     animation: my-spin 0.53s linear infinite;
 }
 
 @-webkit-keyframes my-spin {
     0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
+    100% { -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes my-spin {
     0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    100% { transform: rotate(360deg); 
+        display: none;}
 }
 .sports__news__container{
     width: 100%;
@@ -328,20 +330,22 @@ a{
     color: white;
     background-color: rgba(20, 20, 20, 0.6);
 }
+    /* 
 .tech_news .tech__news__api li:nth-child(n + 0){
     display: none;
 }
 .tech_news .tech__news__api li:nth-child(2){
     display: inline-block;
 }
-.tech_news .tech__news__api li:nth-child(2)::before{
+.tech_news .tech__news__api :nth-child(2)::before{
     content: "";
     position: relative;
     bottom: 10px;
     border: 2.2pt solid rgb(255, 0, 0);
     width: fit-content;
     display: block;
-}
+} */
+
 .tech_news .tech__news__api img:hover{
     box-shadow: 0px 3px 5px rgba(10, 10, 10, 0.7);
 }
