@@ -479,8 +479,8 @@ div.error{
 }
 @media (max-height : 1300px){
     .card-wrap{
-        height: 380px;
-        max-height : 380px;
+        height: 420px;
+        max-height : 420px;
     }
 }
 @keyframes rotating{
