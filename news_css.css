@@ -95,7 +95,7 @@ a{
     outline: none;
 }
 #just_in{
-    visibility: hidden;
+    display: inline-block;
     width: 100%;
     height: 42px;
 }
