@@ -182,7 +182,7 @@ function makeSearchRequest(e) {
     data.append('apikey', apikeys);
     data.toString();
 
-    let searchUrl = 'https://newsapi.org/v2/top-headlines?' + data;
+    let searchUrl = 'https://newsapi.org/v2/everything?' + data;
 
     let init = {
         method: 'GET',
