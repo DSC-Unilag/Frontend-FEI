@@ -27,6 +27,11 @@ let displayTech = document.querySelector('.displayTech');
 let displaySport = document.querySelector('.displaySport');
 
 let form = document.getElementById("form");
+let searchIcon = document.querySelector('.search');
+let mobileHeader = document.querySelector('.mobile-header');
+let form1 = document.querySelector('.form1');
+let cancelIcon = document.querySelector('.cancel-icon');
+let closeLikedNews = document.querySelector('.close-liked-news');
 
 let body = document.querySelector('body');
 let main = document.querySelector('main');
@@ -207,7 +212,7 @@ function loadPage() {
 
 //Collapsible mobile navbar
 let openIcon = document.querySelector('.fa-bars');
-let closeIcon = document.querySelector('.fa-times');
+let closeIcon = document.querySelector('.close-icon');
 openIcon.addEventListener('click', openNavbar, false);
 closeIcon.addEventListener('click', closeNavbar, false);
 function openNavbar() {
@@ -281,6 +286,9 @@ function getBookmarked() {
 let likedNews = document.querySelector('.liked-news');
 likedNews.addEventListener('click', activateClick, false);
 function activateClick() {
+	openIcon.style.display = 'none';
+	likedNews.style.display = 'none';
+	closeLikedNews.style.display = 'inline-flex';
     removePreviousSearchResult();
     for (let i = 0; i < localStorage.length; i++) {
         if(localStorage.key(i) != 'topNews') {
@@ -326,6 +334,19 @@ function createBookmarkPage(locallyStoredBookmarks) {
     }
     return;
 }
+
+//close bookmark page
+closeLikedNews.addEventListener('click', closeBookmark, false); 
+function closeBookmark() {
+		removePreviousSearchResult();
+		closeLikedNews.style.display= 'none';
+		openIcon.style.display = 'inline-flex';
+		likedNews.style.display = 'inline-flex';
+		newsContainer.style.display = 'grid';
+		displayTech.style.display = 'grid';
+		displaySport.style.display = 'grid';
+}
+
 //Delete bookmarks
 document.addEventListener('click', (event) => {
     if(event.target.matches('.span>.fa-times')) {
@@ -356,7 +377,7 @@ function deleteBookmarked(searchResult) {
 }
 
 //properly displaying navbar when width changes
-window.addEventListener('resize',navDisplay);
+/*window.addEventListener('resize',navDisplay);
 function navDisplay() {
     if(window.screen.availWidth >= 800 ) {
         return nav.style.display = "flex";
@@ -364,4 +385,18 @@ function navDisplay() {
         openIcon.style.display = 'inline-flex';
         return nav.style.display = 'none';    
     }
+}*/
+
+//Toggling form in mobile view
+searchIcon.addEventListener('click', openSearch, false);
+function openSearch() {
+	form1.style.display = 'flex';
+	mobileHeader.style.display = 'none';
+	cancelIcon.style.display = 'flex';
+}
+cancelIcon.addEventListener('click', closeSearch, false);
+function closeSearch() {	
+	form1.style.display = 'none';
+	mobileHeader.style.display = 'flex';
+	cancelIcon.style.display = 'none';
 }

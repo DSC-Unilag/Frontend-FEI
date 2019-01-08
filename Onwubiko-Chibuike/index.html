@@ -11,16 +11,30 @@
 </head>
 <body>
     <header id='header'>
+		<form action="" method="post" id='form' class="all__font-size form1">
+			<input type="search" placeholder= "search" name="q" id="search">
+			<span class='cancel-icon'>
+				<i class ="fas fa-times">
+				</i>
+			</span>
+			<input type="submit" value="Go">
+		</form>
         <div class="mobile-header">
             <h1 class="all__font-size">
                 <a href="index.html"> <!--class="all__font-size"--> DSC NEWS </a> 
             </h1>
             
             <span class="hamburger-icon">
+					<i class="fas fa-thumbs-up liked-news">
+					</i>
+					<i class="fas fa-times close-liked-news">    
+                    </i>
+					<i class="fas fa-search search">
+					</i>
                     <i class="fas fa-bars">
                     </i>   
-                    <i class="fas fa-times">    
-                    </i>         
+                    <i class="fas fa-times close-icon">    
+                    </i>
             </span>
         </div>
         <nav>
@@ -41,7 +55,7 @@
                     </a>
                 </li>
                 <li>
-                    <form action="" method="post" id='form' class="all__font-size">
+                    <form action="" method="post" id='form' class="all__font-size form2">
                         <input type="search" placeholder= "search" name="q" id="search">
                         <input type="submit" value="Go">
                     </form>
