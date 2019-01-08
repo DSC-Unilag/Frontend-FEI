@@ -95,29 +95,59 @@ a{
     outline: none;
 }
 #just_in{
-    display: inline-block;
+    visibility: hidden;
     width: 100%;
     height: 42px;
 }
-#just_in h5{
+#just_in #just_in_header{
     background-color: red;
     margin: auto;
     height: 42px;
-    padding: 12px;
-    color: white;
     position: absolute;
     z-index: 1;
     -webkit-clip-path: polygon(0 0, 100% 0, 77% 100%, 0% 100%);
     clip-path: polygon(0 0, 100% 0, 86% 100%, 0% 100%);
     width: 22%;
     box-shadow: 0px 2px 4px #a8a4a4;
-    display: inline-block;
+    padding: 12px;
+    animation: right_move_1 1.2s cubic-bezier(0.01, -0.03, 0.19, 0.88);
+}
+#just_in h5{
+    color: white;
+    display: inline;
+    position: relative;
+    animation: right_move_2 800ms cubic-bezier(0.01, -0.03, 0.19, 0.88);
 }
 #just_in #news_latest{
     background-color: rgba(36, 33, 33, 0.69);
     position: relative;
     height: 42px;
     width: 100%;
+    animation: fade_in 1.25s ease-in;
+}
+@keyframes right_move_1{
+    0%{
+        width: 4%;
+    }
+    100%{
+        width: 22%;
+    }
+}
+@keyframes right_move_2{
+    0%{
+        right: 35px;
+    }
+    100%{
+        right: 0px;
+    }
+}
+@keyframes fade_in{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity:1;
+    }
 }
 .body_container{
     margin-top: 40px;

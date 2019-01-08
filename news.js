@@ -42,14 +42,6 @@ function getText_tech(){
     
     //OPTIONAL - used for loaders (yes, loaders are optional)
 
-    xhr.onprogress = function(){
-        sports_loader_icon.addEventListener('progress', function(){
-            sports_loader_icon.style.display = "inline-block";
-        });
-    };
-
-    //.onload is not going to run only if it's ready that is, it is on 4
-
     xhr.onload = function(){
         console.log('READYSTATE: ', xhr.readyState);
 
