@@ -133,8 +133,8 @@
 	.cancel-icon {
 		display: none;
 		border: none;
-		border-bottom: 0.1rem solid black;
 		font-size: 1rem;
+		padding-left: 1rem;
 	}
 	.close-liked-news {
 		display: none;

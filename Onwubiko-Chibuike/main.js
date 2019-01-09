@@ -26,8 +26,10 @@ let searchHeader = document.createElement('h3');
 let displayTech = document.querySelector('.displayTech');
 let displaySport = document.querySelector('.displaySport');
 
-let form = document.getElementById("form");
+let form2 = document.querySelector(".form2");
 let searchIcon = document.querySelector('.search');
+let search = document.querySelector("input[type='search']");
+let search2 = document.querySelector("#search2");
 let mobileHeader = document.querySelector('.mobile-header');
 let form1 = document.querySelector('.form1');
 let cancelIcon = document.querySelector('.cancel-icon');
@@ -109,8 +111,15 @@ function displaySearchOutput(output) {
     } else {
         wordings = "0 Search result for";
     }
-    searchHeader.textContent = wordings + search.value;
-    main.appendChild(searchHeader);
+	
+	if(window.screen.availWidth >= 800 ) { 
+		searchHeader.textContent = wordings + search2.value;
+    } else {
+		searchHeader.textContent = wordings + search.value;
+	}
+	
+		
+	main.appendChild(searchHeader);
     for (let i = 0; i < output.articles.length; i++) {
         let searchResult = document.createElement('div');
         let a = document.createElement('a');
@@ -154,7 +163,13 @@ window.addEventListener('load', getFromLocalStorage('techNews', displayTechnolog
 //Making a search request for news
 window.addEventListener('DOMContentLoaded', getSearch);
 function getSearch() {
-    let getSearchResult = document.getElementById('form');
+	let getSearchResult;
+	if(window.screen.availWidth >= 800 ) {
+		getSearchResult = (form2);
+	} else {
+		getSearchResult = (form1);
+	}
+	
     getSearchResult.addEventListener('submit', makeSearchRequest, false);
     return;
 }
@@ -176,9 +191,14 @@ function makeSearchRequest(e) {
     newsContainer.style.display = 'none';
     displayTech.style.display = 'none';
     displaySport.style.display = 'none';
-
-    let formData = new FormData(document.getElementById('form')); 
-
+	
+	let formData;
+	if(window.screen.availWidth >= 800 ) {
+		formData = new FormData(form2); 
+	} else {
+		formData = new FormData(form1);
+	}
+	
     var data = new URLSearchParams();
     for (let pair of formData) {
         data.append(pair[0],pair[1]);
@@ -187,7 +207,7 @@ function makeSearchRequest(e) {
     data.append('apikey', apikeys);
     data.toString();
 
-    let searchUrl = 'https://newsapi.org/v2/everything?' + data;
+    let searchUrl = `https://newsapi.org/v2/everything?${data}`;
 
     let init = {
         method: 'GET',
@@ -376,16 +396,6 @@ function deleteBookmarked(searchResult) {
     return;
 }
 
-//properly displaying navbar when width changes
-/*window.addEventListener('resize',navDisplay);
-function navDisplay() {
-    if(window.screen.availWidth >= 800 ) {
-        return nav.style.display = "flex";
-    } else {
-        openIcon.style.display = 'inline-flex';
-        return nav.style.display = 'none';    
-    }
-}*/
 
 //Toggling form in mobile view
 searchIcon.addEventListener('click', openSearch, false);
