@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../css/search.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Search</title>
+        <link rel="icon" href="../favicon.ico">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    </head>
+    <body>
+        <nav>
+            <ul id="largenav">
+                <li class="nav-brand"><a href="..\index.html">The Moon</a></li>
+                <li class="nav-link"><a href="category.html?s=business">Business</a></li>
+                <li class="nav-link"><a href="category.html?s=sports">Sports</a></li>
+                <li class="nav-link"><a href="category.html?s=technology">Tech</a></li>
+                <li class="nav-link"><a href="category.html?s=entertainment">Entertainment</a></li>
+                <li class="nav-link"><a href="category.html?s=science">Science</a></li>
+                <li class="nav-link"><a href="bookmarked.html">Bookmarked</a></li>
+            </ul>
+            <button id="navsmallbtn"><img src="../images/svg/navsmall.svg"></button>
+            <div id="navsmall">
+                <ul>
+                    <li class="nav-link"><a href="category.html?s=business">Business</a></li>
+                    <li class="nav-link"><a href="category.html?s=entertainment">Entertainment</a></li>
+                    <li class="nav-link"><a href="category.html?s=science">Science</a></li>
+                    <li class="nav-link"><a href="category.html?s=sports">Sports</a></li>
+                    <li class="nav-link"><a href="category.html?s=technology">Technology</a></li>
+                    <li class="nav-link"><a href="bookmarked.html">Bookmarked</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <form id="search-lg">
+            <input type="text" placeholder="Search..." name="search">
+            <button type="button">Search<img src="../images/svg/search.svg"></button>
+        </form>
+        <div id="filter">
+            <label for="sortBy">
+                Sort By
+                <select name="sortBy" id="sortBy">'
+                    <option value="popularity">Popularity of Article</option>
+                    <option value="relevancy">Relevancy of Article</option>
+                    <option value="publishedAt" selected>Date Published</option>
+                </select>
+            </label>
+        </div>
+        <div id="loader"></div>
+        <ul id="results"></ul>
+        
+        <div id="errors">
+
+        </div>
+        <form id = "links">
+            <input type="hidden" name="search">
+            <button id = "prev-page" name="page">&#8249;</button>
+            <button id = "page-1" value="1" name="page">1</button>
+            <button id = "page-2" value="2" name="page">2</button>
+            <button id = "page-3" value="3" name="page">3</button>
+            <button id = "page-4" value="4" name="page">4</button>
+            <button id = "page-5" value="5" name="page">5</button>
+            <button id = "page-6" value="6" name="page">6</button>
+            <button id = "page-7" value="7" name="page">7</button>
+            <button id = "page-8" value="8" name="page">8</button>
+            <button id = "page-9" value="9" name="page">9</button>
+            <button id = "page-10" value="10" name="page">10</button>
+            <button id = "next-page" name="page">&#8250;</button>
+        </form>
+        <div id="copyright">
+            <p>Copyright 2018 &copy; Nifemi Adeyemi News Web App</p>
+        </div>
+        <script src="../js/functions.js"></script>
+        <script src="../js/search.js"></script>
+    </body>
+</html>
