@@ -116,7 +116,8 @@ a{
     color: white;
     display: inline;
     position: relative;
-    animation: right_move_2 800ms cubic-bezier(0.01, -0.03, 0.19, 0.88);
+    opacity: 0;
+    animation: right_move_2 800ms 210ms cubic-bezier(0.01, -0.03, 0.19, 0.88) forwards;
 }
 #just_in #news_latest{
     background-color: rgba(36, 33, 33, 0.69);
@@ -127,7 +128,7 @@ a{
 }
 @keyframes right_move_1{
     0%{
-        width: 4%;
+        width:  4%;
     }
     100%{
         width: 22%;
@@ -135,10 +136,14 @@ a{
 }
 @keyframes right_move_2{
     0%{
-        right: 35px;
+        right: 45px;
+        left: 0px;
+        opacity: 0;
     }
     100%{
         right: 0px;
+        opacity: 1;
+        left: 50px;
     }
 }
 @keyframes fade_in{
