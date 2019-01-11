@@ -1,3 +1,12 @@
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('sw_bundle.js')
+      .then(reg => console.log("Service Worker: Registered."))
+      .catch(err => console.log(`Service Worker: ${err} Not registered.`))
+  })
+};
+
 let hamburger_icon = document.getElementById('news__burger__icon');
 let close_button = document.getElementById('news__close__icon');
 let news_ul_links = document.getElementById('news__links');
@@ -22,15 +31,6 @@ let load_icon = function () {
   headlines_loader_icon.style.visibility = "hidden";
   tech_loader_icon.style.visibility = "hidden";
 }
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('../sw_bundle.js')
-      .then(reg => console.log("Service Worker: Registered."))
-      .catch(err => console.log(`Service Worker: ${err} Not registered.`))
-  })
-};
 
 // function setUp(){
 //     nocanvas(); 
