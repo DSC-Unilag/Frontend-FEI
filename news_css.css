@@ -463,6 +463,7 @@ a{
     .news__header .search_bar{
         position: static;
         width: 19%;
+        padding: 36px 0px;
     }
     #loader-icon-sports{
         width: 37px;
