@@ -18,73 +18,54 @@ function fetchAndRenderNews(url, index) {
       res.articles.slice(0, 4).forEach(art => {
         document.getElementsByClassName("wrapper")[index].innerHTML += `
         <div class="grid-item sm fav">
-        <div class="img-wrapper" style="background-image:url(${
+        <div class="img-wrapper image" style="background-image:url(${
           art.urlToImage
         });">
         <div class="liked-container"><i class="fas fa-heart liked" id="heart"></i></div>
         </div>
         <div class="hero-txt">
-        <h2 class="grid-txt">${art.title}</h2>
-        <p class="grid-txt">${art.description}</p>
+        <h2 class="grid-txt title">${art.title}</h2>
+        <p class="grid-txt desc">${art.description}</p>
         <div><a href="${
           art.url
-        }" class="btn-sec">Read More &rightarrow;</a></div>
+        }" class="btn-sec url">Read More &rightarrow;</a></div>
         </div>
         </div>
         `;
       })
     );
 }
-// function storeNewsToLocalStorage(url) {
-//   fetch(url)
-//     .then(res => res.json())
-//     .then(res =>
-//       myStorage.setItem('art', JSON.stringify(res))
-//     )
-// }
-
-
-
-
-
 
 fetchAndRenderNews(bbc, 0);
 fetchAndRenderNews(techcrunch, 1);
 fetchAndRenderNews(mtv, 2);
 fetchAndRenderNews(espn, 3);
 
-// storeNewsToLocalStorage(bbc);
-// storeNewsToLocalStorage(techcrunch);
-// storeNewsToLocalStorage(mtv);
-// storeNewsToLocalStorage(espn);
+
+let storage = {};
 
 setTimeout(() => {
-  document.querySelectorAll("#heart").forEach((el, i, v) => {
+  document.querySelectorAll("#heart").forEach((el, i) => {
     el.addEventListener("click", () => {
       el.classList.toggle("red");
-      if(el.classList.contains('red')) {
-        myStorage.setItem(i, JSON.stringify(storage));
+      if (el.classList.contains("red")) {
+       let v = {
+          desc: document.getElementsByClassName("desc")[i].innerHTML,
+          image: document.getElementsByClassName("image")[i].style.backgroundImage.slice(4, -1).replace(/["']/g, ""),
+          title: document.getElementsByClassName("title")[i].innerHTML,
+          url: document.getElementsByClassName("url")[i].href
+        };
+        storage[i] = v;
+        console.log(storage);
       } else {
-        myStorage.removeItem(i)
-      }
+        myStorage.removeItem(i);
+        delete storage[i];
+        console.log(storage);
+      };
+      myStorage.setItem(i, JSON.stringify(storage));
     });
   });
 }, 4000);
 
 
-let key = 'art';
-let value = 'value';
 
-
-
-let storage = [
-  {
-    value: ''
-  }
-];
-
-for (let i = 0; i < storage.length; i++){
-  let key = storage[i].key;
-  let value = storage[i].value;
-  console.log(key, value);
-}

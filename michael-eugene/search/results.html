@@ -11,8 +11,6 @@
     <script src="../assets/js/searchapi.js"></script>
   </head>
   <body onload="loaderAnimation()">
-    <div id="loader-container"><div id="loader"></div></div>
-    <div class="animate-bottom" id="myDiv">
       <header class="scroll-shadow fad">
         <div class="top-nav">
           <i class="fas fa-bars top-nav-item menu-icon"></i>
@@ -24,7 +22,7 @@
           <a href="../login/login.html" class="und">Log in</a>
         </div>
       </header>
-
+      
       <div class="wrapper-container-all">
         <nav class="nav-container">
           <div class="nav-menu">
@@ -34,20 +32,20 @@
                 name="search"
                 id="search"
                 placeholder="Search For An Article"
-              />
+                />
             </form>
             <hr />
             <ul class="nav-section">
               <li>
                 <a href="../index.html" class="nav-link" class="nav-link"
                   >Home</a
-                >
+                  >
               </li>
               <li>
                 <a href="../localstorage/favorites.html" class="nav-link"
                   >Favorites</a
-                >
-              </li>
+                  >
+                </li>
             </ul>
             <hr />
             <ul class="nav-section">
@@ -56,12 +54,12 @@
               </li>
               <li>
                 <a href="../index.html#technologyNews" class="nav-link"
-                  >Technology</a
+                >Technology</a
                 >
               </li>
               <li>
                 <a href="../index.html#entertainmentNews" class="nav-link"
-                  >Entertainment</a
+                >Entertainment</a
                 >
               </li>
               <li>
@@ -79,10 +77,11 @@
             </ul>
           </div>
         </nav>
-
+        
         <div class="total-container">
-          <div class="marquee"></div>
-
+          <div id="loader-container"><div id="loader"></div></div>
+          <div class="animate-bottom" id="myDiv">
+          
           <!-- Search Results -->
           <div class="top-stories container">
             <h1 class="top-stories heading">Latest Results</h1>

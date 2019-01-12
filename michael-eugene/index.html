@@ -11,16 +11,14 @@
     <script src="assets/js/newsapi.js"></script>
   </head>
   <body onload="loaderAnimation()">
-    <div id="loader-container"><div id="loader"></div></div>
-    <div class="animate-bottom" id="myDiv">
-      <header class="scroll-shadow fad">
-        <div class="top-nav">
-          <i class="fas fa-bars top-nav-item menu-icon"></i>
-          <p class="menu top-nav-item men-icon">Menu</p>
-          <i class="fas fa-search top-nav-item"></i>
-        </div>
-        <div><a href="../index.html" class="web-logo">News Illustrated</a></div>
-        <div id="central-500px">
+    <header class="scroll-shadow fad">
+      <div class="top-nav">
+        <i class="fas fa-bars top-nav-item menu-icon"></i>
+        <p class="menu top-nav-item men-icon">Menu</p>
+        <i class="fas fa-search top-nav-item"></i>
+      </div>
+      <div><a href="../index.html" class="web-logo">News Illustrated</a></div>
+      <div id="central-500px">
           <a href="login/login.html" class="und">Log in</a>
         </div>
       </header>
@@ -30,20 +28,20 @@
           <div class="nav-menu">
             <form action="search/results.html" class="nav-section">
               <input
-                type="text"
+              type="text"
                 name="search"
                 id="search"
                 placeholder="Search For An Article"
-              />
-            </form>
-            <hr />
+                />
+              </form>
+              <hr />
             <ul class="nav-section">
               <li><a href="index.html" class="nav-link">Home</a></li>
               <li>
                 <a href="localstorage/favorites.html" class="nav-link"
                   >Favorites</a
-                >
-              </li>
+                  >
+                </li>
             </ul>
             <hr />
             <ul class="nav-section">
@@ -65,9 +63,11 @@
             </ul>
           </div>
         </nav>
-
+        
         <div class="total-container">
-
+          <div id="loader-container"><div id="loader"></div></div>
+          <div class="animate-bottom" id="myDiv">
+          
           <!-- World News -->
           <div class="top-stories container" id="worldNews">
             <h1 class="top-stories heading">World News</h1>
