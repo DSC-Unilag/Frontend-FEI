@@ -13,17 +13,26 @@ let news_ul_links = document.getElementById('news__links');
 let sports_loader_icon = document.getElementById('loader-icon-sports');
 let headlines_loader_icon = document.getElementById('loader-icon-headlines');
 let tech_loader_icon = document.getElementById('loader-icon-tech');
+let my_logo = document.getElementById('logo');
+let search_bar = document.getElementById('my_search_bar');
+let news_header_animation = document.getElementById('news__header__animation');
 
 hamburger_icon.addEventListener('click', function () {
   news_ul_links.style.display = 'inline-block';
   hamburger_icon.style.display = 'none';
   close_button.style.display = 'inline-block';
+  my_logo.style.display = 'inline-block';
+  news_header_animation.style.animation = 'expand 0.9s ease-out';
+  search_bar.style.display = 'none';
 });
 
 close_button.addEventListener('click', function () {
   news_ul_links.style.display = 'none';
   hamburger_icon.style.display = 'inline-block';
   close_button.style.display = 'none';
+  my_logo.style.display = 'none';
+  news_header_animation.style.animation = 'close 0.9s ease-in';
+  search_bar.style.display = 'inline-block';
 })
 
 let load_icon = function () {

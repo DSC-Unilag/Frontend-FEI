@@ -24,7 +24,8 @@ a{
 }
 .news__header{
     margin: 0px;
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
     background-color: #2a5ec5;
     width: 100%;
     box-shadow: 0px 2px 4px #a8a4a4;
@@ -32,7 +33,7 @@ a{
 .news__header #logo{
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-    display: inline-block;
+    display: none;
     width: 50%;
     font-size: 23px;
     padding-left: 15px;
@@ -42,7 +43,7 @@ a{
 }
 .news__header .fa{
     font-size: 30px;
-    padding: 8px;
+    padding: 30px 10px;
 }
 .news__header .fa-bars{
     cursor: pointer;
@@ -54,10 +55,28 @@ a{
     display: none;
     cursor: pointer;
     color: red;
+    padding: 25px 5px 0px 10px;
 }
 .news__header #news__links{
     display: none;
     text-decoration: none;
+    padding-left: 60px;
+}
+@keyframes expand{
+    0%{height: 20px;}
+
+    100%{
+        height: 150px;
+    }
+}
+@keyframes close{
+    0%{
+        height: 150px;
+    }
+    100%{
+        height: 20px;
+    }
+
 }
 .news__header #news__links li{
     display: inline-block;
@@ -76,10 +95,10 @@ a{
     color: darkgray;
 }
 .news__header .search_bar{
-    width: 55%;
-    float: right;
+    width: 60%;
     height: auto;
     display: inline-block;
+    padding: 30px 85px;
 }
 .search_bar form{
     display: inline-block;
@@ -107,10 +126,10 @@ a{
     z-index: 1;
     -webkit-clip-path: polygon(0 0, 100% 0, 77% 100%, 0% 100%);
     clip-path: polygon(0 0, 100% 0, 86% 100%, 0% 100%);
-    width: 22%;
+    width: 35%;
     box-shadow: 0px 2px 4px #a8a4a4;
     padding: 12px;
-    animation: right_move_1 1.2s cubic-bezier(0.01, -0.03, 0.19, 0.88);
+    animation: right_move_1 1.2s cubic-bezier(0.01, -0.03, 0.19, 0.88) forwards;
 }
 #just_in h5{
     color: white;
@@ -131,19 +150,19 @@ a{
         width:  4%;
     }
     100%{
-        width: 22%;
+        width: 35%;
     }
 }
 @keyframes right_move_2{
     0%{
-        right: 45px;
+        right: 10px;
         left: 0px;
         opacity: 0;
     }
     100%{
         right: 0px;
         opacity: 1;
-        left: 50px;
+        left: 15px;
     }
 }
 @keyframes fade_in{
@@ -166,7 +185,7 @@ a{
     width: 37px;
     height: 37px;
     margin: 30px 20px;
-    -webkit-animation: my-spin 0.53s linear 36s;
+    -webkit-animation: my-spin 0.53s linear infinite;
     animation: my-spin 0.53s linear infinite;
 }
 
@@ -178,8 +197,7 @@ a{
 
 @keyframes my-spin {
     0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); 
-        display: none;}
+    100% { transform: rotate(360deg);}
 }
 .sports__news__container{
     width: 100%;
@@ -405,25 +423,46 @@ a{
     .news__header #logo{
         width: 20%;
         font-size: 28px;
+        display: none;
     }
     .news__header .fa-bars {
-        display: none;
+        display: inline-block;
     } 
     .news__header #news__links{
-        display: inline-block;
+        display: none;
         width: 60%;
         text-align: center;
         padding: 0;
+        margin: auto;
     } 
+    @keyframes right_move_1{
+        0%{
+            width:  4%;
+        }
+        100%{
+            width: 22%;
+        }
+    }
+    @keyframes right_move_2{
+        0%{
+            right: 45px;
+            left: 0px;
+            opacity: 0;
+        }
+        100%{
+            right: 0px;
+            opacity: 1;
+            left: 50px;
+        }
+    }
     .news__header #news__links li{
-        width: auto;
+        width: fit-content;
         margin: 0px 13px;
         font-size: 17px;
     }
     .news__header .search_bar{
         position: static;
         width: 19%;
-        padding: 43px 0px;
     }
     #loader-icon-sports{
         width: 37px;
@@ -442,4 +481,15 @@ a{
         margin-left: 15px;
         display: inline-block;
     }  
+}
+@media only screen and (min-width: 992px){
+    .news__header #logo{
+        display: inline-block;
+    }
+    .news__header .fa-bars {
+        display: none;
+    } 
+    .news__header #news__links{
+        display: inline-block;
+    }
 }
