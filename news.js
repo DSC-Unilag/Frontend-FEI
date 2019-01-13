@@ -145,7 +145,6 @@ function getText_main() {
           '</a>' +
           '<h3>' + news.articles[i].title + '</h3>' +
           '<ul>' +
-          '<li>' + news.articles[i].title + '</li>' +
           '<li>' + news.articles[i].description + '</li>' +
           '<li>' + news.articles[i].publishedAt + '</li>' +
           '<hr>' +
