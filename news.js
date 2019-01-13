@@ -16,13 +16,15 @@ let tech_loader_icon = document.getElementById('loader-icon-tech');
 let my_logo = document.getElementById('logo');
 let search_bar = document.getElementById('my_search_bar');
 let news_header_animation = document.getElementById('news__header__animation');
+let latest_news_text = document.getElementById('news_latest_text');
+let justIn = document.getElementById('just_in');
 
 hamburger_icon.addEventListener('click', function () {
   news_ul_links.style.display = 'inline-block';
   hamburger_icon.style.display = 'none';
   close_button.style.display = 'inline-block';
   my_logo.style.display = 'inline-block';
-  news_header_animation.style.animation = 'expand 0.9s ease-out';
+  news_header_animation.style.animation = 'expand 0.8s ease-out forwards';
   search_bar.style.display = 'none';
 });
 
@@ -31,7 +33,7 @@ close_button.addEventListener('click', function () {
   hamburger_icon.style.display = 'inline-block';
   close_button.style.display = 'none';
   my_logo.style.display = 'none';
-  news_header_animation.style.animation = 'close 0.9s ease-in';
+  news_header_animation.style.animation = 'close 0.8s ease-out';
   search_bar.style.display = 'inline-block';
 })
 
@@ -70,6 +72,8 @@ function getText_tech() {
       /*This tranforms the JSON data into a much readable form e.g 
       name - sunkanmi*/
       load_icon();
+      setTimeout( function(){
+        justIn.style.display = 'inline-block'}, 1600);
       let output = "";
       for (let i = 0; i < name.totalResults - 1; i++) {
         output +=
@@ -201,3 +205,19 @@ function getText_sports() {
 }
 
 getText_sports();
+
+(function getJustIn(){
+  fetch('https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec')
+  .then((res) => res.json())
+  .then((data) => {
+    let output = '';
+    for(let i = 0; i < data.totalResults - 6; i++){
+      output+= `
+      <h3>${data.articles[i].title} - ${data.articles[i].author} </h3>
+      `
+    }
+    latest_news_text.innerHTML = output;
+  
+    latest_news_text.style.animation = 'left_move 40s 700ms linear forwards infinite';
+  })
+})();
