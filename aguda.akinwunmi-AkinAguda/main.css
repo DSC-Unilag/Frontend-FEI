@@ -1,5 +1,5 @@
 body, html {
-  margin: 0px 5px;
+  margin: 0px 0px;
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
@@ -70,7 +70,7 @@ nav {
   transition: margin-top 0.5s, background-color 0.5s;
   z-index: 150;
   height: 80px;
-  width: 94.5%;
+  width: 100vw;
 }
 
 .topAnim {
@@ -114,8 +114,8 @@ nav h1 {
 }
 
 .change .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-  transform: rotate(-45deg) translate(-9px, 6px);
+  -webkit-transform: rotate(-45deg) translate(-9px, 5px);
+  transform: rotate(-45deg) translate(-9px, 5px);
 }
 
 .change .bar2 {
@@ -123,8 +123,8 @@ nav h1 {
 }
 
 .change .bar3 {
-  -webkit-transform: rotate(45deg) translate(-8px, -8px);
-  transform: rotate(45deg) translate(-8px, -8px);
+  -webkit-transform: rotate(45deg) translate(-8px, -4px);
+  transform: rotate(45deg) translate(-8px, -4px);
 }
 
 #line {
