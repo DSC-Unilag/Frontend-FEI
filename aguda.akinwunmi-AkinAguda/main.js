@@ -137,7 +137,7 @@ var getNews = function(id, section, number, random, tileOrBlock, maxWidth){
 }
 var techCrunch = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9" ;
 var topUs = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=78c7a959be2d49cb8b88e9a2895ed5c9";
-var news = new getNews("req", techCrunch, 5, false, "block", 400);
+var news = new getNews("req", techCrunch, 5, true, "block", 400);
 var tiledNews = new getNews("tiles", techCrunch, 4, false, "tile", 400);
 var tiledTopNews = new getNews("top-stories", topUs, 5, false, "tile", 400);
 tiledNews.fetchApi();
