@@ -363,69 +363,56 @@ a{
 }
 .tech_news{
     width: 100%;
-    margin-bottom: 33px;
+    margin-bottom: 4px;
+    min-height: 322px;
 }
 .tech_news .tech__news__api{
     width: 100%;
-    height: 190px;
+    min-height: 220px;
     overflow: hidden;
-}
-.tech_news .tech__news__api .mask{
-    display: inline-block;
-    height: auto;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    transition: all 300ms ease-in-out 120ms;
-}
-.tech_news .tech__news__api .mask:hover{
-    background-color: rgba(20, 20, 20, 0.6);
-}
-.tech_news .tech__news__api .mask p{
-    color: white;
-    display: inline-block;
 } 
 .tech_news .tech__news__api img{
     width: 100%;
     position: relative;
     height: auto;
-    z-index: 1;
     margin: 5px 0px;
     display: inline-block;
     background-color: rgba(20, 20, 20, 0.6);
+    box-shadow: 0px 3px 10px #615c5c;
 }
-.tech_news .tech__news__api .mask h3{
-    position: relative;
-    z-index: 1;
-    list-style: none;
-    display: inline-block;
-    bottom: 159px;
-    min-height: 80px;
-    text-align: left;
-    padding: 10px 11px;
-    width: 100%;
-    color: white;
-    background-color: rgba(20, 20, 20, 0.6);
-}
-    /* 
-.tech_news .tech__news__api li:nth-child(n + 0){
-    display: none;
-}
-.tech_news .tech__news__api li:nth-child(2){
-    display: inline-block;
-}
-.tech_news .tech__news__api :nth-child(2)::before{
-    content: "";
-    position: relative;
-    bottom: 10px;
-    border: 2.2pt solid rgb(255, 0, 0);
-    width: fit-content;
-    display: block;
-} */
-
 .tech_news .tech__news__api img:hover{
     box-shadow: 0px 3px 5px rgba(10, 10, 10, 0.7);
+}
+
+.tech_news .tech__news__api h3{
+    color: white;
+    display: inline-block;
+    position: relative;
+    bottom: 119px;
+    padding: 24px 10px;
+    width: 100%;
+    min-height: 110px;
+    font-size: 16px;
+    background-color: rgba(20, 20, 20, 0.6);
+    margin: 0;
+}
+
+.tech_news .tech__news__api h3::before{
+    content: "";
+    border: 2.3pt solid red;
+    width: fit-content;
+    position: relative;
+    bottom: 10px;
+    display: block;
+}
+.tech_news .tech__news__api p{
+    color: black;
+    font-size: 8.9pt;
+    font-weight: 100;
+    position: relative;
+    margin: 10px 0px;
+    bottom: 110px;
+    padding: 0px 10px;
 }
 .my_footer{
     display: inline-block;
@@ -503,12 +490,11 @@ a{
         /* padding: 12px 15px; */
     }
     .other__news__container_1{
-        width: 55%;
+        width: 60%;
         /* margin: 0px 10px; */
     }
     .other__news__container_2{
         width: 20%;
-        margin-left: 15px;
         display: inline-block;
     }  
 }
