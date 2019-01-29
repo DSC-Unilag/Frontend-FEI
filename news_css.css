@@ -26,7 +26,7 @@ a{
     margin: 0px;
     display: flex;
     flex-wrap: wrap;
-    height: 80px;
+    height: 96px;
     background-color: #2a5ec5;
     width: 100%;
     box-shadow: 0px 2px 4px #a8a4a4;
@@ -65,7 +65,7 @@ a{
     padding-left: 60px;
 }
 @keyframes expand{
-    0%{height: 80px;}
+    0%{height: 96px;}
 
     100%{
         height: 400px;
@@ -76,7 +76,7 @@ a{
         height: 400px;
     }
     100%{
-        height: 80px;
+        height: 96px;
     }
 
 }
@@ -97,14 +97,15 @@ a{
     color: darkgray;
 }
 .news__header .search_bar{
-    width: 75%;
+    width: 85%;
     height: auto;
     display: inline-block;
-    padding: 30px 95px;
+    padding: 30px 0px;
 }
 .search_bar form{
     display: inline-block;
     height: auto;
+    float: right;
 }
 .search_bar input[type=search]{
     display: inline-block;
@@ -512,6 +513,9 @@ a{
         width: 19%;
         text-align: center;
         padding: 36px 0px;
+    }
+    .search_bar form{
+        float: none;
     }
     @keyframes right_move_1{
         0%{

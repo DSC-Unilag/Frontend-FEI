@@ -29,12 +29,12 @@ hamburger_icon.addEventListener('click', function () {
 });
 
 close_button.addEventListener('click', function () {
-  news_ul_links.style.display = 'none';
+  news_header_animation.style.animation = 'close 0.8s ease-out';
   hamburger_icon.style.display = 'inline-block';
+  search_bar.style.display = 'inline-block';
   close_button.style.display = 'none';
   my_logo.style.display = 'none';
-  news_header_animation.style.animation = 'close 0.8s ease-out';
-  search_bar.style.display = 'inline-block';
+  news_ul_links.style.display = 'none';
 })
 
 let load_icon = function () {
