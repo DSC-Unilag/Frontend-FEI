@@ -219,3 +219,7 @@ getText_sports();
     latest_news_text.style.animation = 'left_move 40s 700ms linear forwards infinite';
   })
 })();
+
+function getNgPoliticsSlideshow(){
+
+}
