@@ -18,6 +18,7 @@ let search_bar = document.getElementById('my_search_bar');
 let news_header_animation = document.getElementById('news__header__animation');
 let latest_news_text = document.getElementById('news_latest_text');
 let justIn = document.getElementById('just_in');
+let ng_politics_slideshow = document.getElementById("ng-politics-slideshow");
 
 hamburger_icon.addEventListener('click', function () {
   news_ul_links.style.display = 'inline-block';
