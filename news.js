@@ -139,14 +139,15 @@ function getText_main() {
         output +=
           '<div class="main_news">' +
           '<div class="main__news__api">' +
+          '<a href="' + news.articles[i].url + '">' +
           '<img src="' + news.articles[i].urlToImage + '" />' +
+          '</a>' +
+          '<h3>' + news.articles[i].title + '</h3>' +
           '<ul>' +
           '<li>' + news.articles[i].description + '</li>' +
           '<li>' + news.articles[i].publishedAt + '</li>' +
+          '<hr>' +
           '</ul>' +
-          '<a href="' + news.articles[i].url + '">' +
-          '<h4>' + news.articles[i].title + '</h4>' +
-          '</a>' +
           '</div>' +
           '</div>';
       }
@@ -236,8 +237,8 @@ function getNgBusinessNewsSlideshow(){
         '<div class="business_news">' +
         '<div class="business__news__api">' +
         '<img src="' + busNews.articles[i].urlToImage + '" />' +
-        '<a href="' + busNews.articles[i].url + '">' +
         '<h3>' + busNews.articles[i].title + '</h3>' +
+        '<a href="' + busNews.articles[i].url + '">' +
         '</a>' +
         '<ul>' +
         '<li>' + busNews.articles[i].description + '</li>' +
