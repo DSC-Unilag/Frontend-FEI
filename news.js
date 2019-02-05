@@ -139,15 +139,14 @@ function getText_main() {
         output +=
           '<div class="main_news">' +
           '<div class="main__news__api">' +
-          '<a href="' + news.articles[i].url + '">' +
           '<img src="' + news.articles[i].urlToImage + '" />' +
-          '</a>' +
-          '<h3>' + news.articles[i].title + '</h3>' +
           '<ul>' +
           '<li>' + news.articles[i].description + '</li>' +
           '<li>' + news.articles[i].publishedAt + '</li>' +
-          '<hr>' +
           '</ul>' +
+          '<a href="' + news.articles[i].url + '">' +
+          '<h4>' + news.articles[i].title + '</h4>' +
+          '</a>' +
           '</div>' +
           '</div>';
       }
@@ -220,6 +219,38 @@ getText_sports();
   })
 })();
 
-function getNgPoliticsSlideshow(){
+function getNgBusinessNewsSlideshow(){
+  let myXml = new XMLHttpRequest();
 
+  myXml.open('GET', 'https://newsapi.org/v2/top-headlines?country=ng&category=business&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec', true);
+
+  console.log("READYSTATE: ", myXml.readyState);
+
+  myXml.onload = function(){
+    if(this.status == 200){
+      let busNews = JSON.parse(this.responseText);
+
+      let output = "";
+      for(let i = 0; i < busNews - 65; i++){
+        output+=
+        '<div class="business_news">' +
+        '<div class="business__news__api">' +
+        '<img src="' + busNews.articles[i].urlToImage + '" />' +
+        '<a href="' + busNews.articles[i].url + '">' +
+        '<h3>' + busNews.articles[i].title + '</h3>' +
+        '</a>' +
+        '<ul>' +
+        '<li>' + busNews.articles[i].description + '</li>' +
+        '<li>' + busNews.articles[i].publishedAt + '</li>' +
+        '</ul>' +
+        '</div>' +
+        '</div>';
+      }
+      document.getElementById('ng-business-news').innerHTML = output;
+    }
+    myXml.onerror = function(){
+      console.log("Request error...");
+    }
+  }
+  myXml.send();
 }
