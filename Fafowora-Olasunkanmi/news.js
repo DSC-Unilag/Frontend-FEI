@@ -52,7 +52,7 @@ let load_icon = function () {
 // function getText(){
 
 //     fetch("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec")
-function getText_tech() {
+(function getText_tech() {
 
   //Create XHR Object
   let xhr = new XMLHttpRequest();
@@ -105,9 +105,7 @@ function getText_tech() {
 
   // Sends request
   xhr.send();
-};
-
-getText_tech();
+})();
 
 // readyState values
 // 0: request not initialized
