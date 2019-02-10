@@ -145,7 +145,7 @@ a{
     background-color: rgba(36, 33, 33, 0.69);
     position: relative;
     height: 42px;
-    width: 100%;    
+    width: 100%;
     white-space: nowrap;
     overflow: hidden;
     animation: fade_in 1.25s ease-in;
@@ -238,6 +238,7 @@ a{
 .sports_news{
     width: 100%;
     display: inline-block;
+    min-height: 450px;
 }
 .sports_news .sports__news__api img{
     width: 100%;
@@ -266,7 +267,7 @@ a{
     display: block;
 }
 .sports_news .sports__news__api ul{
-    min-height: 130px;
+    min-height: 128px;
     padding: 25px 15px;
     list-style: none;
     position: relative;
@@ -364,8 +365,8 @@ a{
 }
 .tech_news{
     width: 100%;
-    margin-bottom: 4px;
-    min-height: 322px;
+    margin-bottom: 7px;
+    min-height: 450px;
 }
 .tech_news .tech__news__api{
     width: 100%;

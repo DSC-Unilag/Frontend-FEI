@@ -38,21 +38,8 @@ close_button.addEventListener('click', function () {
   news_ul_links.style.display = 'none';
 })
 
-let load_icon = function () {
-  sports_loader_icon.style.visibility = "hidden";
-  headlines_loader_icon.style.visibility = "hidden";
-  tech_loader_icon.style.visibility = "hidden";
-}
 
-// function setUp(){
-//     nocanvas(); 
-//     loadJSON('https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec', getData, 'jsonp');
-// }
-
-// function getText(){
-
-//     fetch("https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec")
-(function getText_tech() {
+function getText_tech() {
 
   //Create XHR Object
   let xhr = new XMLHttpRequest();
@@ -70,18 +57,17 @@ let load_icon = function () {
     if (this.readyState == 4 && this.status == 200) {
       // console.log(this.responseText);
       let name = JSON.parse(this.responseText);
-      /*This tranforms the JSON data into a much readable form e.g 
-      name - sunkanmi*/
-      load_icon();
-      setTimeout( function(){
-        justIn.style.display = 'inline-block'}, 1600);
+
+      tech_loader_icon.style.visibility = "hidden";;
+
       let output = "";
+
       for (let i = 0; i < name.totalResults - 1; i++) {
         output +=
           '<div class="tech_news">' +
           '<div class="tech__news__api">' +
           '<a href="' + name.articles[i].url + '">' +
-          '<img src="' + name.articles[i].urlToImage + '" />' +          
+          '<img src="' + name.articles[i].urlToImage + '" />' +
           '<h3>' + name.articles[i].title + '</h3>' +
           '</a>' +
           '<p>' + name.articles[i].description + '</p>' +
@@ -96,28 +82,10 @@ let load_icon = function () {
     console.log("Request error......");
   }
 
-  // xhr.onreadystatechange = function(){
-  //     console.log('READYSTATE: ', xhr.readyState);
-  //     if(this.readyState == 4 && this.status == 200){
-  //         // console.log(this.responseText);
-  //     }
-  // }
-
-  // Sends request
   xhr.send();
-})();
+};
 
-// readyState values
-// 0: request not initialized
-// 1: server connection established
-// 2: request received
-// 3: processing request
-// 4: request finished and response is ready
-
-// HTTP Statuses
-// 200: "Ok"
-// 403: "Forbidden"
-// 404: "Not Found" 
+getText_tech();
 
 function getText_main() {
 
@@ -132,6 +100,7 @@ function getText_main() {
     if (this.status == 200) {
       let news = JSON.parse(this.responseText);
 
+      headlines_loader_icon.style.visibility = "hidden";
       let output = "";
       for (let i = 0; i < news.totalResults - 4; i++) {
         output +=
@@ -202,52 +171,48 @@ function getText_sports() {
 
 getText_sports();
 
-(function getJustIn(){
+(function getJustIn() {
   fetch('https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec')
-  .then((res) => res.json())
-  .then((data) => {
-    let output = '';
-    for(let i = 0; i < data.totalResults - 6; i++){
-      output+= `
+    .then((res) => res.json())
+    .then((data) => {
+      let output = '';
+      for (let i = 0; i < data.totalResults - 6; i++) {
+        output += `
       <h3>${data.articles[i].title} - ${data.articles[i].author} </h3>
       `
-    }
-    latest_news_text.innerHTML = output;
-  
-    latest_news_text.style.animation = 'left_move 40s 700ms linear forwards infinite';
-  })
+      }
+      latest_news_text.innerHTML = output;
+
+      latest_news_text.style.animation = 'left_move 40s 700ms linear forwards infinite';
+    })
 })();
 
-function getNgBusinessNewsSlideshow(){
+function getBusinessNewsSlideshow() {
   let myXml = new XMLHttpRequest();
 
   myXml.open('GET', 'https://newsapi.org/v2/top-headlines?country=ng&category=business&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec', true);
 
   console.log("READYSTATE: ", myXml.readyState);
 
-  myXml.onload = function(){
-    if(this.status == 200){
+  myXml.onload = function () {
+    if (this.status == 200) {
       let busNews = JSON.parse(this.responseText);
 
       let output = "";
-      for(let i = 0; i < busNews - 65; i++){
-        output+=
-        '<div class="business_news">' +
-        '<div class="business__news__api">' +
-        '<img src="' + busNews.articles[i].urlToImage + '" />' +
-        '<h3>' + busNews.articles[i].title + '</h3>' +
-        '<a href="' + busNews.articles[i].url + '">' +
-        '</a>' +
-        '<ul>' +
-        '<li>' + busNews.articles[i].description + '</li>' +
-        '<li>' + busNews.articles[i].publishedAt + '</li>' +
-        '</ul>' +
-        '</div>' +
-        '</div>';
+      for (let i = 0; i < busNews - 65; i++) {
+        output +=
+          '<div class="business_news">' +
+          '<a href="' + busNews.articles[i].url + '">' +
+          '<img src="' + busNews.articles[i].urlToImage + '" />' +
+          '<h3>' + busNews.articles[i].title + '</h3>' +
+          '<p>' + busNews.articles[i].description + '</p>' +
+          '<p>' + busNews.articles[i].publishedAt + '</p>' +
+          '</a>' +
+          '</div>';
       }
       document.getElementById('ng-business-news').innerHTML = output;
     }
-    myXml.onerror = function(){
+    myXml.onerror = function () {
       console.log("Request error...");
     }
   }
