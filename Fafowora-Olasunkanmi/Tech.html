@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>NewsRightNow</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="news_css.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="news_css.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-    <div class = "main-container">
-        <div class = "news__header">
+    <div class="main-container">
+        <div class = "news__header" id="news__header__animation">
+            <a class="fa fa-close" id="news__close__icon"></a>
             <div id="logo"><h4>NewsRightNow</h4></div>
             <a class="fa fa-bars" id="news__burger__icon"></a>
-            <a class="fa fa-close" id="news__close__icon"></a>
             <ul id="news__links">
 				<li><a href ="index.html" title="index.html">Home</a></li>
 				<li><a href ="Business.html" title="">Business</a></li>
@@ -25,18 +27,19 @@
                 </form>
             </div>
         </div>
-        <div class = "other__news__container_1">
-            <h2>Headlines</h2>
-            <div id="loader-icon-headlines"></div>
-            <div id="other__news__1">
+            <div class="other__news__container_1">
+                <h2>Headlines</h2>
+                <div id="loader-icon-headlines"></div>
+                <div id="other__news__1">
+                </div>
             </div>
+        <div class="my_footer">
+            <footer>
+                Copyyright &copy; NewsRightNow
+            </footer>
         </div>
-    </div>
-    <div class="my_footer">
-        <footer>
-            Copyyright &copy; NewsRightNow 
-        </footer>
     </div>
     <script src="news.js" type="text/javascript"></script>
 </body>
+
 </html>

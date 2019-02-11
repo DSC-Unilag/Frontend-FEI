@@ -81,49 +81,51 @@ function getText_tech() {
   xhr.onerror = function () {
     console.log("Request error......");
   }
-
+  
   xhr.send();
 };
 
 getText_tech();
 
 function getText_main() {
-
+  
   let xhr = new XMLHttpRequest();
-
+  
   xhr.open('GET', 'https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec', true);
-
+  
   console.log('READYSTATE2: ', xhr.readyState);
-
+  
   xhr.onload = function () {
     console.log('READYSTATE2 :', xhr.readyState);
     if (this.status == 200) {
       let news = JSON.parse(this.responseText);
-
+      
       headlines_loader_icon.style.visibility = "hidden";
+      
       let output = "";
       for (let i = 0; i < news.totalResults - 4; i++) {
         output +=
-          '<div class="main_news">' +
-          '<div class="main__news__api">' +
-          '<a href="' + news.articles[i].url + '">' +
-          '<img src="' + news.articles[i].urlToImage + '" />' +
-          '</a>' +
-          '<h3>' + news.articles[i].title + '</h3>' +
-          '<ul>' +
-          '<li>' + news.articles[i].description + '</li>' +
-          '<li>' + news.articles[i].publishedAt + '</li>' +
-          '<hr>' +
-          '</ul>' +
-          '</div>' +
-          '</div>';
+        '<div class="main_news">' +
+        '<div class="main__news__api">' +
+        '<a href="' + news.articles[i].url + '">' +
+        '<img src="' + news.articles[i].urlToImage + '" />' +
+        '</a>' +
+        '<h3>' + news.articles[i].title + '</h3>' +
+        '<ul>' +
+        '<li>' + news.articles[i].description + '</li>' +
+        '<li>' + news.articles[i].publishedAt + '</li>' +
+        '<hr>' +
+        '</ul>' +
+        '</div>' +
+        '</div>';
       }
       document.getElementById('other__news__1').innerHTML = output;
     }
-
+    
     xhr.onerror = function () {
       console.log("Request error......");
     }
+
   }
   xhr.send();
 };
@@ -132,16 +134,18 @@ function getText_main() {
 getText_main();
 
 function getText_sports() {
-
+  
   let xml = new XMLHttpRequest();
-
+  
   xml.open('GET', 'https://newsapi.org/v2/top-headlines?country=ng&category=sports&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec', true);
-
+  
   console.log('READYSTATE3: ', xml.readyState);
-
+  
   xml.onload = function () {
     if (this.status == 200) {
       let sports = JSON.parse(this.responseText);
+      
+      sports_loader_icon.style.visibility = 'hidden';
 
       let output = "";
       for (let i = 0; i < sports.totalResults - 65; i++) {
@@ -182,7 +186,7 @@ getText_sports();
       `
       }
       latest_news_text.innerHTML = output;
-
+      
       latest_news_text.style.animation = 'left_move 40s 700ms linear forwards infinite';
     })
 })();
