@@ -18,7 +18,7 @@ let search_bar = document.getElementById('my_search_bar');
 let news_header_animation = document.getElementById('news__header__animation');
 let latest_news_text = document.getElementById('news_latest_text');
 let justIn = document.getElementById('just_in');
-let ng_politics_slideshow = document.getElementById("ng-politics-slideshow");
+let ng_bus_slide = document.getElementsByClassName('business_news');
 
 hamburger_icon.addEventListener('click', function () {
   news_ul_links.style.display = 'inline-block';
@@ -175,7 +175,7 @@ function getText_sports() {
 
 getText_sports();
 
-(function getJustIn() {
+function getJustIn() {
   fetch('https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec')
     .then((res) => res.json())
     .then((data) => {
@@ -186,12 +186,14 @@ getText_sports();
       `
       }
       latest_news_text.innerHTML = output;
-      
+      justIn.style.display = 'inline-block';
       latest_news_text.style.animation = 'left_move 40s 700ms linear forwards infinite';
     })
-})();
+};
 
-function getBusinessNewsSlideshow() {
+getJustIn();
+
+function getBusinessNews() {
   let myXml = new XMLHttpRequest();
 
   myXml.open('GET', 'https://newsapi.org/v2/top-headlines?country=ng&category=business&apiKey=90b4f30d56b84ab3bd777d722f4ac2ec', true);
@@ -203,7 +205,7 @@ function getBusinessNewsSlideshow() {
       let busNews = JSON.parse(this.responseText);
 
       let output = "";
-      for (let i = 0; i < busNews - 65; i++) {
+      for (let i = 0; i < busNews.totalResults - 65; i++) {
         output +=
           '<div class="business_news">' +
           '<a href="' + busNews.articles[i].url + '">' +
@@ -222,3 +224,5 @@ function getBusinessNewsSlideshow() {
   }
   myXml.send();
 }
+getBusinessNews();
+
