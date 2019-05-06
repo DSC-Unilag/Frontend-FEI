@@ -41,7 +41,7 @@ a{
     text-align: center;
     margin: auto 0px 23px 0px;
 }
-.news__header #logo h4 {
+.news__header #logo h4{
     display: inline-block;
     width: 249.29px;
     margin: 0;
@@ -91,7 +91,6 @@ a{
     100%{
         height: 96px;
     }
-
 }
 .news__header #news__links li{
     display: inline-block;
@@ -218,9 +217,9 @@ a{
     flex-wrap: wrap;
 }
 #loader-icon-sports, #loader-icon-headlines, #loader-icon-tech{
-    border: 5px solid #e7e7e7;
+    border: 1px solid #e7e7e7;
     border-radius: 50%;
-    border-top: 5px solid royalblue;
+    border-top: 1px solid royalblue;
     width: 37px;
     height: 37px;
     margin: 35px 32px;
@@ -435,17 +434,30 @@ a{
 */
 
 #ng-business-news{
-    display: inline-block;
+    display: flex;
+    flex-wrap: nowrap;
     width: 100%;
     height: auto;
     white-space: nowrap;
     overflow: hidden;
+    position: relative;
+}
+#ng-business-news .business_news{
+    display: inline-block;
+    width: 100%;
+    margin-right: 10px;
+}
+#ng-business-news .business_news a{
 }
 #ng-business-news .business_news img{
     height: auto;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+    min-width: 40%;
+    display: inline-block;
+    position: relative;
+}
+#ng-business-news .business_news h3{
+    color: white;
+    background-color: #0000006b;
 }
 .my_footer{
     display: inline-block;
@@ -512,7 +524,7 @@ a{
         text-align: right;
         padding: 32px 0px;
     }
-    #loader-icon-sports{
+    #loader-icon-sports, #loader-icon-headlines, #loader-icon-tech{
         width: 37px;
         height: 37px;
     }
